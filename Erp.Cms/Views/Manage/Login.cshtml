@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWithEmpty.cshtml";
+    ViewBag.Title = "登陆";
+}
+@using System.Web.Optimization
+@using System.Web.UI.WebControls
+
+<div class="login-container animated fadeInDown ">
+    <form name="form" id="form" method="POST"
+          data-bv-message="登陆信息不完整"
+          data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+          data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+          data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" class="loginbox bg-white widget radius-bordered">
+        <div class="loginbox-title form-group">四川边防总队后勤信息网</div>
+        <div class="loginbox-or form-group">
+            <div class="or-line"></div>
+            <div class="or">登陆</div>
+        </div>
+            <div class="loginbox-textbox form-group">
+                <input type="text" class="form-control" placeholder="用户名" name="name" id="name"
+                       data-bv-message="用户名验证失败"
+                       data-bv-notempty="true"
+                       data-bv-emailaddress="true"
+                       data-bv-emailaddress-message="用户名为邮件地址"
+                       data-bv-notempty-message="用户不能为空" />
+            </div>
+        <div class="loginbox-textbox form-group">
+            <input type="password" class="form-control" placeholder="密码" name="password" id="password"
+                   data-bv-message="密码验证失败"
+                   data-bv-notempty="true"
+                   data-bv-notempty-message="密码不能为空"/>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Error))
+        {
+            <div class="form-group has-error   loginbox-textbox">
+                <small class="help-block" style="display: block;">@ViewBag.Error</small>
+            </div>
+        }
+            <div class="loginbox-submit form-group">
+                <button type="submit" class="btn btn-primary btn-block" id="login">登陆</button>
+            </div>
+        </form>
+    <div class="logobox">
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/assets/js/validation/bootstrapValidator.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#form").bootstrapValidator();
+        });
+    </script>
+}
