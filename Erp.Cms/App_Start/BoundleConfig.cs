@@ -26,6 +26,12 @@
                        "~/assets/js/slimscroll/jquery.slimscroll.min.js",
                       "~/assets/js/beyond.js"));
 
+
+            bundles.Add(new ScriptBundle("~/assets/angular").Include(
+                      "~/assets/js/angular/angular.min.js",
+                      "~/assets/js/angular/angular-route.min.js",
+                      "~/assets/js/angular/angular-messages.min.js"));
+
             BundleTable.EnableOptimizations = false;
         }
     }

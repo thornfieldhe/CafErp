@@ -1,7 +1,115 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "主页";
 }
-
-<h2>Index</h2>
-
+    <!-- Navbar -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-container">
+            <!-- Navbar Barnd -->
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        四川边防总队后勤信息网管理后台
+                    </small>
+                </a>
+            </div>
+            <!-- /Navbar Barnd -->
+            <!-- Account Area and Settings --->
+            <div class="navbar-header pull-right">
+                <div class="navbar-account">
+                <ul class="account-area">
+                <li>
+                    <a  class="navbar-brand"  href="#">
+                        <h5>欢迎您：@User.Identity.Name !</h5>
+                    </a>
+                </li>
+                <!-- /Account Area -->
+                <!-- Settings -->
+                </ul>
+                    <div class="setting">
+                        <a  title="登出" href="/Manage/SignOut">
+                            <i class="icon fa fa-sign-out"></i>
+                        </a>
+                    </div>
+                    <!-- Settings -->
+                </div>
+            </div>
+            <!-- /Account Area and Settings -->
+        </div>
+    </div>
+</div>
+    <!-- /Navbar -->
+<!-- Main Container -->
+<div class="main-container container-fluid">
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div class="page-sidebar" id="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="nav sidebar-menu">
+                <li class="active">
+                    <a href="/Manage/Index">
+                        <i class="menu-icon glyphicon glyphicon-home"></i>
+                        <span class="menu-text"> 主页 </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-user"></i>
+                        <span class="menu-text"> 用户管理 </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="elements.html">
+                                <span class="menu-text">修改密码</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa  fa-file-text-o"></i>
+                        <span class="menu-text"> 文章管理 </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="elements.html">
+                                <span class="menu-text">栏目管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="elements.html">
+                                <span class="menu-text">目录管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="elements.html">
+                                <span class="menu-text">文章管理</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon glyphicon glyphicon-cog"></i>
+                        <span class="menu-text"> 系统设置 </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="elements.html">
+                                <span class="menu-text">轮播图设置</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /Sidebar Menu -->
+        </div>
+        <!-- /Page Sidebar -->
+    </div>
+    <!-- Page Container -->
+</div>

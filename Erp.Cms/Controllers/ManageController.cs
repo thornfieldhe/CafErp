@@ -16,6 +16,7 @@ namespace Erp.Cms.Controllers
     using Erp.Cms.Models;
 
     using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
 
     /// <summary>
     /// The manage controller.
@@ -39,11 +40,24 @@ namespace Erp.Cms.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return this.HttpContext.GetOwinContext().Authentication;
+            }
+        }
 
         /// <summary>
         /// The _sign in manager.
         /// </summary>
         private ApplicationSignInManager signInManager;
+
+
+
 
         /// <summary>
         /// The _user manager.
@@ -117,19 +131,21 @@ namespace Erp.Cms.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginUser user)
         {
-
-            // 这不会计入到为执行帐户锁定而统计的登录失败次数中
-            // 若要在多次输入错误密码的情况下触发帐户锁定，请更改为 shouldLockout: true
             var result = await this.SignInManager.PasswordSignInAsync(user.Name, user.Password, true, shouldLockout: false);
 
             switch (result)
             {
                 case SignInStatus.Success:
-                    return this.View("Index");
+                    return this.Json(new ActionResultData<string>("/Manage/Index"), JsonRequestBehavior.AllowGet);
                 default:
-                    this.ViewBag.Error = "用户名或密码错误！";
-                    return this.View();
+                    return this.Json(new ActionResultStatus(10, "用户名或密码错误"), JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult SignOut()
+        {
+            this.AuthenticationManager.SignOut();
+            return this.View("Login");
         }
     }
 }

@@ -64,13 +64,6 @@ $(window)
     });
 
 
-/*Account Area --> Setting Button*/
-$('#btn-setting')
-    .on('click', function (e) {
-        $('.navbar-account')
-            .toggleClass('setting-open');
-    });
-
 /*Toggle FullScreen*/
 $('#fullscreen-toggler')
     .on('click', function (e) {

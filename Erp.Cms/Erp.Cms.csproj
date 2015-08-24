@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,26 +97,25 @@
       <HintPath>..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -202,6 +202,9 @@
     <Content Include="assets\img\sort_desc.png" />
     <Content Include="assets\img\sort_desc_disabled.png" />
     <Content Include="assets\img\temp1.png" />
+    <Content Include="assets\js\angular\angular-messages.min.js" />
+    <Content Include="assets\js\angular\angular-route.min.js" />
+    <Content Include="assets\js\angular\angular.min.js" />
     <Content Include="assets\js\beyond.js" />
     <Content Include="assets\js\beyond.min.js" />
     <Content Include="assets\js\bootbox\bootbox.js" />
@@ -325,6 +328,16 @@
     <EmbeddedResource Include="Migrations\201508230827173_init.resx">
       <DependentUpon>201508230827173_init.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WorkStation\CAF\CAF.Utility\CAF.Utility.csproj">
+      <Project>{adf4fdbb-1377-4d72-8356-e61db18ab1b5}</Project>
+      <Name>CAF.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WorkStation\CAF\CAF\CAF.csproj">
+      <Project>{690f29b2-d2a9-4e0b-a7e1-454c93bd5296}</Project>
+      <Name>CAF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
