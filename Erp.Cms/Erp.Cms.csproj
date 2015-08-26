@@ -156,9 +156,6 @@
   <ItemGroup>
     <Content Include="scripts\angular-resource.js" />
     <Content Include="scripts\angular-resource.min.js" />
-    <Content Include="scripts\app\app.js" />
-    <Content Include="scripts\app\controllers\manageController.js" />
-    <Content Include="scripts\app\services\manageService.js" />
     <Content Include="assets\css\4095-rtl.min.css" />
     <Content Include="assets\css\4095.min.css" />
     <Content Include="assets\css\animate.min.css" />
@@ -341,10 +338,12 @@
     <Content Include="Views\Manage\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutWithEmpty.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ColumnIndex.cshtml" />
+    <Content Include="Views\Manage\_ColumnIndex.cshtml" />
     <Content Include="scripts\angular.min.js.map" />
     <Content Include="scripts\angular-messages.min.js.map" />
     <Content Include="scripts\angular-route.min.js.map" />
+    <Content Include="scripts\angular-resource.min.js.map" />
+    <Content Include="Views\Manage\_Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -32,10 +32,10 @@
                       "~/scripts/angular-resource.min.js",
                       "~/scripts/angular-messages.min.js"));
 
-            bundles.Add(new ScriptBundle("~/scripts/app").Include(
-                      "~/scripts/app/app.js",
-                      "~/scripts/app/services/manageService.js",
-                      "~/scripts/app/controllers/manageController.js"));
+            //            bundles.Add(new ScriptBundle("~/scripts/app").Include(
+            //                      "~/scripts/app/app.js",
+            //                      "~/scripts/app/services/manageService.js",
+            //                      "~/scripts/app/controllers/manageController.js"));
 
             BundleTable.EnableOptimizations = false;
         }

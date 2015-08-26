@@ -51,7 +51,7 @@
             <!-- Sidebar Menu -->
             <ul class="nav sidebar-menu">
                 <li class="active">
-                    <a href="/Manage/Index">
+                    <a href="javascript:void(0)" onclick=" load('/Manage/Dashboard') ">
                         <i class="menu-icon glyphicon glyphicon-home"></i>
                         <span class="menu-text"> 主页 </span>
                     </a>
@@ -135,9 +135,8 @@
             </div>
             <!-- /Page Header -->
             <!-- Page Body -->
-            <div class="page-body">
-
-                <div ng-view></div>
+            <div class="page-body" >
+                
             </div>
             <!-- Page Body -->
         </div>
@@ -146,5 +145,14 @@
     <!-- Page Container -->
 </div>
 @section scripts{
-    @Scripts.Render("~/scripts/app")
+    $(document).ready(function(){
+        load("/Manage/Dashboard");
+    });
+
+    function load(url){
+    $.get(url,function(data){
+    $(".page-body").append(data);
+    });
+    }
 }
+

@@ -119,6 +119,11 @@ namespace Erp.Cms.Controllers
             return this.View();
         }
 
+        public ActionResult Dashboard()
+        {
+            return this.PartialView("_Dashboard");
+        }
+
         /// <summary>
         /// The login.
         /// </summary>
@@ -156,7 +161,7 @@ namespace Erp.Cms.Controllers
 
         public ActionResult ColumnIndex()
         {
-            return this.View();
+            return this.PartialView("_ColumnIndex");
         }
 
         /// <summary>
@@ -254,7 +259,7 @@ namespace Erp.Cms.Controllers
 
         public ActionResult CatalogsIndex()
         {
-            return this.View();
+            return this.PartialView();
         }
 
         /// <summary>
@@ -330,7 +335,7 @@ namespace Erp.Cms.Controllers
 
         public ActionResult ArticleIndex()
         {
-            return this.View();
+            return this.PartialView();
         }
 
         /// <summary>
