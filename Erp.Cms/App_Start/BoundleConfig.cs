@@ -23,19 +23,18 @@
                       "~/assets/js/jquery.min.js",
                       "~/assets/js/bootstrap.min.js",
                        "~/assets/js/slimscroll/jquery.slimscroll.min.js",
+                       "~/assets/js/lodash.min.js",
                       "~/assets/js/beyond.js"));
 
 
-            bundles.Add(new ScriptBundle("~/scripts/angular").Include(
-                      "~/scripts/angular.min.js",
-                      "~/scripts/angular-route.min.js",
-                      "~/scripts/angular-resource.min.js",
-                      "~/scripts/angular-messages.min.js"));
+            bundles.Add(new ScriptBundle("~/assets/angular").Include(
+                      "~/assets/js/angular.min.js",
+                      "~/assets/js/angular-messages.min.js"));
 
-            //            bundles.Add(new ScriptBundle("~/scripts/app").Include(
-            //                      "~/scripts/app/app.js",
-            //                      "~/scripts/app/services/manageService.js",
-            //                      "~/scripts/app/controllers/manageController.js"));
+            //                        bundles.Add(new ScriptBundle("~/assets/app").Include(
+            //                                  "~/scripts/app/app.js",
+            //                                  "~/scripts/app/services/manageService.js",
+            //                                  "~/scripts/app/controllers/manageController.js"));
 
             BundleTable.EnableOptimizations = false;
         }

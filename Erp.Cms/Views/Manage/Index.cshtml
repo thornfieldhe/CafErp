@@ -78,7 +78,7 @@
                     </a>
                     <ul class="submenu">
                         <li>
-                            <a href='#/Column'>
+                            <a  href="javascript:void(0)" onclick=" load('/Manage/ColumnIndex') ">
                                 <span class="menu-text">栏目管理</span>
                             </a>
                         </li>
@@ -145,14 +145,27 @@
     <!-- Page Container -->
 </div>
 @section scripts{
-    $(document).ready(function(){
-        load("/Manage/Dashboard");
-    });
+    <script type="text/javascript">
+    $(document).ready(function() {
+        init();
+        });
 
-    function load(url){
+    function load(url) {
+        console.log(url);
     $.get(url,function(data){
-    $(".page-body").append(data);
+    $(".page-body").html(data);
     });
     }
+
+    function init() {
+         load("/Manage/Dashboard");
+            $(".sidebar-menu a").click(function(e) {
+            $(".sidebar-menu .active").each(function(r) {
+                $(this).removeClass("active");
+            });
+            $(this).parent().addClass("active");
+        });
+    }
+    </script>
 }
 
