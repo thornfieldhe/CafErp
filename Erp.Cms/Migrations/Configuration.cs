@@ -5,16 +5,16 @@ namespace Erp.Cms.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    using Erp.Cms.Models;
+    using Erp.Cms.Business;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Erp.Cms.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = false;
             this.ContextKey = "DefaultConnection";
         }
     }
@@ -34,7 +34,7 @@ namespace Erp.Cms.Migrations
 
         public const string SaRoleUsers = "Users";
 
-        protected override void Seed(Erp.Cms.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             base.Seed(context);
             const string fullName = "系统管理员";

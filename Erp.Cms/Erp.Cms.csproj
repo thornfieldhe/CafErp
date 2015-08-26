@@ -48,6 +48,14 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Filters, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Filters.0.3.0.0\lib\net40\EntityFramework.Filters.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
@@ -97,6 +105,7 @@
       <HintPath>..\packages\Microsoft.Bcl.Immutable.1.0.34\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -145,6 +154,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\app\app.js" />
+    <Content Include="assets\app\controllers\manageController.js" />
+    <Content Include="assets\app\services\manageService.js" />
     <Content Include="assets\css\4095-rtl.min.css" />
     <Content Include="assets\css\4095.min.css" />
     <Content Include="assets\css\animate.min.css" />
@@ -269,6 +281,9 @@
     <Compile Include="App_Start\BoundleConfig.cs" />
     <Compile Include="App_Start\IndentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Business\ApplicationUser.cs" />
+    <Compile Include="Business\ContextWapper.cs" />
+    <Compile Include="Business\EFEntity.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -279,9 +294,12 @@
       <DependentUpon>201508230827173_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ActionResultData.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\UserViews.cs" />
+    <Compile Include="Models\Common\ActionResultData.cs" />
+    <Compile Include="Business\ApplicationDbContext.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\CodeSmith\Article.cs" />
+    <Compile Include="Models\ViewModels\ArticleView.cs" />
+    <Compile Include="Models\ViewModels\UserViews.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -313,6 +331,7 @@
     <Content Include="Views\Manage\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutWithEmpty.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ColumnIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -322,7 +341,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Business\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201508230827173_init.resx">
