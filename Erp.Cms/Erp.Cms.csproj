@@ -154,9 +154,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\app\app.js" />
-    <Content Include="assets\app\controllers\manageController.js" />
-    <Content Include="assets\app\services\manageService.js" />
+    <Content Include="scripts\angular-resource.js" />
+    <Content Include="scripts\angular-resource.min.js" />
+    <Content Include="scripts\app\app.js" />
+    <Content Include="scripts\app\controllers\manageController.js" />
+    <Content Include="scripts\app\services\manageService.js" />
     <Content Include="assets\css\4095-rtl.min.css" />
     <Content Include="assets\css\4095.min.css" />
     <Content Include="assets\css\animate.min.css" />
@@ -214,9 +216,6 @@
     <Content Include="assets\img\sort_desc.png" />
     <Content Include="assets\img\sort_desc_disabled.png" />
     <Content Include="assets\img\temp1.png" />
-    <Content Include="assets\js\angular\angular-messages.min.js" />
-    <Content Include="assets\js\angular\angular-route.min.js" />
-    <Content Include="assets\js\angular\angular.min.js" />
     <Content Include="assets\js\beyond.js" />
     <Content Include="assets\js\beyond.min.js" />
     <Content Include="assets\js\bootbox\bootbox.js" />
@@ -275,6 +274,17 @@
     <Content Include="assets\js\way\way.min.js" />
     <Content Include="assets\sound\alert.mp3" />
     <Content Include="Global.asax" />
+    <Content Include="scripts\angular-messages.js" />
+    <Content Include="scripts\angular-messages.min.js" />
+    <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular-route.js" />
+    <Content Include="scripts\angular-route.min.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular.min.js" />
+    <Content Include="scripts\lodash.js" />
+    <Content Include="scripts\lodash.min.js" />
+    <Content Include="scripts\restangular.js" />
+    <Content Include="scripts\restangular.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +342,9 @@
     <Content Include="Views\Shared\_LayoutWithEmpty.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ColumnIndex.cshtml" />
+    <Content Include="scripts\angular.min.js.map" />
+    <Content Include="scripts\angular-messages.min.js.map" />
+    <Content Include="scripts\angular-route.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

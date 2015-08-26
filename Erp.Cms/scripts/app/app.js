@@ -1,8 +1,19 @@
-﻿var appManage = angular.module('RouteApp', ['ngMessages','ngRoute', 'restangular']);
+﻿(function () {
+    angular.module('inspinia', [
+        'ui.router',                    // Routing
+        'oc.lazyLoad',                  // ocLazyLoad
+        'ui.bootstrap',                 // Ui Bootstrap
+        'pascalprecht.translate',       // Angular Translate
+        'ngIdle'                        // Idle timer
+    ])
+})();
+
+
+var appManage = angular.module('mainApp', ['ngMessages','ngRoute']);
 appManage.config([
-		'$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+		'$locationProvider', '$routeProvider', function($routeProvider) {
 			//            $locationProvider.html5Mode(false).hashPrefix('!');
-		$locationProvider.html5Mode(true);
+		//$locationProvider.html5Mode(false).hashPrefix('!');
 		$routeProvider.when("/Index", {
 				controller: "manageController",
 				templateUrl: "/Manage/Index"

@@ -1,7 +1,9 @@
-﻿
+﻿@using System.Web.Optimization
+
 @{
     ViewBag.Title = "主页";
 }
+
     <!-- Navbar -->
 <div class="navbar">
     <div class="navbar-inner">
@@ -41,7 +43,7 @@
 </div>
     <!-- /Navbar -->
 <!-- Main Container -->
-<div class="main-container container-fluid">
+<div class="main-container container-fluid" ng-app="mainApp" ng-controller="manageController">
     <!-- Page Container -->
     <div class="page-container">
         <!-- Page Sidebar -->
@@ -76,17 +78,17 @@
                     </a>
                     <ul class="submenu">
                         <li>
-                            <a href="elements.html">
+                            <a href='#/Column'>
                                 <span class="menu-text">栏目管理</span>
                             </a>
                         </li>
                         <li>
-                            <a href="elements.html">
+                            <a href="Catalog">
                                 <span class="menu-text">目录管理</span>
                             </a>
                         </li>
                         <li>
-                            <a href="elements.html">
+                            <a href="Article">
                                 <span class="menu-text">文章管理</span>
                             </a>
                         </li>
@@ -110,6 +112,39 @@
             <!-- /Sidebar Menu -->
         </div>
         <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="active">Dashboard</li>
+                </ul>
+            </div>
+            <!-- /Page Breadcrumb -->
+            <!-- Page Header -->
+            <div class="page-header position-relative">
+                <div class="header-title">
+                    <h1>
+                        Dashboard
+                    </h1>
+                </div>
+            </div>
+            <!-- /Page Header -->
+            <!-- Page Body -->
+            <div class="page-body">
+
+                <div ng-view></div>
+            </div>
+            <!-- Page Body -->
+        </div>
+        <!-- Page Content -->
     </div>
     <!-- Page Container -->
 </div>
+@section scripts{
+    @Scripts.Render("~/scripts/app")
+}
