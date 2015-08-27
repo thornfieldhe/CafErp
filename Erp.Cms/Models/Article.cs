@@ -137,7 +137,7 @@ namespace Erp.Cms.Models
         /// <returns></returns>
         private string GetMaxLevelCode()
         {
-            var maxItem = this.DbContex.Set<Article>().OrderByDescending(r => r.Level).FirstOrDefault(r => r.ParentId == this.ParentId);
+            var maxItem = this.DbContex.Set<Article>().OrderByDescending(r => r.LevelCode).FirstOrDefault(r => r.ParentId == this.ParentId);
 
             //当前层级没有项目
             if (maxItem == null)

@@ -93,6 +93,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -214,6 +216,8 @@
     <Content Include="assets\js\angular\angular-messages.min.js" />
     <Content Include="assets\js\angular\angular.min.js" />
     <Content Include="assets\js\app\base.js" />
+    <Content Include="assets\js\app\column.js" />
+    <Content Include="assets\js\backbone.min.js" />
     <Content Include="assets\js\beyond.js" />
     <Content Include="assets\js\beyond.min.js" />
     <Content Include="assets\js\bootbox\bootbox.js" />
@@ -290,6 +294,10 @@
     <Compile Include="Migrations\201508230827173_init.Designer.cs">
       <DependentUpon>201508230827173_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508271453526_addTable_Article.cs" />
+    <Compile Include="Migrations\201508271453526_addTable_Article.Designer.cs">
+      <DependentUpon>201508271453526_addTable_Article.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Common\ActionResultData.cs" />
     <Compile Include="Business\ApplicationDbContext.cs" />
@@ -343,6 +351,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201508230827173_init.resx">
       <DependentUpon>201508230827173_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271453526_addTable_Article.resx">
+      <DependentUpon>201508271453526_addTable_Article.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

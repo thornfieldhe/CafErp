@@ -18,11 +18,6 @@
         {
             get; set;
         }
-
-        public string LevelCode
-        {
-            get; set;
-        }
     }
 
     public class CatalogView : ColumnView

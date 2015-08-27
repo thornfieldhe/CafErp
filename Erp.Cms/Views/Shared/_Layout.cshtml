@@ -12,20 +12,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <base href="/Manage">
     <link rel="shortcut icon" href="~/assets/img/log.png" type="image/x-icon">
     @Styles.Render("~/assets/basiccss")
     <link id="bootstrap-rtl-link" href="#" rel="stylesheet" />
     @Styles.Render("~/assets/beyondcss")
     <script src="~/assets/js/skins.min.js"></script>
 </head>
-<body>
+<body  >
     <div class="loading-container">
         <div class="loader"></div>
     </div>
 @RenderBody()
+    @Scripts.Render("~/assets/basicjs")
+    @Scripts.Render("~/assets/angular")
+    @RenderSection("scripts", required: false)
+
 </body>
-@Scripts.Render("~/assets/basicjs")
-@RenderSection("scripts", required: false)
+
 </html>
 
