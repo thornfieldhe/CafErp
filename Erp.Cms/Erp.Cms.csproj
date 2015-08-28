@@ -217,6 +217,7 @@
     <Content Include="assets\js\angular\angular.min.js" />
     <Content Include="assets\js\app\base.js" />
     <Content Include="assets\js\app\column.js" />
+    <Content Include="assets\js\app\index.js" />
     <Content Include="assets\js\backbone.min.js" />
     <Content Include="assets\js\beyond.js" />
     <Content Include="assets\js\beyond.min.js" />

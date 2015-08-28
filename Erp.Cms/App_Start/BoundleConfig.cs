@@ -24,24 +24,22 @@
                       "~/assets/js/bootstrap.min.js",
                        "~/assets/js/slimscroll/jquery.slimscroll.min.js",
                        "~/assets/js/lodash.min.js",
-                      "~/assets/js/beyond.js"));
-
+                      "~/assets/js/beyond.js",
+                       "~/assets/js/datatable/jquery.dataTables.min.js",
+                        "~/assets/js/services/dataTables.tableTools.min.js",
+                        "~/assets/js/services/dataTables.bootstrap.min.js",
+                        "~/assets/js/bootbox/bootbox.js",
+                         "~/assets/js/lodash.min.js",
+                     "~/assets/js/backbone.min.js",
+                     "~/assets/js/validation/bootstrapValidator.js"));
 
             bundles.Add(new ScriptBundle("~/assets/angular").Include(
                       "~/assets/js/angular/angular.min.js",
                       "~/assets/js/angular/angular-messages.min.js"));
 
-            bundles.Add(new ScriptBundle("~/assets/table").Include(
-                        "~/assets/js/datatable/jquery.dataTables.min.js",
-                        "~/assets/js/services/dataTables.tableTools.min.js",
-                        "~/assets/js/services/dataTables.bootstrap.min.js"));
-
-            bundles.Add(new ScriptBundle("~/assets/bootbox").Include(
-            "~/assets/js/bootbox/bootbox.js"));
-
-            bundles.Add(new ScriptBundle("~/assets/backbone").Include(
-                     "~/assets/js/lodash.min.js",
-                     "~/assets/js/backbone.min.js"));
+            bundles.Add(new ScriptBundle("~/assets/app").Include(
+                     "~/assets/js/app/index.js",
+                     "~/assets/js/app/base.js"));
 
             BundleTable.EnableOptimizations = false;
         }

@@ -1,44 +1,42 @@
-﻿	$(document).ready(function() {
-		init();
-	
-
-		$(".sidebar-menu a").click(function(e) {
-				$(".sidebar-menu .active").each(function(r) {
-					$(this).removeClass("active");
-				});
-				$(this).parent().addClass("active");
+﻿//弹出对话框编辑对象
+	function editInDialog(title,url,formDocument,validate) {
+		bootbox.dialog({
+			message:formDocument,
+			title: title,
+			className: "modal-darkorange",
+			buttons: {
+				cancel: {
+					label: "取消",
+					className: "btn-default",
+					callback: function () { }
+				},
+				success: {
+				label: "保存",
+				className: "btn-danger",
+				callback: function() {
+					var isValidate = $(form).data('bootstrapValidator').isValid();
+					if (isValidate) {
+						var result=true;
+						$.ajax({
+							type: "post",
+							url: url,
+							data: $("form").serialize(),
+							async: false,
+							success: function(e) {
+							if (e.Status === 1) {
+										$("#unknownError").show().find(".help-block").html(e.Message);
+										result= false;
+									} 
+							}
+						});
+						return result;
+						}else {
+						$(form).data('bootstrapValidator').validate();
+							return false;
+						}
+					}
+				}
+			}
 		});
-	});
-
-	function load(type) {
-		console.log(type);
-		switch (type) {
-		case 0:
-			$.get('/Manage/Dashboard',function(data){
-				$(".page-body").html(data);
-				$(".breadcrumb").html("<li><i class='fa fa-home'></i><a href='javascript:void(0)' onclick='load(0)'>主页</a></li>");
-				$(".sidebar-menu .active").each(function(r) {
-					$(this).removeClass("active");
-				});
-				$("#menuHome").addClass("active");
-				$("#bodyTitle").html("主页");
-			});
-		break;
-		case 1:
-		    $.get('/Manage/ColumnIndex',function(data){
-				$(".page-body").html(data);
-			    $(".breadcrumb").html("<li><i class='fa fa-home'></i><a href='javascript:void(0)' onclick='load(0)'>主页</a></li><li >文章管理</li><li >栏目管理</li>");
-				$(".sidebar-menu .active").each(function(r) {
-					$(this).removeClass("active");
-				});
-				$("#menuColumn").addClass("active");
-				$("#bodyTitle").html("栏目管理");
-		    });
-		break;
-		default:
-		}
-	}
-
-	function init() {
-		load(0);
+		validate();
 	}

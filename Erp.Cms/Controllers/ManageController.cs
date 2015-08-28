@@ -176,7 +176,6 @@ namespace Erp.Cms.Controllers
             {
                 var article = new Article() { Category = Category.Columns, Name = column.Name, Order = column.Order };
                 article.Create();
-                var a = int.Parse("ddd");
                 return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

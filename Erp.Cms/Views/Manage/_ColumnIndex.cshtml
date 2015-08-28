@@ -1,5 +1,5 @@
 ﻿@using System.Web.Optimization
-<div class="row" ng-app="mainApp" >
+<div class="row" ng-app="mainApp">
     <div class="col-xs-12 col-md-12">
         <div class="widget">
             <div class="widget-header ">
@@ -39,7 +39,7 @@
                         <td>1234</td>
                         <td class="center ">power user</td>
                         <td>
-                            <a href="#" class="btn btn-info btn-xs edit" ><i class="fa fa-edit"></i> 编辑</a>
+                            <a href="#" class="btn btn-info btn-xs edit"><i class="fa fa-edit"></i> 编辑</a>
                             <a href="#" class="btn btn-danger btn-xs delete"><i class="fa fa-trash-o"></i> 删除</a>
                         </td>
                     </tr>
@@ -138,12 +138,32 @@
             </div>
         </div>
     </div>
-   </div>
-
-    @Scripts.Render("~/assets/table")
-    @Scripts.Render("~/assets/bootbox")
-    @Scripts.Render("~/assets/backbone")
-    <script src="~/assets/js/validation/bootstrapValidator.js"></script>
+</div>
+<script type="text/template" id="submitForm">
+    <form id="form" name="form">         
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">                     
+                    <input type="text" class="form-control" placeholder="名称" name="name" />                     
+                </div>
+            </div>
+        </div><div class="row">
+            <div class="col-md-12">                 
+                <div class="form-group">
+                    <input type="text" class="form-control " placeholder="排序" required name="order" /> 
+                    
+                </div>
+            </div>
+        </div>
+    <div class="row" id="unknownError" style="display: none;">
+            <div class="col-md-12">
+                <div class="form-group  has-feedback has-error">                     
+                    <small class="help-block" style="display: block;"></small>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
 <script src="~/assets/js/app/column.js"></script>
 
 
