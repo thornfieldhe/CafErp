@@ -16,6 +16,7 @@ namespace Erp.Cms.Controllers
     using System.Threading.Tasks;
     using System.Web;
 
+    using Erp.Cms.Business;
     using Erp.Cms.Models;
 
     using Microsoft.AspNet.Identity.Owin;
@@ -214,17 +215,25 @@ namespace Erp.Cms.Controllers
         /// <summary>
         /// 获取栏目列表
         /// </summary>
-        /// <returns></returns>
-        public ActionResult GetColumnList()
+        /// <param name="pageIndex">
+        /// The page Index.
+        /// </param>
+        /// <param name="pageSize">
+        /// The page Size.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public ActionResult GetColumnList(int pageIndex, int pageSize = 20)
         {
             try
             {
-                var list = Article.Get(r => r.Category == Category.Columns).OrderBy(r => r.Order).ToList();
-                return this.Json(new ActionResultData<List<Article>>(list), JsonRequestBehavior.AllowGet);
+                var pager = new Pager<Article>() { PageIndex = pageIndex, PageSize = pageSize };
+                pager = Article.Pages(pager, r => r.Category == Category.Columns, r => r.Order, true);
+                return this.Json(new ActionResultData<Pager<Article>>(pager), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                throw;
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
 

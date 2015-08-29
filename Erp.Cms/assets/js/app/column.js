@@ -1,13 +1,10 @@
 ﻿var columns=[];
-	function initTable() {
-	
-	}
 
-	function getColumns() {
-		$.get("/Manage/GetColumnList", function(e) {
-			columns = e.Data;
-			var html =juicer($("#table").html(),e);
-			$('tbody').html(html);
+	function bindColumns(index) {
+		$.get("/Manage/GetColumnList?pageIndex="+index+"&pageSize=5", function(e) {
+			columns = e.Data.Datas;
+			var html =juicer($("#table").html(),e.Data);
+			$('#columnGrid').html(html);
 		});
 	}
 
@@ -16,7 +13,7 @@
 			return r.Id === id;
 		});
 		var html =juicer($("#submitForm").html(),column);
-		editInDialog("编辑栏目", "/Manage/CreateColumn",html,validate);
+		editInDialog("编辑栏目", "/Manage/UpdateColumn",html,validate,"columnChangedSubscriber");
 	}
 
 	function deleteColumn(id) {
@@ -24,15 +21,15 @@
 	}
 
 	function init() {
-			initTable();
-	getColumns();
-
-		
+			bindColumns(1);
+			erp.subscriber.addSubscriber("columnChangedSubscriber", function(d) {
+			bindColumns(1);
+			});
 	}
 
 	$("#newColumn").on('click', function () {
 		var html =juicer($("#submitForm").html(),{Name:"",Order:0,Id:""});
-		editInDialog("新增栏目", "/Manage/CreateColumn",html,validate);
+		editInDialog("新增栏目", "/Manage/CreateColumn",html,validate,"columnChangedSubscriber");
 	});
 
 	function validate() {
