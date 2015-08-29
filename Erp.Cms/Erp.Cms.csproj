@@ -263,6 +263,7 @@
     <Content Include="assets\js\fullcalendar\fullcalendar.js" />
     <Content Include="assets\js\jquery-ui-1.10.4.custom.js" />
     <Content Include="assets\js\jquery.min.js" />
+    <Content Include="assets\js\juicer-min.js" />
     <Content Include="assets\js\knob\jquery.knob.js" />
     <Content Include="assets\js\lodash.min.js" />
     <Content Include="assets\js\nestable\jquery.nestable.min.js" />
@@ -274,6 +275,7 @@
     <Content Include="assets\js\tagsinput\bootstrap-tagsinput.js" />
     <Content Include="assets\js\textarea\jquery.autosize.js" />
     <Content Include="assets\js\toastr\toastr.js" />
+    <Content Include="assets\js\underscore.min.js" />
     <Content Include="assets\js\validation\bootstrapValidator.js" />
     <Content Include="assets\sound\alert.mp3" />
     <Content Include="Global.asax" />

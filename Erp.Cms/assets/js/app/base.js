@@ -40,3 +40,9 @@
 		});
 		validate();
 	}
+
+	juicer.set(
+	{
+	'tag::operationOpen': "{%",
+	'tag::operationClose': "}"
+	});

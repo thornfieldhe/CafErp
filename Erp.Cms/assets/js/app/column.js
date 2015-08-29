@@ -1,20 +1,39 @@
-﻿   var column = Backbone.Model.extend({
-	   default: {
-		   Name:"",
-		   Order:0
-		   }
-   });
-   var columns = new Backbone.Collection({ model: column });
-	  
-	$("#newColumn").on('click', function () {
-		editInDialog("新增栏目", "/Manage/CreateColumn",$("#submitForm").html(),validate);
-	});
+﻿var columns=[];
+	function initTable() {
+	
+	}
 
-   $(".edit").each(function(e) {
-	$(this).on('click', function () {
-		editInDialog("编辑栏目", "/Manage/CreateColumn",$("#submitForm").html(),validate);
+	function getColumns() {
+		$.get("/Manage/GetColumnList", function(e) {
+			columns = e.Data;
+			var html =juicer($("#table").html(),e);
+			$('tbody').html(html);
+		});
+	}
+
+	function editColumn(id) {
+		var column = _.find(columns, function(r) {
+			return r.Id === id;
+		});
+		var html =juicer($("#submitForm").html(),column);
+		editInDialog("编辑栏目", "/Manage/CreateColumn",html,validate);
+	}
+
+	function deleteColumn(id) {
+		
+	}
+
+	function init() {
+			initTable();
+	getColumns();
+
+		
+	}
+
+	$("#newColumn").on('click', function () {
+		var html =juicer($("#submitForm").html(),{Name:"",Order:0,Id:""});
+		editInDialog("新增栏目", "/Manage/CreateColumn",html,validate);
 	});
-   });
 
 	function validate() {
 	$("#form").bootstrapValidator({
@@ -45,4 +64,5 @@
 			}});
 	}
 
+init();
 	

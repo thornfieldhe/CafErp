@@ -16,7 +16,9 @@
                       "~/assets/css/beyond.min.css",
                       "~/assets/css/demo.min.css",
                       "~/assets/css/typicons.min.css",
-                      "~/assets/css/animate.min.css"));
+                      "~/assets/css/animate.min.css",
+                      "~/assets/css/dataTables.bootstrap.css"
+                      ));
 
 
             bundles.Add(new ScriptBundle("~/assets/basicjs").Include(
@@ -30,7 +32,7 @@
                         "~/assets/js/services/dataTables.bootstrap.min.js",
                         "~/assets/js/bootbox/bootbox.js",
                          "~/assets/js/lodash.min.js",
-                     "~/assets/js/backbone.min.js",
+                     "~/assets/js/juicer-min.js",
                      "~/assets/js/validation/bootstrapValidator.js"));
 
             bundles.Add(new ScriptBundle("~/assets/angular").Include(
