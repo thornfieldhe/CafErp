@@ -275,7 +275,7 @@ namespace Erp.Cms.Controllers
 
         public ActionResult CatalogsIndex()
         {
-            return this.PartialView();
+            return this.PartialView("_CatalogsIndex");
         }
 
         /// <summary>

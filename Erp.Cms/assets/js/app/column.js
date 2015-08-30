@@ -1,7 +1,7 @@
 ﻿var columns=[];
 
 	function bindColumns(index) {
-		$.get("/Manage/GetColumnList?pageIndex="+index+"&pageSize=10", function(e) {
+		$.get("/Manage/GetColumnList?pageIndex="+index+"&pageSize=20", function(e) {
 			columns = e.Data.Datas;
 			var html =juicer($("#table").html(), { data: e.Data });
 			$('#columnGrid').html(html);
