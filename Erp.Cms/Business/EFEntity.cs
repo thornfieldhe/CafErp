@@ -350,8 +350,7 @@ namespace Erp.Cms.Business
         /// </summary>
         protected virtual void Remove()
         {
-            this.Status = -1;
-            this.ChangedDate = DateTime.Now;
+            this.DbContex.Set<K>().Remove(this as K);
         }
 
         /// <summary>
@@ -545,7 +544,9 @@ namespace Erp.Cms.Business
         {
             get
             {
-                return this.Total % 5 == 0 ? (this.Total / 5 == this.PageIndex) : (this.Total / 5 + 1 == this.PageIndex);
+                var temp0 = this.Total % this.PageSize;//总页数是否能够整出每页数
+                var temp1 = temp0 == 0 ? this.Total / this.PageSize : this.Total / this.PageSize + 1; //总分页数;
+                return temp1 == this.PageIndex;
             }
         }
 
@@ -564,21 +565,47 @@ namespace Erp.Cms.Business
         /// </summary>
         public void GetShowIndex()
         {
-            var temp0 = this.Total % 5;
-            var temp1 = this.Total / 5;
+            var temp0 = this.Total % this.PageSize;//总页数是否能够整出每页数
+            var temp1 = temp0 == 0 ? this.Total / this.PageSize : this.Total / this.PageSize + 1; //总分页数;
 
             this.ShowIndex = new List<int>();
             for (var i = 0; i < temp1; i++)
             {
-                if (i * 5 < this.PageIndex && (i + 1) * 5 >= this.PageIndex)
+                if (i * this.PageSize < this.PageIndex && (i + 1) * this.PageSize >= this.PageIndex)
                 {
                     for (var j = 1; j <= 5; j++)
                     {
-                        if (this.Total / 5 >= i * 5 + j)
+                        if (temp1 >= i * this.PageSize + j)
                         {
-                            this.ShowIndex.Add(i * 5 + j);
+                            this.ShowIndex.Add(i * this.PageSize + j);
                         }
                     }
+                }
+            }
+
+
+            if (temp1 > 5 && this.PageIndex % 5 == 0)
+            {
+                for (int i = 0; i < this.ShowIndex.Count; i++)
+                {
+                    this.ShowIndex[i] = this.ShowIndex[i] + 1;
+                }
+            }
+
+
+            else if (this.PageIndex >= 6 && this.PageIndex % 5 == 1)
+            {
+                if (this.ShowIndex.Count == 5)
+                {
+                    for (int i = 0; i < this.ShowIndex.Count; i++)
+                    {
+                        this.ShowIndex[i] = this.ShowIndex[i] - 1;
+                    }
+                }
+                else
+                {
+                    this.ShowIndex.Add(this.PageIndex - 1);
+                    this.ShowIndex.Sort();
                 }
             }
         }

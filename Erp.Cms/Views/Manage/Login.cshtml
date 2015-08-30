@@ -5,57 +5,60 @@
 @using System.Web.Optimization
 @using System.Web.UI.WebControls
 
-<div class="login-container animated fadeInDown " ng-app="crm" ng-controller="loginController" >
-    <form name="form" class="loginbox bg-white widget radius-bordered" ng-submit="submit()">
+<div class="login-container animated fadeInDown ">
+    <form name="form" class="loginbox bg-white widget radius-bordered" id="form"
+                                                  data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                                                  data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                                                  data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
         <div class="loginbox-title form-group">四川边防总队后勤信息网</div>
         <div class="loginbox-or form-group">
             <div class="or-line"></div>
             <div class="or">登陆</div>
         </div>
-        <div class="loginbox-textbox form-group" ng-class="{'has-feedback has-error':form.name.$invalid && form.name.$dirty,'has-feedback has-success':form.name.$valid && form.name.$dirty}">
+        <div class="loginbox-textbox form-group" >
             <span class="input-icon icon-right">
-                <input type="email" class="form-control" placeholder="用户名" name="name" required ng-model="user.Name" />
-                <i class="form-control-feedback glyphicon glyphicon-ok" style="display: block;" ng-show="form.name.$valid "></i>
-                <i class="form-control-feedback glyphicon glyphicon-remove" style="display: block;" ng-show="form.name.$invalid && form.name.$dirty"></i>
+                <input type="text" class="form-control" placeholder="用户名" name="Name"  data-bv-notempty="true" data-bv-notempty-message="用户名不能为空"/>
             </span>
-            <em class="help-block text-left" ng-show="form.name.$error.required && form.name.$dirty ">用户名不能为空</em>
-            <em class="help-block text-left" ng-show="form.name.$error.email && form.name.$dirty">用户名格式不正确</em>
         </div>
-        <div class="loginbox-textbox form-group" ng-class="{'has-feedback has-error':form.password.$invalid && form.password.$dirty,'has-feedback has-success':form.password.$valid && form.password.$dirty}">
+        <div class="loginbox-textbox form-group" >
             <span class="input-icon icon-right">
-                <input type="password" class="form-control" placeholder="密码" name="password" required ng-model="user.Password" />
-                <i class="form-control-feedback glyphicon glyphicon-ok" style="display: block;" ng-show="form.password.$valid "></i>
-                <i class="form-control-feedback glyphicon glyphicon-remove" style="display: block;" ng-show="form.password.$invalid && form.password.$dirty"></i>
+                <input type="password" class="form-control" placeholder="密码" name="Password" data-bv-notempty="true" data-bv-notempty-message="密码不能为空"/>
             </span>
-            <em class="help-block text-left" ng-show="form.password.$error.required && form.password.$dirty ">密码不能为空</em>
         </div>
-        <div class="form-group has-error   loginbox-textbox" ng-show="result.Message!==''">
-            <small class="help-block" style="display: block;" ng-bind="result.Message"></small>
+        <div class="loginbox-textbox form-group" id="unknownError" style="display: none;">
+            <div class="col-md-12">
+                <div class="form-group  has-feedback has-error">
+                    <small class="help-block" style="display: block;"></small>
+                </div>
+            </div>
         </div>
         <div class="loginbox-submit form-group">
-            <button type="submit" class="btn btn-primary btn-block" ng-disabled="form.$invalid" >登陆</button>
+            <button type="button" class="btn btn-primary btn-block" onclick=" login() ">登陆</button>
         </div>
+    
     </form>
     <div class="logobox">
     </div>
 </div>
 
 @section scripts{
-@Scripts.Render("~/assets/angular")
+
     <script type="text/javascript">
-        angular.module("crm", ["ngMessages"])
-        .controller("loginController", [
-        "$scope","$http", function($scope, $http) {
-            $scope.submit = function() {
-                $http.post("/Manage/Login", { user: $scope.user }).success(function(e) {
-                    if (e.Status === 1) {
-                        $scope.result = e;
-                    } else {
-                        window.location.href = e.Data;
-                    }
-                });
-            };
-        }]);
+        $(document).ready(function() {
+            $("#form").bootstrapValidator();
+        });
+
+        function login() {
+            console.log(1111);
+            $.post("/Manage/Login", $("#form").serialize() ,function(e) {
+                if (e.Status === 1) {
+                    $("#unknownError").show().find(".help-block").html(e.Message);
+                } else {
+                    window.location.href = e.Data;
+                }
+            });
+        }
+
 
     </script>
 }

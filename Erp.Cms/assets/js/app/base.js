@@ -1,9 +1,10 @@
-﻿//弹出对话框编辑对象
+﻿
+//弹出对话框编辑对象
 	function editInDialog(title,url,formDocument,validate,subscriber) {
 		bootbox.dialog({
 			message:formDocument,
 			title: title,
-			className: "modal-darkorange",
+			className: " modal-primary",
 			buttons: {
 				cancel: {
 					label: "取消",
@@ -12,11 +13,9 @@
 				},
 				success: {
 				label: "保存",
-				className: "btn-danger",
+				className: "btn-primary",
 				callback: function() {
-					console.log(1);
 					if ($(form).data('bootstrapValidator').isValid()) {
-					console.log(3);
 						var result=true;
 						$.ajax({
 							type: "post",
@@ -44,6 +43,43 @@
 		validate();
 	}
 
+	//弹出对话框删除对象
+	function delInDialog(title,url,id,subscriber) {
+bootbox.confirm({
+			message: "确认删除"+title+"么？",
+			className: "modal-darkorange",
+			callback:function(result) {
+				if (result) {
+						$.ajax({
+							type: "post",
+							url: url,
+							data: {id:id},
+							async: false,
+							success: function(e) {
+								if (e.Status === 1) {
+									
+									result = false;
+								} else {
+									erp.subscriber.publish(subscriber);
+								}
+							}
+						});
+			}
+			},
+			buttons: {
+				cancel: {
+					label: "取消",
+					className: "btn-default",
+					callback: function () { }
+				},
+				confirm: {
+				label: "删除",
+				className: "btn-danger"
+				}
+			}
+		});
+	}
+
 	//模板配置
 	juicer.set(
 	{
@@ -68,4 +104,5 @@
 }
 };
 erp.subscriber.subscribers = new Array();
+
 

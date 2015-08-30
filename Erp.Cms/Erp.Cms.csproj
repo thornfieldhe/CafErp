@@ -341,6 +341,7 @@
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\_ColumnIndex.cshtml" />
     <Content Include="Views\Manage\_Dashboard.cshtml" />
+    <Content Include="Views\Shared\_tfoot.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

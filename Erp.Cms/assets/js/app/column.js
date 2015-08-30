@@ -1,9 +1,9 @@
 ﻿var columns=[];
 
 	function bindColumns(index) {
-		$.get("/Manage/GetColumnList?pageIndex="+index+"&pageSize=5", function(e) {
+		$.get("/Manage/GetColumnList?pageIndex="+index+"&pageSize=10", function(e) {
 			columns = e.Data.Datas;
-			var html =juicer($("#table").html(),e.Data);
+			var html =juicer($("#table").html(), { data: e.Data });
 			$('#columnGrid').html(html);
 		});
 	}
@@ -16,8 +16,8 @@
 		editInDialog("编辑栏目", "/Manage/UpdateColumn",html,validate,"columnChangedSubscriber");
 	}
 
-	function deleteColumn(id) {
-		
+	function deleteColumn(id,name) {
+		delInDialog(name, "/Manage/DeleteArticle",id,"columnChangedSubscriber");
 	}
 
 	function init() {

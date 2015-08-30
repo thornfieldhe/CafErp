@@ -138,15 +138,22 @@ namespace Erp.Cms.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(LoginUser user)
         {
-            var result =
-                await this.SignInManager.PasswordSignInAsync(user.Name, user.Password, true, shouldLockout: false);
-
-            switch (result)
+            try
             {
-                case SignInStatus.Success:
-                    return this.Json(new ActionResultData<string>("/Manage/Index"), JsonRequestBehavior.AllowGet);
-                default:
-                    return this.Json(new ActionResultStatus(10, "用户名或密码错误"), JsonRequestBehavior.AllowGet);
+                var result =
+                    await this.SignInManager.PasswordSignInAsync(user.Name, user.Password, true, shouldLockout: false);
+
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return this.Json(new ActionResultData<string>("/Manage/Index"), JsonRequestBehavior.AllowGet);
+                    default:
+                        return this.Json(new ActionResultStatus(10, "用户名或密码错误"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
 

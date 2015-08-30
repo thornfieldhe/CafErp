@@ -24,9 +24,7 @@ namespace Erp.Cms.Migrations
     {
         public const string SaUserId = "76edf148-3e31-4e9e-8cf8-f17d3c96f05f";
 
-        public const string SaUserName = "sa@admins.com";
-
-        public const string SaEmail = "sa@admins.com";
+        public const string SaUserName = "sa";
 
         public const string SaPassword = "11111111";
 
@@ -61,7 +59,6 @@ namespace Erp.Cms.Migrations
                     {
                         Id = SaUserId,
                         UserName = SaUserName,
-                        Email = SaEmail,
                         EmailConfirmed = false,
                         FullName = fullName,
                         TwoFactorEnabled = true,
