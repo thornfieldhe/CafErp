@@ -145,7 +145,7 @@ namespace Erp.Cms.Models
                 var parent = this.DbContex.Set<Article>().FirstOrDefault(r => r.Id == this.ParentId);
 
                 //父层级不存在,即为第一条数据;父级存在，即为父级下第一条数据
-                return parent == null ? "01" : string.Format("{0},{1}", parent.Level + "01");
+                return parent == null ? "01" : string.Format("{0}{1}", parent.LevelCode ,"01");
             }
             else
             {

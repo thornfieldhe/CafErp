@@ -1,18 +1,18 @@
 ﻿
 //弹出对话框编辑对象
-	function editInDialog(title,url,formDocument,validate,subscriber) {
+	function editInDialog(title,url,formDocument,callback,subscriber) {
 		bootbox.dialog({
 			message:formDocument,
 			title: title,
 			className: " modal-primary",
 			buttons: {
 				cancel: {
-					label: "取消",
+					label: "<i class='fa   fa-mail-reply'></i>取消",
 					className: "btn-default",
 					callback: function () { }
 				},
 				success: {
-				label: "保存",
+				label: "<i class='fa    fa-floppy-o'></i>保存",
 				className: "btn-primary",
 				callback: function() {
 					if ($(form).data('bootstrapValidator').isValid()) {
@@ -40,7 +40,7 @@
 				}
 			}
 		});
-		validate();
+		callback();
 	}
 
 	//弹出对话框删除对象
@@ -68,12 +68,12 @@ bootbox.confirm({
 			},
 			buttons: {
 				cancel: {
-					label: "取消",
+					label: " <i class='fa   fa-mail-reply'></i> 取消",
 					className: "btn-default",
 					callback: function () { }
 				},
 				confirm: {
-				label: "删除",
+				label: "<i class='fa   fa-trash-o'></i>删除",
 				className: "btn-danger"
 				}
 			}

@@ -11,7 +11,6 @@
 	});
 
 	function load(type) {
-		console.log(type);
 		switch (type) {
 		case 0:
 					loadPage("/Manage/Dashboard",null, "主页","#menuHome",true);

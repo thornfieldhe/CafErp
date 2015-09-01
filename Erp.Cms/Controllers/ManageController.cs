@@ -232,16 +232,9 @@ namespace Erp.Cms.Controllers
         /// </returns>
         public ActionResult GetColumnList(int pageIndex, int pageSize = 20)
         {
-            try
-            {
-                var pager = new Pager<Article>() { PageIndex = pageIndex, PageSize = pageSize };
-                pager = Article.Pages(pager, r => r.Category == Category.Columns, r => r.Order, true);
-                return this.Json(new ActionResultData<Pager<Article>>(pager), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
-            }
+            var pager = new Pager<Article>() { PageIndex = pageIndex, PageSize = pageSize };
+            pager = Article.Pages(pager, r => r.Category == Category.Columns, r => r.Order, true);
+            return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -305,7 +298,7 @@ namespace Erp.Cms.Controllers
         /// <param name="catalog"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult UpdateCatalogs(CatalogView catalog)
+        public ActionResult UpdateCatalog(CatalogView catalog)
         {
             try
             {
@@ -330,19 +323,16 @@ namespace Erp.Cms.Controllers
         /// <summary>
         /// 获取目录列表
         /// </summary>
-        /// <returns></returns>
+        /// <param name="parentId">
+        /// 父目录
+        /// </param>
+        /// <returns>
+        /// </returns>
         public ActionResult GetCatalogList()
         {
-            try
-            {
-                var list = Article.Get(r => r.Category == Category.Columns || r.Category == Category.Catalog)
-                    .OrderBy(r => r.Level).ThenBy(r => r.Order).ToList();
-                return this.Json(new ActionResultData<List<Article>>(list), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
-            }
+            var list = Article.Get(r => r.Category == Category.Columns || r.Category == Category.Catalog)
+                .OrderBy(r => r.Level).ThenBy(r => r.Order).ToList();
+            return this.Json(list, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -380,7 +370,7 @@ namespace Erp.Cms.Controllers
         /// <param name="article"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult UpdateCatalog(ArticleView article)
+        public ActionResult UpdateArtile(ArticleView article)
         {
             try
             {
