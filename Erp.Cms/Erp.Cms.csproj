@@ -216,6 +216,7 @@
     <Content Include="assets\js\angular\angular-messages.min.js" />
     <Content Include="assets\js\angular\angular.min.js" />
     <Content Include="assets\js\app\base.js" />
+    <Content Include="assets\js\app\article.js" />
     <Content Include="assets\js\app\catalog.js" />
     <Content Include="assets\js\app\column.js" />
     <Content Include="assets\js\app\index.js" />
@@ -360,6 +361,7 @@
     <Content Include="Views\Manage\_Dashboard.cshtml" />
     <Content Include="Views\Shared\_tfoot.cshtml" />
     <Content Include="Views\Manage\_CatalogsIndex.cshtml" />
+    <Content Include="Views\Manage\_ArticlesIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

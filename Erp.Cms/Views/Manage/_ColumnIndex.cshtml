@@ -63,7 +63,17 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label no-padding-right">排序</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control " placeholder="排序" required name="order" value="${Order}" />
+                        <div class="spinbox spinbox-horizontal spinbox-right">
+                            <div class="spinbox-buttons	btn-group">
+                                <button type="button" class="btn spinbox-down blueberry">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn spinbox-up purple">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="spinbox-input form-control" placeholder="排序" required name="order" value="${Order}">
+                        </div>
                         <input type="hidden" value="${Id}" name="id" />
                     </div>
                 </div>

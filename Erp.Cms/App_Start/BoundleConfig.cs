@@ -17,9 +17,9 @@
                       "~/assets/css/demo.min.css",
                       "~/assets/css/typicons.min.css",
                       "~/assets/css/animate.min.css",
-                      "~/assets/css/dataTables.bootstrap.css"
-                      ));
-
+                      "~/assets/css/dataTables.bootstrap.css",
+                      "~/assets/js/ztree/zTreeStyle.css",
+                    "~/assets/js/ztree/metro.css"));
 
             bundles.Add(new ScriptBundle("~/assets/basicjs").Include(
                       "~/assets/js/jquery.min.js",
@@ -27,12 +27,11 @@
                        "~/assets/js/slimscroll/jquery.slimscroll.min.js",
                        "~/assets/js/lodash.min.js",
                       "~/assets/js/beyond.js",
-                        //                       "~/assets/js/datatable/jquery.dataTables.min.js",
-                        //                        "~/assets/js/services/dataTables.tableTools.min.js",
-                        //                        "~/assets/js/services/dataTables.bootstrap.min.js",
                         "~/assets/js/bootbox/bootbox.js",
                          "~/assets/js/lodash.min.js",
                      "~/assets/js/juicer-min.js",
+                     "~/assets/js/ztree/jquery.ztree.core-3.5.js",
+                     "~/assets/js/fuelux/spinbox/fuelux.spinbox.min.js",
                      "~/assets/js/validation/bootstrapValidator.js"));
 
             bundles.Add(new ScriptBundle("~/assets/angular").Include(

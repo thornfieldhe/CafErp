@@ -83,7 +83,9 @@ $("#editCatalog").on("click", function() {
 
 $("#newCatalog").on("click", function() {
 		isAddAction = true;
-		var html =juicer($("#submitForm").html(),{Name:"",Order:0,Id:"",ParentId:treeNodes[0].Id,ParentName:treeNodes[0].Name});
+		var levelOneNodes=_.filter(treeNodes,function(r){return r.LevelCode.length==2});
+		var minNode =_.min(levelOneNodes,function(r){return r.Order});
+		var html =juicer($("#submitForm").html(),{Name:"",Order:0,Id:"",ParentId:minNode.Id,ParentName:minNode.Name});
 		editInDialog("新增目录", "/Manage/CreateCatalog",html,onFormInit,"columnChangedSubscriber");
 		$('#treeCatalog2').slimScroll({
 		height: '100px'

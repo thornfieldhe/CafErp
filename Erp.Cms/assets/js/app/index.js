@@ -21,6 +21,10 @@
 		case 2:
 					loadPage("/Manage/CatalogsIndex", "文章管理", "目录管理","#menuCatalog",false);
 		break;
+		case 3:
+					loadPage("/Manage/ArticlesIndex", "文章管理", "文章管理","#menuArticle",false);
+		break;
+
 		default:
 		}
 	}

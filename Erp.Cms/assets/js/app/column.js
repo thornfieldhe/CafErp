@@ -13,7 +13,7 @@
 			return r.Id === id;
 		});
 		var html =juicer($("#submitForm").html(),column);
-		editInDialog("编辑栏目", "/Manage/UpdateColumn",html,validate,"columnChangedSubscriber");
+		editInDialog("编辑栏目", "/Manage/UpdateColumn",html,onFormInit,"columnChangedSubscriber");
 	}
 
 	function deleteColumn(id,name) {
@@ -29,17 +29,12 @@
 
 	$("#newColumn").on('click', function () {
 		var html =juicer($("#submitForm").html(),{Name:"",Order:0,Id:""});
-		editInDialog("新增栏目", "/Manage/CreateColumn",html,validate,"columnChangedSubscriber");
+		editInDialog("新增栏目", "/Manage/CreateColumn",html,onFormInit,"columnChangedSubscriber");
 	});
 
 	function validate() {
 	$("#form").bootstrapValidator({
 			message: '栏目验证未通过',
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
 			fields: {
 				name: {
 					validators: {
@@ -60,6 +55,11 @@
 				}
 			}});
 	}
+
+	function onFormInit() {
+	validate();
+	$('.spinbox').spinbox();
+}
 
 init();
 	

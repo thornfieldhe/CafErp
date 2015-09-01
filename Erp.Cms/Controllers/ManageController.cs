@@ -11,7 +11,6 @@ using System.Web.Mvc;
 namespace Erp.Cms.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
@@ -323,9 +322,6 @@ namespace Erp.Cms.Controllers
         /// <summary>
         /// 获取目录列表
         /// </summary>
-        /// <param name="parentId">
-        /// 父目录
-        /// </param>
         /// <returns>
         /// </returns>
         public ActionResult GetCatalogList()
@@ -339,9 +335,9 @@ namespace Erp.Cms.Controllers
 
         #region 文章操作
 
-        public ActionResult ArticleIndex()
+        public ActionResult ArticlesIndex()
         {
-            return this.PartialView();
+            return this.PartialView("_ArticlesIndex");
         }
 
         /// <summary>
@@ -354,7 +350,7 @@ namespace Erp.Cms.Controllers
         {
             try
             {
-                var item = new Article() { Category = Category.Catalog, Name = article.Name, Order = article.Order, ParentId = article.ParentId, Content = article.Content };
+                var item = new Article() { Category = Category.Articles, Name = article.Name, Order = article.Order, ParentId = article.ParentId, Content = article.Content };
                 item.Create();
                 return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
@@ -394,25 +390,20 @@ namespace Erp.Cms.Controllers
         }
 
         /// <summary>
-        /// 获取目录列表
+        /// 获取文章列表
         /// </summary>
         /// <param name="catalogId">
         /// The catalog Id.
         /// </param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
         /// <returns>
         /// </returns>
-        public ActionResult GetArticleList(Guid catalogId)
+        public ActionResult GetArticleList(Guid catalogId, int pageIndex, int pageSize = 20)
         {
-            try
-            {
-                var list = Article.Get(r => r.Category == Category.Articles && r.ParentId == catalogId)
-                    .OrderBy(r => r.Order).ToList();
-                return this.Json(new ActionResultData<List<Article>>(list), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
-            }
+            var pager = new Pager<Article>() { PageIndex = pageIndex, PageSize = pageSize };
+            pager = Article.Pages(pager, r => r.Category == Category.Articles && r.ParentId == catalogId, r => r.Order, true);
+            return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
