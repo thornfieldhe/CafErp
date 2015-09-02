@@ -13,6 +13,7 @@ setting = {
 
 function onClick(event, treeId, treeNode, clickFlag) {
 	selectNode = treeNode;
+	$("#newArticle").attr("disabled", false);
 	bindArticles(1);
 }	
 
@@ -26,18 +27,17 @@ function loadTree() {
 	});
 }
 
-function editArticle(id){
-			var article = _.find(articles, function(r) {
-			return r.Id === id;
-		});
-		var html =juicer($("#submitForm").html(),article);
-		editInDialog("编辑文章", "/Manage/UpdateArtile",html,onFormInit,"columnChangedSubscriber");
+function editArticle(id) {
+	$.get("/Manage/ArticleEdit?id=" + id, function(e) {
+		editInDialog("编辑文章", "/Manage/UpdateArtile",e,onFormInit,"columnChangedSubscriber");
+	});
 }
 
 
 $("#newArticle").on("click", function() {
-		var html =juicer($("#submitForm").html(),{Name:"",Order:0,Id:"",ParentId:selectNode.id});
-		editInDialog("新增文章", "/Manage/CreateArticle",html,onFormInit,"columnChangedSubscriber");
+	$.get("/Manage/ArticleEdit?parentId="+selectNode.id, function(e) {
+		editInDialog("新增文章", "/Manage/CreateArticle",e,onFormInit,"columnChangedSubscriber");
+	});
 });
 
 function deleteArticle(id,name) {
@@ -91,8 +91,8 @@ function validate() {
 	}
 	
 function onFormInit() {
-	validate();
 	$('.spinbox').spinbox();
+	$(".modal-dialog").addClass("modal-lg");
 }
 
 

@@ -5,6 +5,9 @@
 			message:formDocument,
 			title: title,
 			className: " modal-primary",
+			callback:function() {
+				console.log(123);
+			},
 			buttons: {
 				cancel: {
 					label: "<i class='fa   fa-mail-reply'></i>取消",
@@ -15,7 +18,7 @@
 				label: "<i class='fa    fa-floppy-o'></i>保存",
 				className: "btn-primary",
 				callback: function() {
-					if ($(form).data('bootstrapValidator').isValid()) {
+							$(form).data('bootstrapValidator').validate();
 						var result=true;
 						$.ajax({
 							type: "post",
@@ -32,15 +35,14 @@
 							}
 						});
 						return result;
-						}else {
-						$(form).data('bootstrapValidator').validate();
-							return false;
-						}
 					}
 				}
 			}
 		});
-		callback();
+		if (callback!==null) {
+			callback();
+		}
+		
 	}
 
 	//弹出对话框删除对象

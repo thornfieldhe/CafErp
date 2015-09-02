@@ -340,12 +340,18 @@ namespace Erp.Cms.Controllers
             return this.PartialView("_ArticlesIndex");
         }
 
+        public ActionResult ArticleEdit(Guid? id, Guid? parentId)
+        {
+            return this.PartialView("_ArticleEdit", id.HasValue ? Article.Get(id.Value) : new Article() { ParentId = parentId });
+        }
+
         /// <summary>
         /// 新增文章
         /// </summary>
         /// <param name="article"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult CreateArticle(ArticleView article)
         {
             try
@@ -366,6 +372,7 @@ namespace Erp.Cms.Controllers
         /// <param name="article"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UpdateArtile(ArticleView article)
         {
             try
@@ -403,6 +410,7 @@ namespace Erp.Cms.Controllers
         {
             var pager = new Pager<Article>() { PageIndex = pageIndex, PageSize = pageSize };
             pager = Article.Pages(pager, r => r.Category == Category.Articles && r.ParentId == catalogId, r => r.Order, true);
+
             return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 
