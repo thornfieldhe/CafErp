@@ -27,6 +27,10 @@ namespace Erp.Cms.Business
             get; set;
         }
 
+        public DbSet<Slide> Slides
+        {
+            get; set;
+        }
 
         public static ApplicationDbContext Create()
         {

@@ -26,6 +26,9 @@
 		break;
 		case 4:
 					loadPage("/Manage/ChangePasswordIndex", "文章管理", "修改密码","#menuChangePass",false);
+		break;		
+		case 5:
+					loadPage("/Manage/SlideIndex", "轮播图设置", "轮播图设置","#menuSlide",false);
 		break;
 		default:
 		}

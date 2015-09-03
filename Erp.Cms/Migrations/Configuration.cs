@@ -20,7 +20,7 @@ namespace Erp.Cms.Migrations
     }
 
 
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    public class DbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         public const string SaUserId = "76edf148-3e31-4e9e-8cf8-f17d3c96f05f";
 

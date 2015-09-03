@@ -11,6 +11,7 @@ using System.Web.Mvc;
 namespace Erp.Cms.Controllers
 {
     using System;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
@@ -168,13 +169,14 @@ namespace Erp.Cms.Controllers
             return this.PartialView("_ChangePassword");
         }
 
+        [HttpPost]
         public async Task<ActionResult> ChangePassword(ChangedPasswordView changedPassword)
         {
             var result = await this.UserManager.ChangePasswordAsync(
                                                          this.User.Identity.GetUserId(),
                         changedPassword.CurrentPassword,
                         changedPassword.NewPassword);
-            return this.Json(result.Succeeded ? new ActionResultData<string>("密码修改成功！") : new ActionResultStatus(10, "当前密码不正确！"), JsonRequestBehavior.AllowGet);
+            return this.Json(result.Succeeded ? new ActionResultData<string>("密码修改成功！") : new ActionResultStatus(10, result.Errors.First()), JsonRequestBehavior.AllowGet);
         }
 
         #endregion
@@ -433,14 +435,39 @@ namespace Erp.Cms.Controllers
 
         #region 轮播图操作
 
+        public ActionResult SlideIndex()
+        {
+            return this.PartialView("_SlideIndex");
+        }
+
+        [HttpPost]
         public ActionResult UploadImages()
         {
+            if (this.Request.Files.Count == 0)
+            {
+                return this.Json(new ActionResultStatus(10, "请选择文件！"), JsonRequestBehavior.AllowGet);
+            }
+            foreach (string requestFile in this.Request.Files)
+            {
+                var file = this.Request.Files[requestFile] as HttpPostedFileBase;
+                if (file.ContentLength == 0)
+                {
+                    continue;
+                }
+                var savedFileName = Path.Combine(
+                                                    AppDomain.CurrentDomain.BaseDirectory + "\\assets\\upload\\",
+                    Path.GetFileName(file.FileName));
+                file.SaveAs(savedFileName);
+            }
+
             return this.View();
         }
 
-        public ActionResult CarouselIndex()
+        public ActionResult GetSlideList(int pageIndex, int pageSize = 20)
         {
-            return this.View();
+            var pager = new Pager<Slide>() { PageIndex = pageIndex, PageSize = pageSize };
+            pager = Slide.Pages(pager, r => true, r => r.CreatedDate, false);
+            return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 
         #endregion

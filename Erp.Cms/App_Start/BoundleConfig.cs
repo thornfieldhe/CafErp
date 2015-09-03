@@ -31,6 +31,7 @@
                          "~/assets/js/lodash.min.js",
                      "~/assets/js/juicer-min.js",
                      "~/assets/js/ztree/jquery.ztree.core-3.5.js",
+                     "~/assets/js/toastr/toastr.js",
                      "~/assets/js/fuelux/spinbox/fuelux.spinbox.min.js",
                      "~/assets/js/validation/bootstrapValidator.js"));
 
