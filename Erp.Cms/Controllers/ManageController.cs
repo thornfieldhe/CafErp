@@ -18,6 +18,7 @@ namespace Erp.Cms.Controllers
     using Erp.Cms.Business;
     using Erp.Cms.Models;
 
+    using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
@@ -160,6 +161,20 @@ namespace Erp.Cms.Controllers
         {
             this.AuthenticationManager.SignOut();
             return this.View("Login");
+        }
+
+        public ActionResult ChangePasswordIndex()
+        {
+            return this.PartialView("_ChangePassword");
+        }
+
+        public async Task<ActionResult> ChangePassword(ChangedPasswordView changedPassword)
+        {
+            var result = await this.UserManager.ChangePasswordAsync(
+                                                         this.User.Identity.GetUserId(),
+                        changedPassword.CurrentPassword,
+                        changedPassword.NewPassword);
+            return this.Json(result.Succeeded ? new ActionResultData<string>("密码修改成功！") : new ActionResultStatus(10, "当前密码不正确！"), JsonRequestBehavior.AllowGet);
         }
 
         #endregion

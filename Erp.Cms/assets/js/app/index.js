@@ -24,7 +24,9 @@
 		case 3:
 					loadPage("/Manage/ArticlesIndex", "文章管理", "文章管理","#menuArticle",false);
 		break;
-
+		case 4:
+					loadPage("/Manage/ChangePasswordIndex", "文章管理", "修改密码","#menuChangePass",false);
+		break;
 		default:
 		}
 	}
