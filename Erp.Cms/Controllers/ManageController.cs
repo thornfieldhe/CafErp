@@ -7,14 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 using System.Web.Mvc;
-
 namespace Erp.Cms.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Web;
+
+    using CAF;
 
     using Erp.Cms.Business;
     using Erp.Cms.Models;
@@ -248,8 +251,8 @@ namespace Erp.Cms.Controllers
         /// </returns>
         public ActionResult GetColumnList(int pageIndex, int pageSize = 20)
         {
-            var pager = new Pager<Article>() { PageIndex = pageIndex, PageSize = pageSize };
-            pager = Article.Pages(pager, r => r.Category == Category.Columns, r => r.Order, true);
+            var pager = new Pager<ColumnView>() { PageIndex = pageIndex, PageSize = pageSize };
+            pager = Article.Pages(pager, r => r.Category == Category.Columns, r => r.Order, r => new ColumnView() { Order = r.Order, Name = r.Name, Id = r.Id }, true);
             return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 
@@ -425,8 +428,21 @@ namespace Erp.Cms.Controllers
         /// </returns>
         public ActionResult GetArticleList(Guid catalogId, int pageIndex, int pageSize = 20)
         {
-            var pager = new Pager<Article>() { PageIndex = pageIndex, PageSize = pageSize };
-            pager = Article.Pages(pager, r => r.Category == Category.Articles && r.ParentId == catalogId, r => r.Order, true);
+            var pager = new Pager<ArticleView>() { PageIndex = pageIndex, PageSize = pageSize };
+            pager = Article.Pages(
+                                  pager,
+                r => r.Category == Category.Articles && r.ParentId == catalogId,
+                r => r.Order,
+                r =>
+                new ArticleView()
+                {
+                    Content = string.Empty,
+                    Order = r.Order,
+                    Name = r.Name,
+                    ParentId = r.ParentId.Value,
+                    Id = r.Id
+                },
+                true);
 
             return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
@@ -443,31 +459,89 @@ namespace Erp.Cms.Controllers
         [HttpPost]
         public ActionResult UploadImages()
         {
-            if (this.Request.Files.Count == 0)
+            try
             {
-                return this.Json(new ActionResultStatus(10, "请选择文件！"), JsonRequestBehavior.AllowGet);
-            }
-            foreach (string requestFile in this.Request.Files)
-            {
-                var file = this.Request.Files[requestFile] as HttpPostedFileBase;
-                if (file.ContentLength == 0)
+                if (this.Request.Files.Count == 0)
                 {
-                    continue;
+                    return this.Json(new ActionResultStatus(10, "请选择文件！"), JsonRequestBehavior.AllowGet);
                 }
-                var savedFileName = Path.Combine(
-                                                    AppDomain.CurrentDomain.BaseDirectory + "\\assets\\upload\\",
-                    Path.GetFileName(file.FileName));
-                file.SaveAs(savedFileName);
-            }
 
-            return this.View();
+                var slides = new List<Slide>();
+                foreach (string requestFile in this.Request.Files)
+                {
+                    var file = this.Request.Files[requestFile] as HttpPostedFileBase;
+                    if (file.ContentLength == 0)
+                    {
+                        continue;
+                    }
+
+                    var newFileName = Regex.Replace(file.FileName, @".*\.", Tools.GetTimeStamp() + ".");
+                    var savedFileName = Path.Combine(
+                                                     AppDomain.CurrentDomain.BaseDirectory + "\\assets\\upload\\",
+                        Path.GetFileName(newFileName));
+                    file.SaveAs(savedFileName);
+                    var slide = new Slide()
+                    {
+                        FileName = file.FileName,
+                        FilePath = string.Format("/assets/upload/{0}", newFileName)
+                    };
+                    slides.Add(slide);
+                }
+
+                Slide.CreateList(slides);
+                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult GetSlideList(int pageIndex, int pageSize = 20)
         {
-            var pager = new Pager<Slide>() { PageIndex = pageIndex, PageSize = pageSize };
-            pager = Slide.Pages(pager, r => true, r => r.CreatedDate, false);
+            var pager = new Pager<SlideView>() { PageIndex = pageIndex, PageSize = pageSize };
+            pager = Slide.Pages(
+                                pager,
+                r => true,
+                r => r.CreatedDate,
+                r =>
+                new SlideView()
+                {
+                    Id = r.Id,
+                    FileName = r.FileName,
+                    Rate = r.Rate,
+                    CreatedDate = r.CreatedDate.ToString("yyyy-MM-dd")
+                },
+                false);
             return this.Json(pager, JsonRequestBehavior.AllowGet);
+        }
+
+
+        /// <summary>
+        /// 删除轮播图
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult DeleteSlide(Guid id)
+        {
+            try
+            {
+                var slide = Slide.Get(id);
+                if (slide == null)
+                {
+                    return this.Json(new ActionResultStatus(10, "幻灯片不存在！"), JsonRequestBehavior.AllowGet);
+                }
+
+                var filePath = this.Server.MapPath(slide.FilePath);
+                System.IO.File.Delete(filePath);
+                slide.Delete();
+                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
         }
 
         #endregion

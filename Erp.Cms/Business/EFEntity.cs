@@ -118,19 +118,29 @@ namespace Erp.Cms.Business
         /// <param name="orderByFunc">
         /// The order by func.
         /// </param>
+        /// <param name="selector">
+        /// The selector.
+        /// </param>
         /// <param name="isAsc">
         /// The is asc.
         /// </param>
         /// <typeparam name="T">
         /// </typeparam>
+        /// <typeparam name="R">
+        /// </typeparam>
         /// <returns>
         /// The <see cref="Pager"/>.
         /// </returns>
-        public static Pager<K> Pages<T>(Pager<K> pager, Func<K, bool> whereFunc, Func<K, T> orderByFunc, bool isAsc)
+        public static Pager<R> Pages<T, R>(
+            Pager<R> pager,
+            Func<K, bool> whereFunc,
+            Func<K, T> orderByFunc,
+            Func<K, R> selector,
+            bool isAsc) where R : new()
         {
             var context = ContextWapper.Instance.Context;
             pager.Total = context.Set<K>().Where(whereFunc).Count();
-            List<K> result;
+            List<R> result;
             if (isAsc)
             {
                 result =
@@ -139,6 +149,7 @@ namespace Erp.Cms.Business
                         .OrderBy(orderByFunc)
                         .Skip(pager.PageSize * (pager.PageIndex - 1))
                         .Take(pager.PageSize)
+                        .Select(selector)
                         .ToList();
             }
             else
@@ -149,6 +160,7 @@ namespace Erp.Cms.Business
                         .OrderByDescending(orderByFunc)
                         .Skip(pager.PageSize * (pager.PageIndex - 1))
                         .Take(pager.PageSize)
+                        .Select(selector)
                         .ToList();
             }
 

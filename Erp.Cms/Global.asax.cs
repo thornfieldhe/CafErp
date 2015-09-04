@@ -13,8 +13,13 @@ namespace Erp.Cms
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
             Database.SetInitializer(new Erp.Cms.Migrations.DbInitializer());
+            this.InitMap();
+        }
+
+        private void InitMap()
+        {
+
         }
     }
 }

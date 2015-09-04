@@ -20,5 +20,6 @@ namespace Erp.Cms.Business
         {
             return DateTime.Now.ToString("yyyyMMddHHmmssff");
         }
+
     }
 }

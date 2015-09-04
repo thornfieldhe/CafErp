@@ -47,6 +47,7 @@ function deleteArticle(id,name) {
 	function bindArticles(index) {
 		$.get("/Manage/GetArticleList?catalogId="+selectNode.id+"&pageIndex="+index+"&pageSize=20", function(e) {
 			articles = e.Datas;
+			e = $.extend(true, e, { colspan: 3,pageChangeAction:"bindArticles" });
 			var html =juicer($("#table").html(), { data: e });
 			$('#articleGrid').html(html);
 		});

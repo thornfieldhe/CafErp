@@ -3,6 +3,7 @@
 	function bindColumns(index) {
 		$.get("/Manage/GetColumnList?pageIndex="+index+"&pageSize=20", function(e) {
 			columns = e.Datas;
+			e = $.extend(true, e, { colspan: 3 ,pageChangeAction:"bindColumns" });
 			var html =juicer($("#table").html(), { data: e });
 			$('#columnGrid').html(html);
 		});
