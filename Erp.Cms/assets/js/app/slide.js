@@ -60,6 +60,7 @@ function bindSlides(index) {
 			var topParent = _this.parent().parent().parent();
 			topParent.find(".edit").hide();
 			topParent.find(".disp").html(_this.val()).show();
+			$.post("/Manage/UpdateRate",{id:_this.prop("id"),rate:_this.val()});
 		});
 	}
 

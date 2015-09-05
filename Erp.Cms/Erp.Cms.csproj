@@ -271,6 +271,8 @@
     <Content Include="assets\js\fuelux\spinbox\fuelux.spinbox.min.js" />
     <Content Include="assets\js\fuelux\wizard\wizard-custom.js" />
     <Content Include="assets\js\fullcalendar\fullcalendar.js" />
+    <Content Include="assets\js\fullPage\jquery.fullPage.css" />
+    <Content Include="assets\js\fullPage\jquery.fullPage.min.js" />
     <Content Include="assets\js\images\spritemap%402x.png" />
     <Content Include="assets\js\images\spritemap.png" />
     <Content Include="assets\js\jquery-ui-1.10.4.custom.js" />
@@ -671,6 +673,7 @@
     <Content Include="Views\Manage\_ArticleEdit.cshtml" />
     <Content Include="Views\Manage\_ChangePassword.cshtml" />
     <Content Include="Views\Manage\_SlideIndex.cshtml" />
+    <Content Include="Views\Dashboard\Slides.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -10,6 +10,7 @@
 namespace Erp.Cms.Business
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 工具类
@@ -20,6 +21,5 @@ namespace Erp.Cms.Business
         {
             return DateTime.Now.ToString("yyyyMMddHHmmssff");
         }
-
     }
 }

@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Erp.Cms.Controllers
 {
+    using Erp.Cms.Models;
+
     public class DashboardController : Controller
     {
         // GET: Dashboard
         public ActionResult Index()
         {
-            return View();
+            return this.View();
+        }
+
+        /// <summary>
+        /// 轮播图页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Slides()
+        {
+            return this.View(Slide.RandomImages());
         }
     }
 }

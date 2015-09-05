@@ -544,6 +544,35 @@ namespace Erp.Cms.Controllers
             }
         }
 
+        /// <summary>
+        /// 更新轮播图展示频次
+        /// </summary>
+        /// <param name="id">
+        /// </param>
+        /// <param name="rate">
+        /// The rate.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        [HttpPost]
+        public ActionResult UpdateRate(Guid id, int rate)
+        {
+            try
+            {
+                var slide = Slide.Get(id);
+                if (slide != null)
+                {
+                    slide.Rate = rate;
+                    slide.Save();
+                    return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                }
+                return this.Json(new ActionResultStatus(10, "幻灯片不存在"), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
     }
 }

@@ -1,0 +1,53 @@
+﻿@using System.Web.Optimization
+@model string[]
+@{
+    Layout = null;
+    var colors = "";
+    for (int i = 0; i < Model.Length; i++)
+    {
+        colors += "'#1bbc9b',";
+    }
+    colors = colors.Trim(',');
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>政策轮播</title>
+    <meta charset="UTF-8">
+    @Styles.Render("~/assets/basiccss")
+    @Styles.Render("~/assets/beyondcss")
+    <link rel="stylesheet" href="/assets/js/fullPage/jquery.fullPage.css">
+</head>
+<body>
+<div id="home" style="width:100%">
+    @foreach (var img in Model)
+    {
+        <div class="section row">
+            <div class="col-md-12 text-align-center">
+                <img src="@img" />
+            </div>
+        </div>
+    }
+</div>
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/fullPage/jquery.fullPage.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#home').fullpage({
+                sectionsColor: [@Html.Raw(colors)],
+        continuousVertical: true
+    });
+
+    setInterval(function(){
+        $.fn.fullpage.moveSectionDown();
+    }, 3000);
+            $('body').click(function(e) {
+                window.location.href='/Dashboard';
+            });
+        });
+    </script>
+
+</body>
+</html>
