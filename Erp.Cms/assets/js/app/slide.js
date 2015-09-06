@@ -2,7 +2,7 @@
 		try {
 			  $(".dropzone").dropzone({
 			    paramName: "file", // The name that will be used to transfer the file
-			    maxFilesize: 0.5, // MB
+			    maxFilesize: 0.8, // MB
 				uploadMultiple:true,
 				acceptedFiles:".png,.jpg,.jpeg,.gif",
 				dictInvalidInputType:"文件格式仅支持png,jpg,jpeg,gif",
@@ -54,6 +54,7 @@ function bindSlides(index) {
 			var _this = $(this);
 			_this.find(".disp").hide();
 			_this.find(".edit").show();
+			_this.find("input").focus();
 		});
 		$("[name=rate]").off("blur").on("blur", function(e) {
 			var _this = $(this);

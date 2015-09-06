@@ -26,7 +26,7 @@
     {
         <div class="section row">
             <div class="col-md-12 text-align-center">
-                <img src="@img" />
+              <img src="@img"  height="850"/>@*根据实际屏幕大小调校高度尺寸  *@
             </div>
         </div>
     }
@@ -42,7 +42,7 @@
 
     setInterval(function(){
         $.fn.fullpage.moveSectionDown();
-    }, 3000);
+    }, 60000);
             $('body').click(function(e) {
                 window.location.href='/Dashboard';
             });
