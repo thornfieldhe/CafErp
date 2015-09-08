@@ -213,6 +213,7 @@
     <Content Include="assets\img\banner.gif" />
     <Content Include="assets\img\favicon.png" />
     <Content Include="assets\img\jquery.minicolors.png" />
+    <Content Include="assets\img\left_icon1.jpg" />
     <Content Include="assets\img\line1.gif" />
     <Content Include="assets\img\log.png" />
     <Content Include="assets\img\logo-inverted.png" />

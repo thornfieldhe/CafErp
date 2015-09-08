@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = "~/Views/Shared/_LayoutWithEmpty.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "四川边防总队后勤信息网";
 }
 <!DOCTYPE HTML>
@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Cache-Control" content="no-transform">
     <meta name="renderer" content="webkit">
+    <link href="/assets/css/dashboad.css" rel="stylesheet" type="text/css" />
     <link rel="canonical" href="http://www.thornfieldhe.icoc.cc/col.jsp?id=102">
     <link type="text/css" href="http://0.ss.faisys.com/css/base.min.css?v=201508311727" rel="stylesheet">
     <link type="text/css" href="http://0.ss.faisys.com/css/template/9004.min.css?v=201508311727" rel="stylesheet" id="templateFrame" class="templateFrameClass">
@@ -31,231 +32,47 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
-            <img src="/assets/img/banner.gif">
+            <img src="/assets/img/banner.gif" width="100%">
         </div>
     </div>
     <div class="row">
         <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
-            <div id="nav" class="nav nav2  navStyle   navStyle15">
-                <div class="navMainContent">
-                    <table class="navTop" cellpadding="0" cellspacing="0"><tbody><tr><td class="navTopLeft"></td><td class="navTopCenter"></td><td class="navTopRight"></td></tr></tbody></table>
-                    <table class="navContent" cellpadding="0" cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <td class="navLeft"></td>
-                                <td class="navCenterContent" id="navCenterContent" valign="top" align="left">
-                                    <div id="navCenter" class="navCenter" style="width: 518px;">
-                                        <div class="itemPrev"></div>
-                                        <div class="itemContainer">
-                                            <table title="" class="item itemCol2 itemIndex1" cellpadding="0" cellspacing="0" colid="2" id="nav2" onclick=" window.open(&quot;/&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/&quot;, &quot;_self&quot;)">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="itemLeft"></td>
-                                                        <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/" target="_self" onclick=" return false; "><span class="itemName0">首页</span></a></td>
-                                                        <td class="itemRight"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="itemSep"></div><table title="" class="item itemCol102 itemIndex2" cellpadding="0" cellspacing="0" colid="102" id="nav102" onclick=" window.open(&quot;/col.jsp?id=102&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/col.jsp?id=102&quot;, &quot;_self&quot;)">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="itemLeft"></td>
-                                                        <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/col.jsp?id=102" target="_self" onclick=" return false; "><span class="itemName0">党的建设</span></a></td>
-                                                        <td class="itemRight"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="itemSep"></div><table title="" class="item itemCol103 itemIndex3" cellpadding="0" cellspacing="0" colid="103" id="nav103" onclick=" window.open(&quot;/col.jsp?id=103&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/col.jsp?id=103&quot;, &quot;_self&quot;)">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="itemLeft"></td>
-                                                        <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/col.jsp?id=103" target="_self" onclick=" return false; "><span class="itemName0">规章制度</span></a></td>
-                                                        <td class="itemRight"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="itemSep"></div><table title="" class="item itemCol104 itemIndex4" cellpadding="0" cellspacing="0" colid="104" id="nav104" onclick=" window.open(&quot;/col.jsp?id=104&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/col.jsp?id=104&quot;, &quot;_self&quot;)">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="itemLeft"></td>
-                                                        <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/col.jsp?id=104" target="_self" onclick=" return false; "><span class="itemName0">政务公开</span></a></td>
-                                                        <td class="itemRight"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="itemSep"></div><table title="" class="item itemCol6 itemIndex5" cellpadding="0" cellspacing="0" colid="6" id="nav6" onclick=" window.open(&quot;/contact.jsp&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/contact.jsp&quot;, &quot;_self&quot;)">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="itemLeft"></td>
-                                                        <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/contact.jsp" target="_self" onclick=" return false; "><span class="itemName0">联系我们</span></a></td>
-                                                        <td class="itemRight"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="itemNext"></div>
-                                    </div>
-                                </td>
-                                <td class="navRight"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="navBottom" cellpadding="0" cellspacing="0"><tbody><tr><td class="navBottomLeft"></td><td class="navBottomCenter"></td><td class="navBottomRight"></td></tr></tbody></table>
+            <div id="menu">
+                <ul>
+                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                    <li id="m_1" class='m_li_a'><a href="#">财税首页</a></li>
+                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                    <li id="m_2" class='m_li' onmouseover=' mover(2); ' onmouseout=' mout(2); '><a href="#">政务公开</a></li>
+                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                    <li id="m_3" class='m_li' onmouseover=' mover(3); ' onmouseout=' mout(3); '><a href="#">网上办事</a></li>
+                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                    <li id="m_4" class='m_li' onmouseover=' mover(4); ' onmouseout=' mout(4); '><a href="#">公告中心</a></li>
+                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                    <li id="m_5" class='m_li' onmouseover=' mover(5); ' onmouseout=' mout(5); '><a href="#">法规中心</a></li>
+                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                    <li id="m_6" class='m_li' onmouseover=' mover(6); ' onmouseout=' mout(6); '><a href="#">财税文化</a></li>
+                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                    <li id="m_7" class='m_li' onmouseover=' mover(7); ' onmouseout=' mout(7); '><a href="#">专题宣传</a></li>
+                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class=" page-container">
+        <div class="page-content">
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-2 col-lg-2 col-md-offset-1 col-lg-offset-1">
+                        <div class="databox bg-white radius-bordered"><img src="~/assets/img/left_icon1.jpg" />目录</div>
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
     <div id="g_main" class="g_main g_col102 " style="0">
         <div id="web" class="g_web ">
-            <table class="webTopTable" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center">
-                            <div id="webTop" class="webTop">
-                                <div id="corpTitle" class="corpTitle corpTitle2" fontpatterntitle="false" style=";" _linktype="0">
-
-                                    <div id="subTitle" style=""></div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="absTopTable" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center">
-                            <div id="absTopForms" class="forms sideForms absForms">
-                                <div style="position:absolute;"></div><!-- for ie6 -->
-
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="webNavTable" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center">
-                            <div id="webNav" class="webNav">
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="webHeaderTable" cellpadding="0" cellspacing="0" id="webHeaderTable">
-                <tbody>
-                    <tr>
-                        <td align="center" class="webHeaderTd">
-                            <div id="webHeader" class="webHeader">
-                                <table class="headerTable" cellpadding="0" cellspacing="0">
-                                    <tbody>
-                                        <tr>
-                                            <td class="headerCusLeft"></td>
-                                            <td class="headerCusMiddle" align="center" valign="top">
-                                                <div class="headerNav">
-
-                                                </div>
-                                            </td>
-                                            <td class="headerCusRight"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="webBannerTable" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center">
-                            <div id="webBanner" class="webBanner">
-                                <table class="bannerTable">
-                                    <tbody>
-                                        <tr>
-                                            <td class="bannerCenter" align="center" valign="top">
-            <div id="nav2" class="nav nav2  navStyle   navStyle15">
-                                                    <div class="navMainContent">
-                                                        <table class="navTop" cellpadding="0" cellspacing="0"><tbody><tr><td class="navTopLeft"></td><td class="navTopCenter"></td><td class="navTopRight"></td></tr></tbody></table>
-                                                        <table class="navContent" cellpadding="0" cellspacing="0">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td class="navLeft"></td>
-                                                                    <td class="navCenterContent" id="navCenterContent" valign="top" align="left">
-                                                                        <div id="navCenter" class="navCenter" style="width: 518px;">
-                                                                            <div class="itemPrev"></div>
-                                                                            <div class="itemContainer">
-                                                                                <table title="" class="item itemCol2 itemIndex1" cellpadding="0" cellspacing="0" colid="2" id="nav2" onclick=" window.open(&quot;/&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/&quot;, &quot;_self&quot;)">
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <td class="itemLeft"></td>
-                                                                                            <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/" target="_self" onclick=" return false; "><span class="itemName0">首页</span></a></td>
-                                                                                            <td class="itemRight"></td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                                <div class="itemSep"></div><table title="" class="item itemCol102 itemIndex2" cellpadding="0" cellspacing="0" colid="102" id="nav102" onclick=" window.open(&quot;/col.jsp?id=102&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/col.jsp?id=102&quot;, &quot;_self&quot;)">
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <td class="itemLeft"></td>
-                                                                                            <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/col.jsp?id=102" target="_self" onclick=" return false; "><span class="itemName0">党的建设</span></a></td>
-                                                                                            <td class="itemRight"></td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                                <div class="itemSep"></div><table title="" class="item itemCol103 itemIndex3" cellpadding="0" cellspacing="0" colid="103" id="nav103" onclick=" window.open(&quot;/col.jsp?id=103&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/col.jsp?id=103&quot;, &quot;_self&quot;)">
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <td class="itemLeft"></td>
-                                                                                            <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/col.jsp?id=103" target="_self" onclick=" return false; "><span class="itemName0">规章制度</span></a></td>
-                                                                                            <td class="itemRight"></td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                                <div class="itemSep"></div><table title="" class="item itemCol104 itemIndex4" cellpadding="0" cellspacing="0" colid="104" id="nav104" onclick=" window.open(&quot;/col.jsp?id=104&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/col.jsp?id=104&quot;, &quot;_self&quot;)">
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <td class="itemLeft"></td>
-                                                                                            <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/col.jsp?id=104" target="_self" onclick=" return false; "><span class="itemName0">政务公开</span></a></td>
-                                                                                            <td class="itemRight"></td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                                <div class="itemSep"></div><table title="" class="item itemCol6 itemIndex5" cellpadding="0" cellspacing="0" colid="6" id="nav6" onclick=" window.open(&quot;/contact.jsp&quot;, &quot;_self&quot;) " _jump="window.open(&quot;/contact.jsp&quot;, &quot;_self&quot;)">
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <td class="itemLeft"></td>
-                                                                                            <td class="itemCenter"><a hidefocus="true" style="outline: none;" href="/contact.jsp" target="_self" onclick=" return false; "><span class="itemName0">联系我们</span></a></td>
-                                                                                            <td class="itemRight"></td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </div>
-                                                                            <div class="itemNext"></div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="navRight"></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <table class="navBottom" cellpadding="0" cellspacing="0"><tbody><tr><td class="navBottomLeft"></td><td class="navBottomCenter"></td><td class="navBottomRight"></td></tr></tbody></table>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div id="fullmeasureTopForms" class="fullmeasureContainer forms sideForms fullmeasureForms fullmeasureTopForms" style="display:none">
-                <wbr style="display:none;">
-            </div>
             <table id="webContainerTable" class="webContainerTable" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
@@ -551,6 +368,33 @@
     <script type="text/javascript" src="http://0.ss.faisys.com/js/comm/jquery/jquery-ui-core.min.js?v=201508101752"></script>
     <script type="text/javascript" src="http://0.ss.faisys.com/js/site.min.js?v=201509012125"></script>
     <script type="text/javascript" src="http://0.ss.faisys.com/js/locale/2052.min.js?v=201508251950"></script>
-    <script type="text/javascript" src="http://0.ss.faisys.com/js/comm/ZeroClipboard/ZeroClipboard.min.js?v=201212061014"></script>
+<script type="text/javascript" src="http://0.ss.faisys.com/js/comm/ZeroClipboard/ZeroClipboard.min.js?v=201212061014"></script>
+    <script>
+//初始化
+var def="1";
+function mover(object){
+  //主菜单
+  var mm=document.getElementById("m_"+object);
+  mm.className="m_li_a";
+  //初始主菜单先隐藏效果
+  if(def!=0){
+    var mdef=document.getElementById("m_"+def);
+    mdef.className="m_li";
+  }
+
+}
+
+function mout(object){
+  //主菜单
+  var mm=document.getElementById("m_"+object);
+  mm.className="m_li";
+  //初始主菜单还原效果
+  if(def!=0){
+    var mdef=document.getElementById("m_"+def);
+    mdef.className="m_li_a";
+  }
+
+}
+    </script>
  </body>
 </html>

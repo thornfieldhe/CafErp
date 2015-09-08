@@ -49,7 +49,7 @@ a:active{
 }
 .m_li_a{
 	float:left; width:114px; line-height:32px; text-align:center; padding-top:3px; font-weight:bold;
-	background-image:url(../images/menu_bg.jpg); position:relative; height:32px; margin-top:-3px; margin-right:-2px; margin-left:-2px;
+	background-image:url(../img/menu_bg.jpg); position:relative; height:32px; margin-top:-3px; margin-right:-2px; margin-left:-2px;
 }
 .m_li_a a{
 	display:block; color:#FF0000; width:114px;
