@@ -171,6 +171,7 @@
     <Content Include="assets\css\beyond.min.css" />
     <Content Include="assets\css\bootstrap-rtl.min.css" />
     <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\dashboad.css" />
     <Content Include="assets\css\dataTables.bootstrap.css" />
     <Content Include="assets\css\demo.min.css" />
     <Content Include="assets\css\font-awesome.min.css" />
@@ -209,12 +210,15 @@
     <Content Include="assets\img\avatars\Osvaldus-Valutis.jpg" />
     <Content Include="assets\img\avatars\Sergey-Azovskiy.jpg" />
     <Content Include="assets\img\avatars\Stephanie-Walter.jpg" />
+    <Content Include="assets\img\banner.gif" />
     <Content Include="assets\img\favicon.png" />
     <Content Include="assets\img\jquery.minicolors.png" />
+    <Content Include="assets\img\line1.gif" />
     <Content Include="assets\img\log.png" />
     <Content Include="assets\img\logo-inverted.png" />
     <Content Include="assets\img\logo-rtl.png" />
     <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\menu_bg.jpg" />
     <Content Include="assets\img\sort_asc.png" />
     <Content Include="assets\img\sort_asc_disabled.png" />
     <Content Include="assets\img\sort_both.png" />
@@ -674,6 +678,8 @@
     <Content Include="Views\Manage\_ChangePassword.cshtml" />
     <Content Include="Views\Manage\_SlideIndex.cshtml" />
     <Content Include="Views\Dashboard\Slides.cshtml" />
+    <Content Include="Views\Dashboard\404.cshtml" />
+    <Content Include="Views\Dashboard\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
