@@ -580,6 +580,8 @@
     <Content Include="assets\js\ztree\img\loading.gif" />
     <Content Include="assets\js\ztree\img\metro.gif" />
     <Content Include="assets\js\ztree\img\metro.png" />
+    <Content Include="assets\js\ztree\img\zTreeStandard.gif" />
+    <Content Include="assets\js\ztree\img\zTreeStandard.png" />
     <Content Include="assets\js\ztree\jquery.ztree.core-3.5.js" />
     <Content Include="assets\js\ztree\metro.css" />
     <Content Include="assets\js\ztree\zTreeStyle.css" />
@@ -680,7 +682,6 @@
     <Content Include="Views\Manage\_SlideIndex.cshtml" />
     <Content Include="Views\Dashboard\Slides.cshtml" />
     <Content Include="Views\Dashboard\404.cshtml" />
-    <Content Include="Views\Dashboard\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

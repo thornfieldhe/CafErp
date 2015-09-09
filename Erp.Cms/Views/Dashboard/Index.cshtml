@@ -1,94 +1,134 @@
 ﻿@model List<Erp.Cms.Models.Article>
 @{
-    Layout = "~/Views/Shared/_LayoutWithEmpty.cshtml";
-    ViewBag.Title = "四川边防总队后勤信息网";
+	Layout = "~/Views/Shared/_LayoutWithEmpty.cshtml";
+	ViewBag.Title = "四川边防总队后勤信息网";
 }
-    <link href="/assets/css/dashboad.css" rel="stylesheet" type="text/css" />
-
-    <link type="text/css" href="http://0.ss.faisys.com/css/base.min.css?v=201508311727" rel="stylesheet">
-    <link type="text/css" href="http://0.ss.faisys.com/css/template/9004.min.css?v=201508311727" rel="stylesheet" id="templateFrame" class="templateFrameClass">
-    <link type="text/css" href="http://0.ss.faisys.com/css/navStyle0.min.css?v=201508252108" rel="stylesheet">
-
-
+	<link href="/assets/css/dashboad.css" rel="stylesheet" type="text/css" />
 <div class="container-fluid">
-    <div class="row">
-        <div>
-            <table style="width: 1024px;margin-left: auto;margin-right: auto;">
-                <tr >
-                    <td colspan="2"><img src="/assets/img/banner.gif"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <div id="menu">
-                            <ul>
-                                <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                                @foreach (var column in Model)
-                                {
-                                    <li id="@column.Id" class='m_li'><a href="javascript:void(0)" onclick=" onSelectColumn('@column.Id') "
-                                                                   onmouseover="onSelectColumn('@column.Id');"  >@column.Name</a></li>
-                                     <li class="m_line"><img src="/assets/img/line1.gif" /></li>
-                                }
-                                <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width: 280px">
-                        <div class="formBackground " style="margin: 7px 7px 7px 0px;">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-12 ">
-                                    <div class="modal-body">
-                                        <img src="~/assets/img/left_icon1.jpg"/><span class="formBannerTitle2">目录</span>
-                                        <hr/>
-                                        公告
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="formBackground newsDetail">
-                            <div class="title">中组部再谈加强党政正职干部管理：选好配强一把手</div>
-                            <div class="sourceInfo"><span class="sourceInfoContent">2015-08-19 00:00</span></div>
-                            <div  style="height: 5px;"></div>
-                            <div class="g_border line"></div>
-                            <div class="richContent  richContent3">
-                                中组部再谈加强党政正职干部管理：选好配强一把手
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <div id="footer" class="footer" style="background-color: #990000">
-                            <div class="footerContent">
-                                <div class="footerInfo">
-                                    ©2015&nbsp;四川边防总队后勤信息网&nbsp;版权所有
-                                </div>
-                                <div class="footerSupport">
-                                    <span class="footerFaisco">技术支持：13980509508</span>
-                                    <span class="footerSep">|</span>
-                                    <span id="footerLogin" class="footerLogin"><a hidefocus="true" href="/Manage/Login" target="_blank">管理登录</a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+	<div class="row">
+		<div>
+			<table style="width: 1024px;margin-left: auto;margin-right: auto;">
+				<tr >
+					<td colspan="2"><a href="/Dashboard/Slides"><img src="/assets/img/banner.gif"  ></a></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div id="menu">
+							<ul>
+								<li class="m_line"><img src="/assets/img/line1.gif"/></li>
+								@foreach (var column in Model)
+								{
+									<li id="@column.Id" class='m_li'><a href="javascript:void(0)" onclick=" onSelectColumn('@column.Id') "
+																   onmouseover="onSelectColumn('@column.Id');"  >@column.Name</a></li>
+									 <li class="m_line"><img src="/assets/img/line1.gif" /></li>
+								}
+								<li class="m_line"><img src="/assets/img/line1.gif"/></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 280px;" align="left" valign="top">
+						<div class="formBackground titleMargin" >
+							<div class="row">
+								<div class="col-md-12 col-lg-12 ">
+									<div class="modal-body">
+										<img src="~/assets/img/left_icon1.jpg"/><span class="formBannerTitle2">目录</span>
+										<hr/>
+										<div id="catalogTree" class="ztree">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td  align="left" valign="top">
+						<div class="formBackground newsDetail contentMargin" >
+							<div class="title" id="title" style="margin:7px 10px 7px 10px;"></div>
+							<div class="sourceInfo"><span class="sourceInfoContent" id="createDate"></span></div>
+							<div  style="height: 5px;"></div>
+							<div class="g_border line"></div>
+							<div class="richContent  richContent3" id="content" style="margin:7px 10px 7px 10px;">
+
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<div id="footer" class="footer" style="background-color: #990000">
+							<div class="footerContent">
+								<div class="footerInfo">
+									©2015&nbsp;四川边防总队后勤信息网&nbsp;版权所有
+								</div>
+								<div class="footerSupport">
+									<span class="footerFaisco">技术支持：13980509508</span>
+									<span class="footerSep">|</span>
+									<span id="footerLogin" class="footerLogin"><a hidefocus="true" href="/Manage/Login" target="_blank">管理登录</a></span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </div>
-    @section scripts{
-        <script>
+	@section scripts{
+		<script src="~/assets/js/ztree/jquery.ztree.core-3.5.js"></script>
+		<script>
+			var tree,
+				setting = {
+					data: {
+						simpleData: {
+							enable: true
+						}
+					},
+					callback: {
+						onClick: onClick
+					}
+				}
 
-            function onSelectColumn(id) {
-                $("li").each(function(e) {
-                    $(this).removeClass("m_li_a");
-                });
-                $("#" + id).addClass("m_li_a");
-            }
+			function onClick(event, treeId, treeNode, clickFlag) {
+				$.get("/Dashboard/LoadArticle?aritcleId=" + treeNode.id, function(e) {
+					if (e.Category === 2) {
+						$("#title").html(e.Name);
+						$("#content").html(e.Content);
+						$("#createDate").html(e.CreatedDate);
+						var height = $(".newsDetail").height();
+						$(".formBackground").first().attr("style", "height:" + height + "px");
+					}
+				});
+			}
 
-        </script>
-    }
+			function onSelectColumn(id) {
+				$("#menu li").not(".m_line").each(function(e) {
+					$(this).prop("class", "m_li");
+				});
+				$("#" + id).prop("class", "m_li_a");
+				$.get("/Dashboard/GetAllArticles?columnId=" + id, function(e) {
+					var datas = _.map(e, function(n) {
+						return { name: n.Name, id: n.Id, pId: n.ParentId };
+					});
+					$.fn.zTree.init($("#catalogTree"), setting, datas);
+				});
+			}
+
+			function init() {
+				var defaultId = '@ViewBag.defaultId';
+				$("#" + defaultId).prop("class", "m_li");
+				$.get("/Dashboard/GetAllArticles?columnId=" + defaultId, function(e) {
+					var datas = _.map(e, function(n) {
+						return { name: n.Name, id: n.Id, pId: n.ParentId };
+					});
+					$.fn.zTree.init($("#catalogTree"), setting, datas);
+					$('.modal-body').slimScroll({
+						width: '260px'
+					});
+				});
+			}
+
+			init();
+		</script>
+	}
 

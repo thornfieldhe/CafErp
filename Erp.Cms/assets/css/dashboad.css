@@ -84,3 +84,83 @@ a:active{
   background: #fff;
 	min-height: 500px;
 }
+
+.footer .footerInfo {
+  clear: both;
+  text-align: center;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  color: #FFF;
+}
+
+.footer .footerSupport {
+  clear: both;
+  text-align: center;
+  height: 22px;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+  color: #FFF;
+}
+
+.footer .footerSupport a {
+  text-decoration: none;
+}
+.footer a {
+  color: #FFF;
+}
+
+.newsDetail .title {
+  float: none;
+  width: auto;
+  text-align: center;
+  font-size: 18px;
+  margin: 5px 0 5px 0;
+  height: 60px;
+  align-items: baseline;
+  line-height: 60px;
+  overflow: hidden;
+}
+
+.newsDetail .sourceInfoContent {
+  width: auto;
+  float: none;
+  display: inline-block;
+  padding: 0 10px;
+  padding-top: 4px;
+}
+
+.newsDetail .line {
+  width: 100%;
+  height: 5px;
+  border-top-style: dashed;
+  border-left: none;
+  border-right: 0;
+  border-bottom: 0;
+}
+.g_border {
+  border-width: 1px;
+  border-style: solid;
+}
+.g_border {
+  border-color: #dbeaef;
+}
+
+.newsDetail .sourceInfo {
+  margin: 5px 0 10px 0;
+  width: auto;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.titleMargin {
+	margin: 7px 7px 7px 0px;
+}
+
+.contentMargin {
+	margin: 7px 0px 7px ;
+}
+

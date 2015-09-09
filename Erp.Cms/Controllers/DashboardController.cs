@@ -12,6 +12,15 @@ namespace Erp.Cms.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
+            var defaultColumn = Article.Get(r => r.Category == Category.Columns).OrderBy(r => r.Order).FirstOrDefault();
+            if (defaultColumn == null)
+            {
+                this.ViewBag.defaultId = Guid.NewGuid();
+            }
+            else
+            {
+                this.ViewBag.defaultId = defaultColumn.Id;
+            }
             return this.View(Article.Get(r => r.Category == Category.Columns).OrderBy(r => r.Order).ToList());
         }
 
@@ -24,14 +33,22 @@ namespace Erp.Cms.Controllers
             return this.View(Slide.RandomImages());
         }
 
-        public ActionResult GetAllArticles()
+        public ActionResult GetAllArticles(Guid columnId)
         {
-            return this.Json(Article.GetAll(true).OrderBy(r => r.LevelCode), JsonRequestBehavior.AllowGet);
+            var column = Article.Get(columnId);
+            return this.Json(Article.Get(r => r.LevelCode.StartsWith(column.LevelCode) && r.Id != column.Id).OrderBy(r => r.LevelCode).ToList(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LoadArticle(Guid aritcleId)
         {
-            return	this.Json(Article.Get(aritcleId).Content,JsonRequestBehavior.AllowGet) ; 
+            var article = Article.Get(aritcleId);
+            return this.Json(new
+            {
+                Name = article.Name,
+                CreatedDate = article.CreatedDate.ToShortDateString(),
+                Content = article.Content,
+                Category=article.Category
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

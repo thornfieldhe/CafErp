@@ -167,7 +167,7 @@ namespace Erp.Cms.Models
             var entry = this.DbContex.Entry(this);
             var current = entry.CurrentValues["ParentId"];
             var orginal = entry.OriginalValues["ParentId"];
-            return current == orginal;
+            return current != orginal;
         }
 
         #endregion
