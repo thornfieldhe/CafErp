@@ -65,3 +65,22 @@ a:active{
 .s_li_a{
 	line-height:32px; width:auto; display:block; height:32px; 
 }
+
+.formBannerTitle2 {
+	color: #000;
+  font-family: "微软雅黑","黑体","新宋体","Arial Unicode MS";
+  text-align: left;
+  padding: 5px 5px 5px;
+  font-size: 13px;
+  font-weight: bold;
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.formBackground {
+	  color: #333;
+  background: #fff;
+	min-height: 500px;
+}

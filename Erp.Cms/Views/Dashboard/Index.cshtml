@@ -1,400 +1,94 @@
-﻿
+﻿@model List<Erp.Cms.Models.Article>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutWithEmpty.cshtml";
     ViewBag.Title = "四川边防总队后勤信息网";
 }
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" class="g_html">
-<head>
-    <title>四川边防总队后勤信息网</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta name="renderer" content="webkit">
     <link href="/assets/css/dashboad.css" rel="stylesheet" type="text/css" />
-    <link rel="canonical" href="http://www.thornfieldhe.icoc.cc/col.jsp?id=102">
+
     <link type="text/css" href="http://0.ss.faisys.com/css/base.min.css?v=201508311727" rel="stylesheet">
     <link type="text/css" href="http://0.ss.faisys.com/css/template/9004.min.css?v=201508311727" rel="stylesheet" id="templateFrame" class="templateFrameClass">
     <link type="text/css" href="http://0.ss.faisys.com/css/navStyle0.min.css?v=201508252108" rel="stylesheet">
-    <style id="stylemodule">
-        #module306 .top_with_line_icon {
-            padding-left: 25px;
-        }
 
-        #module306 .contentLineIcon {
-            width: 0px;
-        }
-    </style>
-</head>
-<body class=" ">
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
-            <img src="/assets/img/banner.gif" width="100%">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
-            <div id="menu">
-                <ul>
-                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                    <li id="m_1" class='m_li_a'><a href="#">财税首页</a></li>
-                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                    <li id="m_2" class='m_li' onmouseover=' mover(2); ' onmouseout=' mout(2); '><a href="#">政务公开</a></li>
-                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                    <li id="m_3" class='m_li' onmouseover=' mover(3); ' onmouseout=' mout(3); '><a href="#">网上办事</a></li>
-                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                    <li id="m_4" class='m_li' onmouseover=' mover(4); ' onmouseout=' mout(4); '><a href="#">公告中心</a></li>
-                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                    <li id="m_5" class='m_li' onmouseover=' mover(5); ' onmouseout=' mout(5); '><a href="#">法规中心</a></li>
-                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                    <li id="m_6" class='m_li' onmouseover=' mover(6); ' onmouseout=' mout(6); '><a href="#">财税文化</a></li>
-                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                    <li id="m_7" class='m_li' onmouseover=' mover(7); ' onmouseout=' mout(7); '><a href="#">专题宣传</a></li>
-                    <li class="m_line"><img src="/assets/img/line1.gif"/></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class=" page-container">
-        <div class="page-content">
-            <div class="page-body">
-                <div class="row">
-                    <div class="col-md-2 col-lg-2 col-md-offset-1 col-lg-offset-1">
-                        <div class="databox bg-white radius-bordered"><img src="~/assets/img/left_icon1.jpg" />目录</div>
-                        
-                    </div>
-                </div>
-            </div>
+        <div>
+            <table style="width: 1024px;margin-left: auto;margin-right: auto;">
+                <tr >
+                    <td colspan="2"><img src="/assets/img/banner.gif"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="menu">
+                            <ul>
+                                <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                                @foreach (var column in Model)
+                                {
+                                    <li id="@column.Id" class='m_li'><a href="javascript:void(0)" onclick=" onSelectColumn('@column.Id') "
+                                                                   onmouseover="onSelectColumn('@column.Id');"  >@column.Name</a></li>
+                                     <li class="m_line"><img src="/assets/img/line1.gif" /></li>
+                                }
+                                <li class="m_line"><img src="/assets/img/line1.gif"/></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 280px">
+                        <div class="formBackground " style="margin: 7px 7px 7px 0px;">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 ">
+                                    <div class="modal-body">
+                                        <img src="~/assets/img/left_icon1.jpg"/><span class="formBannerTitle2">目录</span>
+                                        <hr/>
+                                        公告
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="formBackground newsDetail">
+                            <div class="title">中组部再谈加强党政正职干部管理：选好配强一把手</div>
+                            <div class="sourceInfo"><span class="sourceInfoContent">2015-08-19 00:00</span></div>
+                            <div  style="height: 5px;"></div>
+                            <div class="g_border line"></div>
+                            <div class="richContent  richContent3">
+                                中组部再谈加强党政正职干部管理：选好配强一把手
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="footer" class="footer" style="background-color: #990000">
+                            <div class="footerContent">
+                                <div class="footerInfo">
+                                    ©2015&nbsp;四川边防总队后勤信息网&nbsp;版权所有
+                                </div>
+                                <div class="footerSupport">
+                                    <span class="footerFaisco">技术支持：13980509508</span>
+                                    <span class="footerSep">|</span>
+                                    <span id="footerLogin" class="footerLogin"><a hidefocus="true" href="/Manage/Login" target="_blank">管理登录</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
-    <div id="g_main" class="g_main g_col102 " style="0">
-        <div id="web" class="g_web ">
-            <table id="webContainerTable" class="webContainerTable" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center">
-                            <div id="webContainer" class="webContainer">
-                                <div id="container" class="container">
-                                    <table class="containerTop" cellpadding="0" cellspacing="0">
-                                        <tbody>
-                                            <tr valign="top">
-                                                <td class="left"></td>
-                                                <td class="center"></td>
-                                                <td class="right"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="containerMiddle" cellpadding="0" cellspacing="0">
-                                        <tbody>
-                                            <tr valign="top">
-                                                <td id="containerMiddleLeft" class="containerMiddleLeft"></td>
-                                                <td class="containerMiddleCenter">
-                                                    <div id="containerMiddleCenterTop" class="containerMiddleCenterTop">
-                                                    </div>
-                                                    <div id="containerForms" class="containerForms">
-                                                        <div id="topForms" class="column forms mainForms topForms" style="display:none">
-                                                        </div>
-                                                        <table class="containerFormsMiddle" cellpadding="0" cellspacing="0">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td valign="top" id="containerFormsLeft" class="containerFormsLeft">
-                                                                        <div class="containerFormsLeftTop">
-                                                                        </div>
-                                                                        <div id="leftForms" class="column forms sideForms leftForms">
-                                                                            <div id="module315" _indexclass="formIndex1" class="form form315 formIndex1 formStyle24" title="" style="" _side="0" _intab="0" _inmulmcol="0" _infullmeasure="0" _autoheight="1" _global="false" _independent="false">
-                                                                                <table class="formTop formTop315" cellpadding="0" cellspacing="0"><tbody><tr><td class="left"></td><td class="center"></td><td class="right"></td></tr></tbody></table>
-                                                                                <table class="formBanner formBanner315" cellpadding="0" cellspacing="0">
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <td class="left left315"></td>
-                                                                                            <td class="center center315" valign="top">
-                                                                                                <table cellpadding="0" cellspacing="0" class="formBannerTitle formBannerTitle315">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td class="titleLeft titleLeft315" valign="top"></td>
-                                                                                                            <td class="titleCenter titleCenter315" valign="top">
-                                                                                                                <div class="titleText titleText315"><span>新闻动态</span></div>
-                                                                                                            </td>
-                                                                                                            <td class="titleRight titleRight315" valign="top"></td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </td>
-                                                                                            <td class="right right315"></td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                                <table class="formMiddle formMiddle315" style="" cellpadding="0" cellspacing="0">
-                                                                                    <tbody>
-                                                                                        <tr>
-                                                                                            <td class="formMiddleLeft formMiddleLeft315"></td>
-                                                                                            <td class="formMiddleCenter formMiddleCenter315" valign="top">
-                                                                                                <div class="formMiddleContent formMiddleContent315  ">
-                                                                                                    <div class="s_ns_group g_foldContainer g_vertFold g_foldNOBtn">
-                                                                                                        <table class="g_foldContainerTop" cellpadding="0" cellspacing="0">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td class="g_foldContainerTopLeft"></td>
-                                                                                                                    <td class="g_foldContainerTopCenter"></td>
-                                                                                                                    <td class="g_foldContainerTopRight"></td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table class="g_foldContainerContent" cellpadding="0" cellspacing="0">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td class="g_foldContainerContentLeft"></td>
-                                                                                                                    <td class="g_foldContainerContentCenter">
-                                                                                                                        <table class="g_foldContainerPanel" cellpadding="0" cellspacing="0">
-                                                                                                                            <tbody>
-                                                                                                                                <tr>
-                                                                                                                                    <td class="g_foldContainerPanelLeft"></td>
-                                                                                                                                    <td class="g_foldContainerPanelCenter">
-                                                                                                                                        <table foldid="0" class="g_foldContainerValue fold_J g_item fold_h_J" cellpadding="0" cellspacing="0">
-                                                                                                                                            <tbody>
-                                                                                                                                                <tr>
-                                                                                                                                                    <td class="productFilterValueLeft contentLineIcon"></td>
-                                                                                                                                                    <td class="g_foldContainerValueCenter " style="*padding:0;">
-                                                                                                                                                        <a hidefocus="true" href="nr.jsp?_np=0_315_1" title="公示公告">公示公告</a>
-                                                                                                                                                    </td>
-                                                                                                                                                    <td class="g_foldContainerValueRight"></td>
-                                                                                                                                                </tr>
-                                                                                                                                            </tbody>
-                                                                                                                                        </table>
-                                                                                                                                    </td>
-                                                                                                                                    <td class="g_foldContainerPanelRight"></td>
-                                                                                                                                </tr>
-                                                                                                                            </tbody>
-                                                                                                                        </table>
-                                                                                                                        <div class="g_foldSepLine g_foldPLine g_separator"></div>
-                                                                                                                    </td>
-                                                                                                                    <td class="g_foldContainerContentRight"></td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                        <table class="g_foldContainerBottom" cellpadding="0" cellspacing="0"><tbody><tr><td class="g_foldContainerBottomLeft"></td><td class="g_foldContainerBottomCenter"></td><td class="g_foldContainerBottomRight"></td></tr></tbody></table>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </td>
-                                                                                            <td class="formMiddleRight formMiddleRight315"></td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                                <table class="formBottom formBottom315" cellpadding="0" cellspacing="0"><tbody><tr><td class="left left315"></td><td class="center center315"></td><td class="right right315"></td></tr></tbody></table>
-                                                                                <div class="clearfloat clearfloat315"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td valign="top" id="containerFormsCenter" class="containerFormsCenter">
-                                                                        <table class="formMiddle formMiddle12" style="" cellpadding="0" cellspacing="0">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td valign="top" id="containerFormsCenter" class="containerFormsCenter">
+    @section scripts{
+        <script>
 
-                                                                                        <div id="centerTopForms" class="column forms mainForms centerTopForms">
-                                                                                            <div id="module12" _indexclass="formIndex1" class="form form12 formIndex1 formStyle46" title="" style="" _side="0" _intab="0" _inmulmcol="0" _infullmeasure="0" _autoheight="1" _global="false" _independent="false">
-                                                                                                <table class="formTop formTop12" cellpadding="0" cellspacing="0"><tbody><tr><td class="left"></td><td class="center"></td><td class="right"></td></tr></tbody></table>
-                                                                                                <table class="formMiddle formMiddle12" style="" cellpadding="0" cellspacing="0">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td class="formMiddleLeft formMiddleLeft12"></td>
-                                                                                                            <td class="formMiddleCenter formMiddleCenter12" valign="top">
-                                                                                                                <div class="formMiddleContent formMiddleContent12  ">
-                                                                                                                    <div class="newsDetail">
-                                                                                                                        <div class="title">中组部再谈加强党政正职干部管理：选好配强一把手</div>
-                                                                                                                        <div class="sourceInfo"><span class="sourceInfoContent">2015-08-19 00:00</span></div>
-                                                                                                                        <div class="clearfloat" style="height:5px;"></div><div class="g_border line"></div>
-                                                                                                                        <div class="richContent  richContent3">
-                                                                                                                            中组部再谈加强党政正职干部管理：选好配强一把手
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    <div id="newsCommentDiv">
-                                                                                                                        <table class="pdCommentSwitchTable" style="width:100%" cellpadding="0" cellspacing="0">
-                                                                                                                            <tbody>
-                                                                                                                                <tr></tr>
-                                                                                                                            </tbody>
-                                                                                                                        </table>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                                <table class="formBottom formBottom12" cellpadding="0" cellspacing="0"><tbody><tr><td class="left left12"></td><td class="center center12"></td><td class="right right12"></td></tr></tbody></table>
-                                                                                                <div class="clearfloat clearfloat12"></div>
-                                                                                            </div>
+            function onSelectColumn(id) {
+                $("li").each(function(e) {
+                    $(this).removeClass("m_li_a");
+                });
+                $("#" + id).addClass("m_li_a");
+            }
 
+        </script>
+    }
 
-                                                                                        </div>
-                                                                                        <div class="containerFormsCenterMiddle">
-                                                                                            <div id="middleLeftForms" class="column forms mainForms middleLeftForms" style="display: none; padding-right: 14px;">
-
-                                                                                            </div>
-                                                                                            <div id="middleRightForms" class="column forms mainForms middleRightForms" style="display:none">
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div id="centerBottomForms" class="column forms mainForms centerBottomForms" style="display:none">
-
-                                                                                        </div>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                        <div class="containerFormsCenterMiddle">
-                                                                            <div id="middleLeftForms" class="column forms mainForms middleLeftForms" style="display:none">
-
-                                                                            </div>
-                                                                            <div id="middleRightForms" class="column forms mainForms middleRightForms" style="display:none">
-
-                                                                            </div>
-                                                                        </div>
-                                                                        <div id="centerBottomForms" class="column forms mainForms centerBottomForms" style="display:none">
-
-                                                                        </div>
-                                                                    </td>
-
-                                                                    <td valign="top" id="containerFormsRight" class="containerFormsRight" style="display:none">
-                                                                        <div class="containerFormsRightTop">
-                                                                        </div>
-                                                                        <div id="rightForms" class="column forms sideForms rightForms">
-
-                                                                        </div>
-                                                                        <div class="containerFormsRightBottom">
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-
-                                                        <div id="bottomForms" class="column forms mainForms bottomForms" style="display:none">
-
-                                                        </div>
-
-                                                        <div id="containerPlaceholder" class="containerPlaceholder"></div>
-
-                                                    </div>
-
-                                                    <div id="containerMiddleCenterBottom" class="containerMiddleCenterBottom">
-                                                    </div>
-
-                                                </td>
-
-                                                <td id="containerMiddleRight" class="containerMiddleRight"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <table class="containerBottom" cellpadding="0" cellspacing="0">
-                                        <tbody>
-                                            <tr valign="top">
-                                                <td class="left"></td>
-                                                <td class="center"></td>
-                                                <td class="right"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div id="fullmeasureBottomForms" class="fullmeasureContainer forms sideForms fullmeasureForms fullmeasureBottomForms" style="display:none">
-
-                <wbr style="display:none;">
-            </div>
-
-            <table class="absBottomTable" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td align="center">
-                            <div id="absBottomForms" class="forms sideForms absForms">
-                                <div style="position:absolute;"></div><!-- for ie6 -->
-
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table id="webFooterTable" class="webFooterTable" >
-                <tbody>
-                    <tr>
-                        <td align="center" valign="top">
-                            <div id="webFooter" class="webFooter">
-                                <div id="footer" class="footer">
-                                    <table class="footerMiddle" cellpadding="0" cellspacing="0">
-                                        <tbody>
-                                            <tr valign="top">
-                                                <td class="middleLeft"></td>
-                                                <td class="middleCenter" align="center">
-                                                    <div class="footerContent">
-                                                        <div class="footerInfo">
-                                                            <font face="Arial">©</font>2015&nbsp;xxx新闻发布系统&nbsp;版权所有
-                                                        </div>
-
-                                                        <div class="footerSupport">
-
-                                                            <span class="footerFaisco">技术支持：<a hidefocus="true" href="http://jz.faisco.com/?_ta=4" onclick="Site.logDog(100065, 0);" target="_blank">凡科建站</a></span>
-                                                            <span class="footerSep">|</span>
-                                                            <span id="footerLogin" class="footerLogin"><a name="popupLogin" hidefocus="true" href="javascript:;" onclick="Site.popupLogin(&quot;http://www.faisco.cn&quot;,6912568);Fai.closeTip(&quot;#footerLogin&quot;);return false;">管理登录</a></span>
-
-                                                            <span class="bgplayerButton" id="bgplayerButton" style="display:none;"></span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="middleRight"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <script type="text/javascript" src="http://0.ss.faisys.com/js/comm/jquery/jquery-core.min.js?v=201503161711"></script>
-    <script type="text/javascript" src="http://0.ss.faisys.com/js/comm/jquery/jquery-mousewheel.min.js?v=201408111734"></script>
-    <script type="text/javascript" src="http://0.ss.faisys.com/js/comm/fai.min.js?v=201508241758"></script>
-    <script type="text/javascript" src="http://0.ss.faisys.com/js/comm/jquery/jquery-ui-core.min.js?v=201508101752"></script>
-    <script type="text/javascript" src="http://0.ss.faisys.com/js/site.min.js?v=201509012125"></script>
-    <script type="text/javascript" src="http://0.ss.faisys.com/js/locale/2052.min.js?v=201508251950"></script>
-<script type="text/javascript" src="http://0.ss.faisys.com/js/comm/ZeroClipboard/ZeroClipboard.min.js?v=201212061014"></script>
-    <script>
-//初始化
-var def="1";
-function mover(object){
-  //主菜单
-  var mm=document.getElementById("m_"+object);
-  mm.className="m_li_a";
-  //初始主菜单先隐藏效果
-  if(def!=0){
-    var mdef=document.getElementById("m_"+def);
-    mdef.className="m_li";
-  }
-
-}
-
-function mout(object){
-  //主菜单
-  var mm=document.getElementById("m_"+object);
-  mm.className="m_li";
-  //初始主菜单还原效果
-  if(def!=0){
-    var mdef=document.getElementById("m_"+def);
-    mdef.className="m_li_a";
-  }
-
-}
-    </script>
- </body>
-</html>

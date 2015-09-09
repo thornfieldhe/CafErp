@@ -2,6 +2,9 @@
 
 namespace Erp.Cms.Controllers
 {
+    using System;
+    using System.Linq;
+
     using Erp.Cms.Models;
 
     public class DashboardController : Controller
@@ -9,7 +12,7 @@ namespace Erp.Cms.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
-            return this.View();
+            return this.View(Article.Get(r => r.Category == Category.Columns).OrderBy(r => r.Order).ToList());
         }
 
         /// <summary>
@@ -19,6 +22,16 @@ namespace Erp.Cms.Controllers
         public ActionResult Slides()
         {
             return this.View(Slide.RandomImages());
+        }
+
+        public ActionResult GetAllArticles()
+        {
+            return this.Json(Article.GetAll(true).OrderBy(r => r.LevelCode), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult LoadArticle(Guid aritcleId)
+        {
+            return	this.Json(Article.Get(aritcleId).Content,JsonRequestBehavior.AllowGet) ; 
         }
     }
 }
