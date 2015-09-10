@@ -682,6 +682,7 @@
     <Content Include="Views\Manage\_SlideIndex.cshtml" />
     <Content Include="Views\Dashboard\Slides.cshtml" />
     <Content Include="Views\Dashboard\404.cshtml" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
