@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutWithEmpty.cshtml";
+    ViewBag.Title = "登陆";
+}
+@using System.Web.Optimization
+@using System.Web.UI.WebControls
+
+<div class="login-container animated fadeInDown ">
+    <form name="form" class="loginbox bg-white widget radius-bordered" id="form"
+                                                  data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                                                  data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                                                  data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+        <div class="loginbox-title form-group">四川边防总队后勤信息网</div>
+        <div class="loginbox-or form-group">
+            <div class="or-line"></div>
+            <div class="or">登陆</div>
+        </div>
+        <div class="loginbox-textbox form-group" >
+            <span class="input-icon icon-right">
+                <input type="text" class="form-control" placeholder="用户名" name="Name"  data-bv-notempty="true" data-bv-notempty-message="用户名不能为空"/>
+            </span>
+        </div>
+        <div class="loginbox-textbox form-group" >
+            <span class="input-icon icon-right">
+                <input type="password" class="form-control" placeholder="密码" name="Password" data-bv-notempty="true" data-bv-notempty-message="密码不能为空"/>
+            </span>
+        </div>
+        <div class="loginbox-textbox form-group" id="unknownError" style="display: none;">
+            <div class="col-md-12">
+                <div class="form-group  has-feedback has-error">
+                    <small class="help-block" style="display: block;"></small>
+                </div>
+            </div>
+        </div>
+        <div class="loginbox-submit form-group">
+            <button type="button" class="btn btn-primary btn-block" onclick=" login() ">登陆</button>
+        </div>
+    
+    </form>
+    <div class="logobox">
+    </div>
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#form").bootstrapValidator();
+        });
+
+        function login() {
+            console.log(1111);
+            $.post("/Manage/Login", $("#form").serialize() ,function(e) {
+                if (e.Status === 1) {
+                    $("#unknownError").show().find(".help-block").html(e.Message);
+                } else {
+                    window.location.href = e.Data;
+                }
+            });
+        }
+
+
+    </script>
+}
