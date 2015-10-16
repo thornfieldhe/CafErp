@@ -1,0 +1,19 @@
+﻿<script type="text/html" id="tfoot">
+    <tfoot>
+        <tr>
+            <td colspan="${colspan}" class="DTTTFooter">
+                <div class="col-sm-6"><div class="dataTables_info" id="simpledatatable_info" role="status" aria-live="polite"> ${(PageIndex-1)*PageSize+1} - ${(PageIndex-1)*PageSize+Datas.length} / ${Total} </div></div>
+                <div class="col-sm-6">
+                    <div class="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+                        <ul class="pagination">
+                            <li class="prev {%if(IsFirst)}  disabled {%/if}"><a href="javascript:void(0)" onclick="${pageChangeAction}(${PageIndex-1})">上一页</a></li>
+                            {%each ShowIndex as index}
+                            <li class=" {%if(PageIndex===index)}  active {%/if}"><a href="javascript:void(0)" onclick="${pageChangeAction}(${index})">${index}</a></li>{%/each}
+                            <li class="next {%if(IsLast)} disabled{%/if}"><a href="javascript:void(0)" onclick="${pageChangeAction}(${PageIndex+1})">下一页</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</script>

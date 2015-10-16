@@ -1,0 +1,94 @@
+﻿@using System.Web.Optimization
+<div class="row" >
+    <div class="col-xs-12 col-md-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-primary">
+                <span class="widget-caption">目录树</span>
+            </div>
+            <div class="widget-body">
+                <div class="table-toolbar">
+                    <button type="button" class="btn  "  id="newCatalog">
+                        <i class="fa  fa-plus"></i> 新增
+                    </button>
+                    <button type="button" class="btn " disabled="disabled" id="editCatalog">
+                        <i class="fa   fa-pencil"></i> 编辑
+                    </button>
+                    <button type="button" class="btn  btn-danger" disabled="disabled" id="deleteCatalog">
+                        <i class="fa  fa-trash-o"></i> 删除
+                    </button>
+                </div>
+                <div id="catalogTree" class="ztree">
+                </div>
+            </div>
+</div>
+    </div>
+</div>
+<script type="text/html" id="submitForm">
+    <form id="form" class="form-horizontal" name="form">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-2 control-label no-padding-right">父目录</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control" readonly="readonly" required name="parentName" value="${ParentName}">
+                            <div class="input-group-btn open">
+                                <a class="btn btn-blue " href="javascript:void(0);" aria-expanded="true" onclick=" showCatalogs() "><i class="fa fa-angle-down"></i></a>
+                            </div>
+                        </div>
+                        <div class="dropdown-container">
+                            <div class="dropdown-preview" style="width: 100%">
+                                <div id="menuContent" class="dropdown-menu" style="display: none; width: 100%;">
+                                    <ul id="treeCatalog2" class="ztree"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-2 control-label no-padding-right">名称</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" placeholder="名称" name="name" value="${Name}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-md-2 control-label no-padding-right">排序</label>
+                    <div class="col-md-10">
+                        <div class="spinbox spinbox-horizontal spinbox-right">
+                            <div class="spinbox-buttons	btn-group">
+                                <button type="button" class="btn spinbox-down blueberry">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn spinbox-up purple">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="spinbox-input form-control" placeholder="排序" required name="order" value="${Order}">
+                        </div>
+                        <input type="hidden" value="${Id}" name="id"/>
+                        <input type="hidden" value="${ParentId}" name="parentId"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="unknownError" style="display: none;">
+            <div class="col-md-12">
+                <div class="form-group  has-feedback has-error">
+                    <div class="col-md-10 col-md-offset-2">
+                        <small class="help-block" ></small>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+<script src="~/assets/js/app/catalog.js"></script>
+
