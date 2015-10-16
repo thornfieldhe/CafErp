@@ -27,11 +27,6 @@ namespace Erp.Eam.Business
             get; set;
         }
 
-        public DbSet<Slide> Slides
-        {
-            get; set;
-        }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

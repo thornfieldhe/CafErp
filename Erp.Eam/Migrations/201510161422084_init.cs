@@ -8,7 +8,7 @@ namespace Erp.Eam.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Articles",
+                "dbo.ProductCategories",
                 c => new
                     {
                         Id = c.Guid(nullable: false),
@@ -17,8 +17,6 @@ namespace Erp.Eam.Migrations
                         ParentId = c.Guid(),
                         Level = c.Int(nullable: false),
                         LevelCode = c.String(),
-                        Category = c.Int(nullable: false),
-                        Content = c.String(),
                         Status = c.Int(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         ChangedDate = c.DateTime(nullable: false),
@@ -49,22 +47,6 @@ namespace Erp.Eam.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
-            
-            CreateTable(
-                "dbo.Slides",
-                c => new
-                    {
-                        Id = c.Guid(nullable: false),
-                        FileName = c.String(),
-                        FilePath = c.String(),
-                        Rate = c.Int(nullable: false),
-                        Status = c.Int(nullable: false),
-                        CreatedDate = c.DateTime(nullable: false),
-                        ChangedDate = c.DateTime(nullable: false),
-                        Version = c.Binary(),
-                        Note = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -129,10 +111,9 @@ namespace Erp.Eam.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.Slides");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Articles");
+            DropTable("dbo.ProductCategories");
         }
     }
 }

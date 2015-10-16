@@ -13,22 +13,22 @@
 	function load(type) {
 		switch (type) {
 		case 0:
-					loadPage("/Manage/Dashboard",null, "主页","#menuHome",true);
+					loadPage("/Home/Dashboard",null, "主页","#menuHome",true);
 		break;
 		case 1:
-					loadPage("/Manage/ColumnIndex", "文章管理", "栏目管理","#menuColumn",false);
+					loadPage("/Manage/ColumnIndex", "基本信息", "商品类别","#menuColumn",false);
 		break;
 		case 2:
-					loadPage("/Manage/CatalogsIndex", "文章管理", "目录管理","#menuCatalog",false);
+					loadPage("/Manage/CatalogsIndex", "基本信息", "商品资料","#menuCatalog",false);
 		break;
 		case 3:
-					loadPage("/Manage/ArticlesIndex", "文章管理", "文章管理","#menuArticle",false);
+					loadPage("/Manage/ArticlesIndex", "基本信息", "仓库设置","#menuArticle",false);
 		break;
 		case 4:
-					loadPage("/Manage/ChangePasswordIndex", "文章管理", "修改密码","#menuChangePass",false);
+					loadPage("/Home/ChangePasswordIndex", "用户管理", "员工设置","#menuChangePass",false);
 		break;		
 		case 5:
-					loadPage("/Manage/SlideIndex", "轮播图设置", "轮播图设置","#menuSlide",false);
+					loadPage("/Home/SlideIndex", "基本信息", "仓库设置","#menuSlide",false);
 		break;
 		default:
 		}

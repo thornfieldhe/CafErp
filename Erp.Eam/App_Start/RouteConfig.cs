@@ -1,8 +1,17 @@
-﻿using System.Web.Mvc;
-using System.Web.Routing;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RouteConfig.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Defines the RouteConfig type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Erp.Eam
 {
+    using System.Web.Mvc;
+    using System.Web.Routing;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -14,11 +23,10 @@ namespace Erp.Eam
                 url: "{controller}/{action}/{id}",
                 defaults: new
                 {
-                    controller = "Manage",
+                    controller = "Home",
                     action = "Index",
                     id = UrlParameter.Optional
-                }
-            );
+                });
         }
     }
 }

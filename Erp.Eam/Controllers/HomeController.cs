@@ -23,7 +23,7 @@ namespace Erp.Eam.Controllers
     /// The manage controller.
     /// </summary>
     [Authorize]
-    public class AccountController : Controller
+    public class HomeController : Controller
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ManageController"/> class.
@@ -34,13 +34,13 @@ namespace Erp.Eam.Controllers
         /// <param name="signInManager">
         /// The sign in manager.
         /// </param>
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public HomeController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;
         }
 
-        public AccountController()
+        public HomeController()
         {
         }
 
@@ -143,7 +143,7 @@ namespace Erp.Eam.Controllers
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        return this.Json(new ActionResultData<string>("/Manage/Index"), JsonRequestBehavior.AllowGet);
+                        return this.Json(new ActionResultData<string>("/Home/Index"), JsonRequestBehavior.AllowGet);
                     default:
                         return this.Json(new ActionResultStatus(10, "用户名或密码错误"), JsonRequestBehavior.AllowGet);
                 }

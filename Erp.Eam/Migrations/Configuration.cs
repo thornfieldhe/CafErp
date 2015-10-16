@@ -1,3 +1,12 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Configuration.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Defines the DbInitializer type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace Erp.Eam.Migrations
 {
     using System;
@@ -9,15 +18,6 @@ namespace Erp.Eam.Migrations
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
-    {
-        public Configuration()
-        {
-            this.AutomaticMigrationsEnabled = false;
-            this.ContextKey = "DefaultConnection";
-        }
-    }
 
 
     public class DbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
@@ -73,6 +73,15 @@ namespace Erp.Eam.Migrations
                     userManager.AddToRole(user.Id, SaRoleAdmins);
                 }
             }
+        }
+    }
+
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
+    {
+        public Configuration()
+        {
+            this.AutomaticMigrationsEnabled = false;
+            this.ContextKey = "DefaultConnection";
         }
     }
 }

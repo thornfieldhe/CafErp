@@ -18,9 +18,9 @@ namespace Erp.Eam.Models
 
 
     /// <summary>
-    /// 文章模型
+    /// 产品分类
     /// </summary>
-    [Table("Articles")]
+    [Table("ProductCategories")]
     public partial class ProductCategory
     {
         #region 属性

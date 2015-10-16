@@ -1,0 +1,157 @@
+﻿@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "四川边防总队物资器材管理系统";
+}
+
+    <!-- Navbar -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-container">
+            <!-- Navbar Barnd -->
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        四川边防总队物资器材管理系统
+                    </small>
+                </a>
+            </div>
+            <!-- /Navbar Barnd -->
+            <!-- Account Area and Settings --->
+            <div class="navbar-header pull-right">
+                <div class="navbar-account">
+                    <ul class="account-area">
+                        <li>
+                            <a class="navbar-brand" href="#">
+                                <h5>欢迎您：@User.Identity.Name !</h5>
+                            </a>
+                        </li>
+                        <!-- /Account Area -->
+                        <!-- Settings -->
+                    </ul>
+                    <div class="setting">
+                        <a  title="登出" href="/Home/SignOut">
+                            <i class="icon fa fa-sign-out"></i>
+                        </a>
+                    </div>
+                    <!-- Settings -->
+                </div>
+            </div>
+            <!-- /Account Area and Settings -->
+        </div>
+    </div>
+</div>
+    <!-- /Navbar -->
+<!-- Main Container -->
+<div class="main-container container-fluid">
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div class="page-sidebar" id="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="nav sidebar-menu">
+                <li class="active" id="menuHome">
+                    <a href="javascript:void(0)" onclick=" load(0) ">
+                        <i class="menu-icon glyphicon glyphicon-home"></i>
+                        <span class="menu-text"> 主页 </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-user"></i>
+                        <span class="menu-text"> 用户管理 </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li id="menuChangePass">
+                            <a href="javascript:void(0)" onclick=" load(4) ">
+                                <span class="menu-text">修改密码</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa  fa-file-text-o"></i>
+                        <span class="menu-text"> 基本信息 </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li id="menuProductCategory">
+                            <a href="javascript:void(0)" onclick=" load(1) ">
+                                <span class="menu-text">商品类别</span>
+                            </a>
+                        </li>
+                        <li id="menuProduct">
+                            <a href="javascript:void(0)" onclick=" load(2) ">
+                                <span class="menu-text">商品资料</span>
+                            </a>
+                        </li>
+                        <li id="menuWarehouse">
+                            <a href="javascript:void(0)" onclick=" load(3) ">
+                                <span class="menu-text">仓库设置</span>
+                            </a>
+                        </li>
+                        <li id="menuEmploy">
+                            <a href="javascript:void(0)" onclick=" load(4) ">
+                                <span class="menu-text">员工设置</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon glyphicon glyphicon-cog"></i>
+                        <span class="menu-text"> 轮播图设置 </span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li id="menuSlide">
+                            <a href="javascript:void(0)" onclick=" load(5) ">
+                                <span class="menu-text">轮播图设置</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /Sidebar Menu -->
+        </div>
+        <!-- /Page Sidebar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home"></i>
+                        <a href="javascript:void(0)" onclick=" load(0) ">主页</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /Page Breadcrumb -->
+            <!-- Page Header -->
+            <div class="page-header position-relative">
+                <div class="header-title">
+                    <h1 id="bodyTitle">
+                        主页
+                    </h1>
+                </div>
+            </div>
+            <!-- /Page Header -->
+            <!-- Page Body -->
+            <div class="page-body">
+
+            </div>
+            <!-- Page Body -->
+        </div>
+        <!-- Page Content -->
+    </div>
+    <!-- Page Container -->
+</div>
+@Html.Partial("_tfoot")
+@section scripts
+{
+    @Scripts.Render("~/assets/app")
+
+}
+

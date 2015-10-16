@@ -184,20 +184,18 @@
     <Compile Include="Business\EFEntity.cs" />
     <Compile Include="Business\Tools.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510131412363_init.cs" />
-    <Compile Include="Migrations\201510131412363_init.Designer.cs">
-      <DependentUpon>201510131412363_init.cs</DependentUpon>
+    <Compile Include="Migrations\201510161422084_init.cs" />
+    <Compile Include="Migrations\201510161422084_init.Designer.cs">
+      <DependentUpon>201510161422084_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\CodeSmith\ProductCategory.cs" />
-    <Compile Include="Models\CodeSmith\Slide.cs" />
     <Compile Include="Models\Common\ActionResultData.cs" />
-    <Compile Include="Models\Slide.cs" />
     <Compile Include="Models\ViewModels\ArticleView.cs" />
     <Compile Include="Models\ViewModels\ChangedPasswordView.cs" />
     <Compile Include="Models\ViewModels\SlideView.cs" />
@@ -642,7 +640,7 @@
     <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppData\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -673,14 +671,14 @@
     <Content Include="assets\js\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="assets\js\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="assets\js\ueditor\third-party\video-js\font\vjs.woff" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Manage\_ArticleEdit.cshtml" />
     <Content Include="Views\Manage\_ArticlesIndex.cshtml" />
     <Content Include="Views\Manage\_CatalogsIndex.cshtml" />
-    <Content Include="Views\Account\_ChangePassword.cshtml" />
+    <Content Include="Views\Home\_ChangePassword.cshtml" />
     <Content Include="Views\Manage\_ColumnIndex.cshtml" />
-    <Content Include="Views\Account\_Dashboard.cshtml" />
+    <Content Include="Views\Home\_Dashboard.cshtml" />
     <Content Include="Views\Manage\_SlideIndex.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutWithEmpty.cshtml" />
@@ -706,8 +704,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510131412363_init.resx">
-      <DependentUpon>201510131412363_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510161422084_init.resx">
+      <DependentUpon>201510161422084_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

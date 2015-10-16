@@ -1,5 +1,5 @@
 ﻿function changePassword() {
-	$.post("/Manage/ChangePassword", $("form").serialize(), function(e) {
+	$.post("/Home/ChangePassword", $("form").serialize(), function(e) {
 		if (e.Status === 0) {
 			Notify(e.Data, 'top-right', '5000', 'success', 'fa-check', true); 
 		} else {

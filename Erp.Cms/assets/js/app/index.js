@@ -13,7 +13,7 @@
 	function load(type) {
 		switch (type) {
 		case 0:
-					loadPage("/Manage/Dashboard",null, "主页","#menuHome",true);
+					loadPage("/Home/Dashboard",null, "主页","#menuHome",true);
 		break;
 		case 1:
 					loadPage("/Manage/ColumnIndex", "文章管理", "栏目管理","#menuColumn",false);
@@ -25,7 +25,7 @@
 					loadPage("/Manage/ArticlesIndex", "文章管理", "文章管理","#menuArticle",false);
 		break;
 		case 4:
-					loadPage("/Manage/ChangePasswordIndex", "文章管理", "修改密码","#menuChangePass",false);
+					loadPage("/Manage/ChangePasswordIndex", "用户管理", "修改密码","#menuChangePass",false);
 		break;		
 		case 5:
 					loadPage("/Manage/SlideIndex", "轮播图设置", "轮播图设置","#menuSlide",false);
