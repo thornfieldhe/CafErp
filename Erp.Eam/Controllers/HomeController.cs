@@ -6,16 +6,21 @@
 //   The manage controller.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System.Web.Mvc;
+
 namespace Erp.Eam.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
+    using System.Web.Mvc;
+
+    using Erp.Eam.Business;
     using Erp.Eam.Models;
 
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
@@ -26,7 +31,7 @@ namespace Erp.Eam.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManageController"/> class.
+        /// Initializes a new instance of the <see cref="HomeController"/> class.
         /// </summary>
         /// <param name="userManager">
         /// The user manager.
@@ -34,17 +39,20 @@ namespace Erp.Eam.Controllers
         /// <param name="signInManager">
         /// The sign in manager.
         /// </param>
-        public HomeController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        /// <param name="roleManager">
+        /// The role Manager 
+        /// </param>
+        public HomeController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager, ApplicationRoleManager roleManager1)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;
+            this.RoleManager = roleManager;
+            this.roleManager = roleManager1;
         }
 
         public HomeController()
         {
         }
-
-        #region 账户相关
 
         /// <summary>
         /// Gets the sign in manager.
@@ -63,7 +71,39 @@ namespace Erp.Eam.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Gets the user manager.
+        /// </summary>
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+
+            private set
+            {
+                this.userManager = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the user manager.
+        /// </summary>
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return this.roleManager ?? ApplicationRoleManager.CreateForEF(null);
+            }
+
+            private set
+            {
+                this.roleManager = value;
+            }
+        }
+
+        /// <summary>
+        /// 授权管理器
         /// </summary>
         private IAuthenticationManager AuthenticationManager
         {
@@ -84,20 +124,9 @@ namespace Erp.Eam.Controllers
         private ApplicationUserManager userManager;
 
         /// <summary>
-        /// Gets the user manager.
+        /// The _role manager.
         /// </summary>
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-
-            private set
-            {
-                this.userManager = value;
-            }
-        }
+        private ApplicationRoleManager roleManager;
 
         /// <summary>
         /// The index.
@@ -107,7 +136,8 @@ namespace Erp.Eam.Controllers
         /// </returns>
         public ActionResult Index()
         {
-            return this.View();
+            var user = this.UserManager.Users.Single(r => r.UserName == this.User.Identity.Name);
+            return this.View(user);
         }
 
 
@@ -165,6 +195,35 @@ namespace Erp.Eam.Controllers
             return this.PartialView("_ChangePassword");
         }
 
+        public ActionResult UserIndex()
+        {
+            return this.PartialView("_UserIndex");
+        }
+
+        [Authorize(Roles = "Admins")]
+        public ActionResult GetUserList()
+        {
+            var roles = this.RoleManager.Roles.ToList();
+            var list =
+                this.UserManager.Users.Select(
+                                              u =>
+                                              new UserInfo
+                                              {
+                                                  FullName = u.FullName,
+                                                  LoginName = u.FullName,
+                                                  Roles = string.Join(
+                                                                      ",",
+                                                      roles.Where(
+                                                                  r => u.Roles.Select(
+                                                                                      ur =>
+                                                                                                        ur.UserId)
+                                                                                             .Contains(u.Id))
+                                                          .Select(r => r.Name).ToList())
+                                              });
+
+            return this.Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public async Task<ActionResult> ChangePassword(ChangedPasswordView changedPassword)
         {
@@ -175,7 +234,101 @@ namespace Erp.Eam.Controllers
             return this.Json(result.Succeeded ? new ActionResultData<string>("密码修改成功！") : new ActionResultStatus(10, result.Errors.First()), JsonRequestBehavior.AllowGet);
         }
 
-        #endregion
+        /// <summary>
+        /// 新增用户
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="roleIds"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize(Roles = "Admins")]
+        public ActionResult CreateUser(UserInfo info, List<string> roleIds)
+        {
+            try
+            {
+                var user = new ApplicationUser
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserName = info.LoginName,
+                    EmailConfirmed = false,
+                    FullName = info.FullName,
+                    TwoFactorEnabled = true,
+                };
+                foreach (var roleName in roleIds)
+                {
+                    user.Roles.Add(new IdentityUserRole() { RoleId = roleName, UserId = user.Id });
+                }
 
+                this.UserManager.Create(user, info.Password);
+                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        /// <summary>
+        /// 更新用户
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="roleIds"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize(Roles = "Admins")]
+        public ActionResult UpdateUser(UserInfo info, List<string> roleIds)
+        {
+            try
+            {
+                var user = this.UserManager.FindByName(info.LoginName);
+                if (user == null)
+                {
+                    return this.Json(new ActionResultStatus(10, "用户不存在！"), JsonRequestBehavior.AllowGet);
+                }
+
+                user.UserName = info.LoginName;
+                user.FullName = info.FullName;
+                user.Roles.Clear();
+                foreach (var roleId in roleIds)
+                {
+                    user.Roles.Add(new IdentityUserRole { RoleId = roleId, UserId = user.Id });
+                }
+
+                this.UserManager.Update(user);
+                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="userName">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        [HttpPost]
+        [Authorize(Roles = "Admins")]
+        public ActionResult DeleteUser(string userName)
+        {
+            try
+            {
+                var user = this.UserManager.FindByName(userName);
+                if (user == null)
+                {
+                    return this.Json(new ActionResultStatus(10, "用户不存在！"), JsonRequestBehavior.AllowGet);
+                }
+
+                this.UserManager.Delete(user);
+                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

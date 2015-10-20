@@ -21,6 +21,5 @@
             // 在此处添加自定义用户声明
             return userIdentity;
         }
-
     }
 }

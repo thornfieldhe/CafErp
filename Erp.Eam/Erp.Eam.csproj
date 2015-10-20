@@ -270,6 +270,7 @@
     <Content Include="assets\js\app\base.js" />
     <Content Include="assets\js\app\catalog.js" />
     <Content Include="assets\js\app\changePassword.js" />
+    <Content Include="assets\js\app\user.js" />
     <Content Include="assets\js\app\column.js" />
     <Content Include="assets\js\app\index.js" />
     <Content Include="assets\js\app\slide.js" />
@@ -686,6 +687,7 @@
     <Content Include="Views\web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\Home\_UserIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Configuration.cs" company="">
 //   
 // </copyright>
@@ -28,15 +28,25 @@ namespace Erp.Eam.Migrations
 
         public const string SaPassword = "11111111";
 
-        public const string SaRoleAdmins = "Admins";
+        public const string Admins = "Admins";
 
-        public const string SaRoleUsers = "Users";
+        public const string Users = "Users";
+
+        public const string CKUsers = "CKUsers";
+
+        public const string CLUsers = "CLUsers";
+
+        public const string STUsers = "STUsers";
+
+        public const string CWUsers = "CWUsers";
+
+        public const string Managers = "Managers";
 
         protected override void Seed(ApplicationDbContext context)
         {
             base.Seed(context);
-            const string fullName = "ϵͳ����Ա";
-            var roleNames = new string[] { SaRoleAdmins, SaRoleUsers };
+            const string fullName = "系统管理员";
+            var roleNames = new string[] { Admins, Users, CKUsers, CLUsers, STUsers, Managers };
             using (var roleManager = ApplicationRoleManager.CreateForEF(context))
             {
                 if ((from item in roleNames
@@ -46,7 +56,7 @@ namespace Erp.Eam.Migrations
                      into role
                      select roleManager.Create(role)).Any(roleresult => !roleresult.Succeeded))
                 {
-                    throw new Exception("��ʼ��ϵͳʧ�ܣ�");
+                    throw new Exception("初始化系统失败！");
                 }
             }
 
@@ -68,9 +78,9 @@ namespace Erp.Eam.Migrations
                 }
 
                 var rolesForUser = userManager.GetRoles(user.Id);
-                if (!rolesForUser.Contains(SaRoleAdmins))
+                if (!rolesForUser.Contains(Admins))
                 {
-                    userManager.AddToRole(user.Id, SaRoleAdmins);
+                    userManager.AddToRole(user.Id, Admins);
                 }
             }
         }

@@ -30,6 +30,9 @@
 		case 5:
 					loadPage("/Home/SlideIndex", "基本信息", "仓库设置","#menuSlide",false);
 		break;
+		case 6:
+					loadPage("/Home/UserIndex", "用户管理", "用户管理","#menuUsers",false);
+		break;
 		default:
 		}
 	}

@@ -1,5 +1,5 @@
 ﻿@using System.Web.Optimization
-
+@model  Erp.Eam.Business.ApplicationUser
 @{
     ViewBag.Title = "四川边防总队物资器材管理系统";
 }
@@ -23,7 +23,7 @@
                     <ul class="account-area">
                         <li>
                             <a class="navbar-brand" href="#">
-                                <h5>欢迎您：@User.Identity.Name !</h5>
+                                <h5>欢迎您：@Model.FullName !</h5>
                             </a>
                         </li>
                         <!-- /Account Area -->
@@ -63,6 +63,11 @@
                         <i class="menu-expand"></i>
                     </a>
                     <ul class="submenu">
+                        <li id="menuUsers">
+                            <a href="javascript:void(0)" onclick=" load(6) ">
+                                <span class="menu-text">用户管理</span>
+                            </a>
+                        </li>
                         <li id="menuChangePass">
                             <a href="javascript:void(0)" onclick=" load(4) ">
                                 <span class="menu-text">修改密码</span>
