@@ -16,6 +16,8 @@ namespace Erp.Eam.Controllers
     using System.Web;
     using System.Web.Mvc;
 
+    using CAF;
+
     using Erp.Eam.Business;
     using Erp.Eam.Models;
 
@@ -30,29 +32,7 @@ namespace Erp.Eam.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HomeController"/> class.
-        /// </summary>
-        /// <param name="userManager">
-        /// The user manager.
-        /// </param>
-        /// <param name="signInManager">
-        /// The sign in manager.
-        /// </param>
-        /// <param name="roleManager">
-        /// The role Manager 
-        /// </param>
-        public HomeController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager, ApplicationRoleManager roleManager1)
-        {
-            this.UserManager = userManager;
-            this.SignInManager = signInManager;
-            this.RoleManager = roleManager;
-            this.roleManager = roleManager1;
-        }
 
-        public HomeController()
-        {
-        }
 
         /// <summary>
         /// Gets the sign in manager.
@@ -93,7 +73,7 @@ namespace Erp.Eam.Controllers
         {
             get
             {
-                return this.roleManager ?? ApplicationRoleManager.CreateForEF(null);
+                return this.roleManager ?? ApplicationRoleManager.CreateForEF();
             }
 
             private set
@@ -197,31 +177,40 @@ namespace Erp.Eam.Controllers
 
         public ActionResult UserIndex()
         {
-            return this.PartialView("_UserIndex");
+            var roles = this.RoleManager.Roles.ToList();
+            return this.PartialView("_UserIndex", roles);
         }
 
         [Authorize(Roles = "Admins")]
-        public ActionResult GetUserList()
+        public ActionResult GetUserList(int pageIndex, int pageSize = 20)
         {
             var roles = this.RoleManager.Roles.ToList();
-            var list =
-                this.UserManager.Users.Select(
-                                              u =>
-                                              new UserInfo
-                                              {
-                                                  FullName = u.FullName,
-                                                  LoginName = u.FullName,
-                                                  Roles = string.Join(
-                                                                      ",",
-                                                      roles.Where(
-                                                                  r => u.Roles.Select(
-                                                                                      ur =>
-                                                                                                        ur.UserId)
-                                                                                             .Contains(u.Id))
-                                                          .Select(r => r.Name).ToList())
-                                              });
-
-            return this.Json(list, JsonRequestBehavior.AllowGet);
+            var users = this.UserManager.Users.ToList();
+            var list = new List<UserInfoView>();
+            users.ForEach(
+                          u =>
+                              {
+                                  var user = new UserInfoView
+                                  {
+                                      FullName = u.FullName,
+                                      Id = u.Id,
+                                      LoginName = u.UserName,
+                                      RoleIds = u.Roles.Select(r => r.RoleId).ToList(),
+                                      RoleNames = string.Join(
+                                                          ",",
+                                          roles.Where(r => u.Roles.Select(ur => ur.RoleId).Contains(r.Id)).Select(r => r.Name).ToList())
+                                  };
+                                  list.Add(user);
+                              });
+            var pager = new Pager<UserInfoView>
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Datas = list,
+                Total = list.Count
+            };
+            pager.GetShowIndex();
+            return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -237,29 +226,28 @@ namespace Erp.Eam.Controllers
         /// <summary>
         /// 新增用户
         /// </summary>
-        /// <param name="info"></param>
-        /// <param name="roleIds"></param>
+        /// <param name="infoView"></param>
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admins")]
-        public ActionResult CreateUser(UserInfo info, List<string> roleIds)
+        public ActionResult CreateUser(UserInfoView infoView)
         {
             try
             {
                 var user = new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = info.LoginName,
+                    UserName = infoView.LoginName,
                     EmailConfirmed = false,
-                    FullName = info.FullName,
+                    FullName = infoView.FullName,
                     TwoFactorEnabled = true,
                 };
-                foreach (var roleName in roleIds)
+                foreach (var roleName in infoView.RoleIds)
                 {
                     user.Roles.Add(new IdentityUserRole() { RoleId = roleName, UserId = user.Id });
                 }
 
-                this.UserManager.Create(user, info.Password);
+                this.UserManager.Create(user, "11111111");
                 return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -271,25 +259,24 @@ namespace Erp.Eam.Controllers
         /// <summary>
         /// 更新用户
         /// </summary>
-        /// <param name="info"></param>
-        /// <param name="roleIds"></param>
+        /// <param name="infoView"></param>
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Admins")]
-        public ActionResult UpdateUser(UserInfo info, List<string> roleIds)
+        public ActionResult UpdateUser(UserInfoView infoView)
         {
             try
             {
-                var user = this.UserManager.FindByName(info.LoginName);
+                var user = this.UserManager.FindByName(infoView.LoginName);
                 if (user == null)
                 {
                     return this.Json(new ActionResultStatus(10, "用户不存在！"), JsonRequestBehavior.AllowGet);
                 }
 
-                user.UserName = info.LoginName;
-                user.FullName = info.FullName;
+                user.UserName = infoView.LoginName;
+                user.FullName = infoView.FullName;
                 user.Roles.Clear();
-                foreach (var roleId in roleIds)
+                foreach (var roleId in infoView.RoleIds)
                 {
                     user.Roles.Add(new IdentityUserRole { RoleId = roleId, UserId = user.Id });
                 }
@@ -312,11 +299,11 @@ namespace Erp.Eam.Controllers
         /// </returns>
         [HttpPost]
         [Authorize(Roles = "Admins")]
-        public ActionResult DeleteUser(string userName)
+        public ActionResult DeleteUser(string id)
         {
             try
             {
-                var user = this.UserManager.FindByName(userName);
+                var user = this.UserManager.FindById(id);
                 if (user == null)
                 {
                     return this.Json(new ActionResultStatus(10, "用户不存在！"), JsonRequestBehavior.AllowGet);

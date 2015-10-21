@@ -19,7 +19,6 @@ namespace Erp.Eam
 
         private void InitMap()
         {
-
         }
     }
 }

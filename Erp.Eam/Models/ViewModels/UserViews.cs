@@ -1,5 +1,7 @@
 ﻿namespace Erp.Eam.Models
 {
+    using System.Collections.Generic;
+
     public class LoginUser
     {
         public string Name
@@ -13,8 +15,13 @@
         }
     }
 
-    public class UserInfo
+    public class UserInfoView
     {
+        public string Id
+        {
+            get; set;
+        }
+
         public string LoginName
         {
             get; set;
@@ -25,12 +32,12 @@
             get; set;
         }
 
-        public string Password
+        public string RoleNames
         {
             get; set;
         }
 
-        public string Roles
+        public IList<string> RoleIds
         {
             get; set;
         }

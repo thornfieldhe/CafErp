@@ -6,7 +6,6 @@
 			title: title,
 			className: " modal-primary",
 			callback:function() {
-				console.log(123);
 			},
 			buttons: {
 				cancel: {

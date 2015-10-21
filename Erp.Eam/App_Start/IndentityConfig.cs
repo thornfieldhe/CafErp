@@ -37,7 +37,7 @@
         {
         }
 
-        public static ApplicationRoleManager CreateForEF(ApplicationDbContext db)
+        public static ApplicationRoleManager CreateForEF(ApplicationDbContext db = null)
         {
             if (db == null)
             {
