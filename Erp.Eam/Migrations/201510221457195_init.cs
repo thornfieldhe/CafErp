@@ -13,7 +13,6 @@ namespace Erp.Eam.Migrations
                     {
                         Id = c.Guid(nullable: false),
                         Name = c.String(nullable: false),
-                        Order = c.Int(nullable: false),
                         ParentId = c.Guid(),
                         Level = c.Int(nullable: false),
                         LevelCode = c.String(),

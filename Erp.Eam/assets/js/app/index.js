@@ -16,7 +16,7 @@
 					loadPage("/Home/Dashboard",null, "主页","#menuHome",true);
 		break;
 		case 1:
-					loadPage("/Manage/ColumnIndex", "基本信息", "商品类别","#menuColumn",false);
+					loadPage("/Product/CategoryIndex", "基本信息", "商品类别","#menuProductCategory",false);
 		break;
 		case 2:
 					loadPage("/Manage/CatalogsIndex", "基本信息", "商品资料","#menuCatalog",false);

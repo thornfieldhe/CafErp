@@ -36,7 +36,6 @@ namespace Erp.Eam.Models
         {
             base.AddDescriptions();
             this.AddDescription("Name:" + this.Name);
-            this.AddDescription("Order:" + this.Order);
             this.AddDescription("ParentId:" + (this.ParentId.HasValue ? this.ParentId.Value.ToString() : string.Empty));
             this.AddDescription("Level:" + this.Level);
         }

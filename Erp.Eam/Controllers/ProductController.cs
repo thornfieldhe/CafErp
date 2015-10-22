@@ -10,9 +10,8 @@ using System.Web.Mvc;
 namespace Erp.Eam.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
-
-    using CAF;
     using Erp.Eam.Models;
 
     /// <summary>
@@ -28,7 +27,7 @@ namespace Erp.Eam.Controllers
         #region 产品分类操作
 
         /// <summary>
-        ///删除分类
+        /// 删除分类
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -44,7 +43,7 @@ namespace Erp.Eam.Controllers
                     return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
                 }
 
-                return this.Json(new ActionResultStatus(10, "对象不存在！"), JsonRequestBehavior.AllowGet);
+                return this.Json(new ActionResultStatus(10, "商品分类不存在！"), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -52,22 +51,22 @@ namespace Erp.Eam.Controllers
             }
         }
 
-        public ActionResult CatalogsIndex()
+        public ActionResult CategoryIndex()
         {
-            return this.PartialView("_CatalogsIndex");
+            return this.PartialView("_CategoryIndex");
         }
 
         /// <summary>
         /// 新增分类
         /// </summary>
-        /// <param name="catalog"></param>
+        /// <param name="Category"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult CreateCatalog(CatalogView catalog)
+        public ActionResult CreateCategory(ProductCategoryView Category)
         {
             try
             {
-                var category = new ProductCategory() { Name = catalog.Name, Order = catalog.Order, ParentId = catalog.ParentId };
+                var category = new ProductCategory() { Name = Category.Name, ParentId = Category.ParentId };
                 category.Create();
                 return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
@@ -81,19 +80,18 @@ namespace Erp.Eam.Controllers
         /// <summary>
         /// 更新分类
         /// </summary>
-        /// <param name="catalog"></param>
+        /// <param name="Category"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult UpdateCatalog(CatalogView catalog)
+        public ActionResult UpdateCategory(ProductCategoryView Category)
         {
             try
             {
-                var category = ProductCategory.Get(catalog.Id);
+                var category = ProductCategory.Get(Category.Id);
                 if (category != null)
                 {
-                    category.Name = catalog.Name;
-                    category.Order = catalog.Order;
-                    category.ParentId = catalog.ParentId;
+                    category.Name = Category.Name;
+                    category.ParentId = Category.ParentId;
                     category.Save();
                     return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
                 }
@@ -111,10 +109,10 @@ namespace Erp.Eam.Controllers
         /// </summary>
         /// <returns>
         /// </returns>
-        public ActionResult GetCatalogList()
+        public ActionResult GetCategoryList()
         {
             var list = ProductCategory.GetAll()
-                .OrderBy(r => r.Level).ThenBy(r => r.Order).ToList();
+               .OrderBy(r => r.Level).ThenBy(r => r.Name).ToList();
             return this.Json(list, JsonRequestBehavior.AllowGet);
         }
         #endregion

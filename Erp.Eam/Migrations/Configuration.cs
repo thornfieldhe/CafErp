@@ -28,19 +28,19 @@ namespace Erp.Eam.Migrations
 
         public const string SaPassword = "11111111";
 
-        public const string Admins = "Admins";
+        public const string Admins = "系统管理员组";
 
-        public const string Users = "Users";
+        public const string Users = "普通用户组";
 
-        public const string CKUsers = "CKUsers";
+        public const string CKUsers = "仓库组";
 
-        public const string CLUsers = "CLUsers";
+        public const string CLUsers = "车辆组";
 
-        public const string STUsers = "STUsers";
+        public const string STUsers = "食堂组";
 
-        public const string CWUsers = "CWUsers";
+        public const string CWUsers = "财务组";
 
-        public const string Managers = "Managers";
+        public const string Managers = "管理组";
 
         protected override void Seed(ApplicationDbContext context)
         {

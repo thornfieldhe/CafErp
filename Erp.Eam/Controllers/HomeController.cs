@@ -224,6 +224,19 @@ namespace Erp.Eam.Controllers
         }
 
         /// <summary>
+        /// 编辑用户信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "Admins")]
+        public ActionResult EditUser(string userId)
+        {
+            var user = this.UserManager.FindById(userId);
+            this.ViewBag.Roles = this.RoleManager.Roles.ToList();
+            return this.PartialView("_EditUser", user ?? new ApplicationUser() { Id = string.Empty });
+        }
+
+        /// <summary>
         /// 新增用户
         /// </summary>
         /// <param name="infoView"></param>
@@ -293,7 +306,7 @@ namespace Erp.Eam.Controllers
         /// <summary>
         /// 删除用户
         /// </summary>
-        /// <param name="userName">
+        /// <param name="id">
         /// </param>
         /// <returns>
         /// </returns>

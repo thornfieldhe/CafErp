@@ -26,18 +26,10 @@ namespace Erp.Eam.Models
         #region 属性
 
         /// <summary>
-        /// 标题
+        /// 分类名称
         /// </summary>
-        [Required(ErrorMessage = "标题不允许为空")]
+        [Required(ErrorMessage = "分类名称不允许为空")]
         public string Name
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// 排序
-        /// </summary>
-        public int Order
         {
             get; set;
         }
@@ -131,9 +123,7 @@ namespace Erp.Eam.Models
         private bool IsLevelChanged()
         {
             var entry = this.DbContex.Entry(this);
-            var current = entry.CurrentValues["ParentId"];
-            var orginal = entry.OriginalValues["ParentId"];
-            return current != orginal;
+            return entry.CurrentValues["ParentId"] != entry.OriginalValues["ParentId"];
         }
 
         #endregion

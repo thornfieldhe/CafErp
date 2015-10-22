@@ -10,11 +10,9 @@
 	}
 
 	function editUser(id) {
-		var user = _.find(users, function(r) {
-			return r.Id === id;
+		$.get("/Home/EditUser?userId="+id, function(e) {
+				editInDialog("编辑用户", "/Home/UpdateUser",e,onFormInit,"userChangedSubscriber");
 		});
-		var html =juicer($("#submitForm").html(),user);
-		editInDialog("编辑栏目", "/Home/UpdateUser",html,onFormInit,"userChangedSubscriber");
 	}
 
 	function deleteUser(id,name) {
@@ -28,11 +26,11 @@
 			});
 	}
 
-	$("#newUser").on('click', function () {
-		var html =juicer($("#submitForm").html(),{LoginName:"",FullName:"",RoleIds:[],Id:""});
-		console.log();
-		editInDialog("新增用户", "/Home/CreateUser",html,onFormInit,"userChangedSubscriber");
-	});
+	function createUser() {
+		$.get("/Home/EditUser", function(e) {
+				editInDialog("新增用户", "/Home/CreateUser",e,onFormInit,"userChangedSubscriber");
+		});
+	}
 
 	function validate() {
 	$("#form").bootstrapValidator({

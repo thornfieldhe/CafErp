@@ -9,7 +9,7 @@
                 </div>
                 <div class="widget-body">
                     <div class="table-toolbar">
-                        <a href="javascript:void(0);" class="btn btn-primary " id="newUser">
+                        <a href="javascript:void(0);" class="btn btn-primary " onclick="createUser()">
                             <i class="fa  fa-plus"></i> 新增
                         </a>
                     </div>
@@ -53,122 +53,5 @@
             {%include  "#tfoot",data}
         </table>
     </div>
-</script>
-<script type="text/html" id="submitForm">
-    <form id="form" class="form-horizontal" name="form">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">登录名</label>
-                    <div class="col-sm-10">
-                        <span class="input-icon icon-right">
-                            <input type="text" class="form-control" placeholder="登录名" name="loginName" value="${LoginName}" />
-                            <i class="glyphicon glyphicon-user blue"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">全名</label>
-                    <div class="col-sm-10">
-                        <span class="input-icon icon-right">
-                            <input type="text" class="form-control" placeholder="全名" name="fullName" value="${FullName}" />
-                            <i class="glyphicon glyphicon-user blue"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label no-padding-right">角色</label>
-                    <div class="col-sm-10">
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-xs-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="roleIds" type="checkbox" value="@Model[0].Id" {%if RoleIds.indexOf("@Model[0].Id")>=0 }checked="checked"{%/if} >
-                                        <span class="text">@Model[0].Name</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 col-xs-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="roleIds" type="checkbox" value="@Model[1].Id" {%if RoleIds.indexOf("@Model[1].Id")>=0 }checked="checked"{%/if} >
-                                        <span class="text">@Model[1].Name</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 col-xs-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="roleIds" type="checkbox" value="@Model[2].Id" {%if RoleIds.indexOf("@Model[2].Id")>=0 }checked="checked"{%/if} >
-                                        <span class="text">@Model[2].Name</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-xs-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="roleIds" type="checkbox" value="@Model[3].Id" {%if RoleIds.indexOf("@Model[3].Id")>=0 }checked="checked"{%/if} >
-                                        <span class="text">@Model[3].Name</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 col-xs-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="roleIds" type="checkbox" value="@Model[4].Id" {%if RoleIds.indexOf("@Model[4].Id")>=0 }checked="checked"{%/if} >
-                                        <span class="text">@Model[4].Name</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 col-xs-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="roleIds" type="checkbox" value="@Model[5].Id" {%if RoleIds.indexOf("@Model[5].Id")>=0 }checked="checked"{%/if} >
-                                        <span class="text">@Model[5].Name</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" id="unknownError" style="display: none;">
-            <div class="col-md-12">
-                <div class="form-group  has-feedback has-error">
-                    <div class="col-md-10 col-md-offset-2">
-                        <small class="help-block"></small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {%if Id==="" }
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group  ">
-                    <div class="col-md-10 col-md-offset-2">
-                        <h6 class=" row-title before-orange"><i class="fa fa-exclamation-triangle orange"></i>初始密码默认为11111111</h6>
-                    </div>
-                </div>
-            </div>
-        </div> 
-        {%/if}
-        <div class="row">
-            <div class="col-md-12"> 
-                <input type="hidden" class="form-control"  name="id" value="${Id}" />    
-            </div>
-        </div>
-
-</form>
 </script>
 <script src="~/assets/js/app/user.js"></script>
