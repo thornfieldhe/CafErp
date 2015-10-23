@@ -52,7 +52,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label no-padding-right">名称</label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="名称" name="name" value="${Name}" />
+                        <input type="text" class="form-control" placeholder="名称" name="name" value="${Name}"/>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,14 @@
                     <div class="col-md-10 col-md-offset-2">
                         <small class="help-block"></small>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="form-group  ">
+                    <input type="hidden" value="${Id}" name="id" />
+                    <input type="hidden" value="${ParentId}" name="parentId" />
                 </div>
             </div>
         </div>

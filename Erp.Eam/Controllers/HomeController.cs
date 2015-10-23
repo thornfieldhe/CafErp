@@ -181,7 +181,7 @@ namespace Erp.Eam.Controllers
             return this.PartialView("_UserIndex", roles);
         }
 
-        [Authorize(Roles = "Admins")]
+        [Authorize(Roles = "系统管理员组")]
         public ActionResult GetUserList(int pageIndex, int pageSize = 20)
         {
             var roles = this.RoleManager.Roles.ToList();
@@ -228,7 +228,7 @@ namespace Erp.Eam.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [Authorize(Roles = "Admins")]
+        [Authorize(Roles = "系统管理员组")]
         public ActionResult EditUser(string userId)
         {
             var user = this.UserManager.FindById(userId);
@@ -242,7 +242,7 @@ namespace Erp.Eam.Controllers
         /// <param name="infoView"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles = "Admins")]
+        [Authorize(Roles = "系统管理员组")]
         public ActionResult CreateUser(UserInfoView infoView)
         {
             try
@@ -260,7 +260,7 @@ namespace Erp.Eam.Controllers
                     user.Roles.Add(new IdentityUserRole() { RoleId = roleName, UserId = user.Id });
                 }
 
-                this.UserManager.Create(user, "11111111");
+                this.UserManager.Create(user, infoView.Password);
                 return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -275,7 +275,7 @@ namespace Erp.Eam.Controllers
         /// <param name="infoView"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles = "Admins")]
+        [Authorize(Roles = "系统管理员组")]
         public ActionResult UpdateUser(UserInfoView infoView)
         {
             try
@@ -295,7 +295,9 @@ namespace Erp.Eam.Controllers
                 }
 
                 this.UserManager.Update(user);
-                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                var token = this.UserManager.GeneratePasswordResetToken(infoView.LoginName);
+                var result = this.UserManager.ResetPassword(infoView.LoginName, token, infoView.Password);
+                return this.Json(!result.Succeeded ? new ActionResultStatus(10, result.Errors.First()) : new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -311,7 +313,7 @@ namespace Erp.Eam.Controllers
         /// <returns>
         /// </returns>
         [HttpPost]
-        [Authorize(Roles = "Admins")]
+        [Authorize(Roles = "系统管理员组")]
         public ActionResult DeleteUser(string id)
         {
             try

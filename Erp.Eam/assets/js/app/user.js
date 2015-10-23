@@ -49,6 +49,28 @@
 							message: '全名不能为空'
 						}
 					}
+				},
+				password: {
+					validators: {
+						notEmpty: {
+							message: '密码不能为空'
+						}, 
+						identical: {
+						field: 'confirmPassword',
+						message: '密码与确认密码不一致'
+						}
+					}
+				},
+				confirmPassword: {
+					validators: {
+						notEmpty: {
+							message: '确认密码不能为空'
+						}, 
+						identical: {
+						field: 'password',
+						message: '密码与确认密码不一致'
+						}
+					}
 				}
 			}});
 	}

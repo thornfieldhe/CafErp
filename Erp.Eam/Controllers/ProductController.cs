@@ -10,7 +10,6 @@ using System.Web.Mvc;
 namespace Erp.Eam.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using Erp.Eam.Models;
 
@@ -59,14 +58,18 @@ namespace Erp.Eam.Controllers
         /// <summary>
         /// 新增分类
         /// </summary>
-        /// <param name="Category"></param>
+        /// <param name="categoryView"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult CreateCategory(ProductCategoryView Category)
+        public ActionResult CreateCategory(ProductCategoryView categoryView)
         {
+            if (categoryView == null)
+            {
+                throw new ArgumentNullException("categoryView");
+            }
             try
             {
-                var category = new ProductCategory() { Name = Category.Name, ParentId = Category.ParentId };
+                var category = new ProductCategory() { Name = categoryView.Name, ParentId = categoryView.ParentId };
                 category.Create();
                 return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
@@ -76,22 +79,21 @@ namespace Erp.Eam.Controllers
             }
         }
 
-
         /// <summary>
         /// 更新分类
         /// </summary>
-        /// <param name="Category"></param>
+        /// <param name="categoryView"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult UpdateCategory(ProductCategoryView Category)
+        public ActionResult UpdateCategory(ProductCategoryView categoryView)
         {
             try
             {
-                var category = ProductCategory.Get(Category.Id);
+                var category = ProductCategory.Get(categoryView.Id);
                 if (category != null)
                 {
-                    category.Name = Category.Name;
-                    category.ParentId = Category.ParentId;
+                    category.Name = categoryView.Name;
+                    category.ParentId = categoryView.ParentId;
                     category.Save();
                     return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
                 }

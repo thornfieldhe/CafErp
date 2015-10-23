@@ -191,6 +191,7 @@
     <Compile Include="Business\ContextWapper.cs" />
     <Compile Include="Business\EFEntity.cs" />
     <Compile Include="Business\Tools.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -697,6 +698,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\_UserIndex.cshtml" />
     <Content Include="Views\Home\_EditUser.cshtml" />
+    <Content Include="Views\Home\404.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
