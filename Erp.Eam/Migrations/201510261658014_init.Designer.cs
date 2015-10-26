@@ -13,7 +13,7 @@ namespace Erp.Eam.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201510221457195_init"; }
+            get { return "201510261658014_init"; }
         }
         
         string IMigrationMetadata.Source

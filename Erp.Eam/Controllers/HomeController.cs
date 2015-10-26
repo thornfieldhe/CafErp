@@ -29,7 +29,7 @@ namespace Erp.Eam.Controllers
     /// <summary>
     /// The manage controller.
     /// </summary>
-    [Authorize]
+
     public class HomeController : Controller
     {
 
@@ -116,8 +116,15 @@ namespace Erp.Eam.Controllers
         /// </returns>
         public ActionResult Index()
         {
-            var user = UserManager.Users.Single(r => r.UserName == User.Identity.Name);
-            return View(user);
+            try
+            {
+                var user = UserManager.Users.Single(r => r.UserName == User.Identity.Name);
+                return View(user);
+            }
+            catch (Exception EX_NAME)
+            {
+                throw EX_NAME;
+            }
         }
 
 

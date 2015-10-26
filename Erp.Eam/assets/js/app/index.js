@@ -33,6 +33,9 @@
 		case 6:
 					loadPage("/Home/UserIndex", "用户管理", "用户管理","#menuUsers",false);
 		break;
+				case 7:
+					loadPage("/Info/InfoIndex", "基本信息", "综合信息设置","#menuUsers",false);
+		break;
 		default:
 		}
 	}

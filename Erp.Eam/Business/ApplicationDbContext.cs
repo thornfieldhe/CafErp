@@ -27,6 +27,11 @@ namespace Erp.Eam.Business
             get; set;
         }
 
+        public DbSet<Info> Infos
+        {
+            get; set;
+        }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
