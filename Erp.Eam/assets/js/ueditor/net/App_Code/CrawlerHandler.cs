@@ -50,13 +50,13 @@ public class Crawler
 
     public Crawler(string sourceUrl, HttpServerUtility server)
     {
-        this.SourceUrl = sourceUrl;
-        this.Server = server;
+        SourceUrl = sourceUrl;
+        Server = server;
     }
 
     public Crawler Fetch()
     {
-        var request = HttpWebRequest.Create(this.SourceUrl) as HttpWebRequest;
+        var request = HttpWebRequest.Create(SourceUrl) as HttpWebRequest;
         using (var response = request.GetResponse() as HttpWebResponse)
         {
             if (response.StatusCode != HttpStatusCode.OK)
@@ -69,7 +69,7 @@ public class Crawler
                 State = "Url is not an image";
                 return this;
             }
-            ServerUrl = PathFormatter.Format(Path.GetFileName(this.SourceUrl), Config.GetString("catcherPathFormat"));
+            ServerUrl = PathFormatter.Format(Path.GetFileName(SourceUrl), Config.GetString("catcherPathFormat"));
             var savePath = Server.MapPath(ServerUrl);
             if (!Directory.Exists(Path.GetDirectoryName(savePath)))
             {

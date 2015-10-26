@@ -64,24 +64,24 @@ namespace Erp.Eam.Models
 
         protected override void PreInsert()
         {
-            this.LevelCode = this.GetMaxLevelCode();
+            LevelCode = GetMaxLevelCode();
         }
 
         protected override void PreUpdate()
         {
-            if (this.IsLevelChanged())
+            if (IsLevelChanged())
             {
-                var level = this.GetMaxLevelCode();
+                var level = GetMaxLevelCode();
                 var articles =
-                    this.DbContex.Set<ProductCategory>().Where(r => r.LevelCode.StartsWith(this.LevelCode) && r.Level != this.Level);
+                    DbContex.Set<ProductCategory>().Where(r => r.LevelCode.StartsWith(LevelCode) && r.Level != Level);
                 articles.ForEach(
                                  r =>
                                      {
-                                         r.LevelCode = level + r.LevelCode.Substring(this.LevelCode.Length, r.LevelCode.Length - this.LevelCode.Length);
+                                         r.LevelCode = level + r.LevelCode.Substring(LevelCode.Length, r.LevelCode.Length - LevelCode.Length);
                                          r.Level = r.LevelCode.Length / 2;
                                      });
-                this.LevelCode = level;
-                this.Level = this.LevelCode.Length / 2;
+                LevelCode = level;
+                Level = LevelCode.Length / 2;
             }
         }
 
@@ -95,12 +95,12 @@ namespace Erp.Eam.Models
         /// <returns></returns>
         private string GetMaxLevelCode()
         {
-            var maxItem = this.DbContex.Set<ProductCategory>().OrderByDescending(r => r.LevelCode).FirstOrDefault(r => r.ParentId == this.ParentId);
+            var maxItem = DbContex.Set<ProductCategory>().OrderByDescending(r => r.LevelCode).FirstOrDefault(r => r.ParentId == ParentId);
 
             //当前层级没有项目
             if (maxItem == null)
             {
-                var parent = this.DbContex.Set<ProductCategory>().FirstOrDefault(r => r.Id == this.ParentId);
+                var parent = DbContex.Set<ProductCategory>().FirstOrDefault(r => r.Id == ParentId);
 
                 //父层级不存在,即为第一条数据;父级存在，即为父级下第一条数据
                 return parent == null ? "01" : string.Format("{0}{1}", parent.LevelCode, "01");
@@ -122,7 +122,7 @@ namespace Erp.Eam.Models
         /// <returns></returns>
         private bool IsLevelChanged()
         {
-            var entry = this.DbContex.Entry(this);
+            var entry = DbContex.Entry(this);
             return entry.CurrentValues["ParentId"] != entry.OriginalValues["ParentId"];
         }
 

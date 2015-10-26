@@ -14,7 +14,7 @@ namespace Erp.Eam
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer(new Erp.Eam.Migrations.DbInitializer());
-            this.InitMap();
+            InitMap();
         }
 
         private void InitMap()

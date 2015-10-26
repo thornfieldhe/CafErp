@@ -41,12 +41,12 @@ namespace Erp.Eam.Controllers
         {
             get
             {
-                return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
 
             private set
             {
-                this.signInManager = value;
+                signInManager = value;
             }
         }
 
@@ -57,12 +57,12 @@ namespace Erp.Eam.Controllers
         {
             get
             {
-                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
             {
-                this.userManager = value;
+                userManager = value;
             }
         }
 
@@ -73,12 +73,12 @@ namespace Erp.Eam.Controllers
         {
             get
             {
-                return this.roleManager ?? ApplicationRoleManager.CreateForEF();
+                return roleManager ?? ApplicationRoleManager.CreateForEF();
             }
 
             private set
             {
-                this.roleManager = value;
+                roleManager = value;
             }
         }
 
@@ -89,7 +89,7 @@ namespace Erp.Eam.Controllers
         {
             get
             {
-                return this.HttpContext.GetOwinContext().Authentication;
+                return HttpContext.GetOwinContext().Authentication;
             }
         }
 
@@ -116,20 +116,20 @@ namespace Erp.Eam.Controllers
         /// </returns>
         public ActionResult Index()
         {
-            var user = this.UserManager.Users.Single(r => r.UserName == this.User.Identity.Name);
-            return this.View(user);
+            var user = UserManager.Users.Single(r => r.UserName == User.Identity.Name);
+            return View(user);
         }
 
 
         [AllowAnonymous]
         public ActionResult Login()
         {
-            return this.View();
+            return View();
         }
 
         public ActionResult Dashboard()
         {
-            return this.PartialView("_Dashboard");
+            return PartialView("_Dashboard");
         }
 
         /// <summary>
@@ -148,44 +148,44 @@ namespace Erp.Eam.Controllers
             try
             {
                 var result =
-                    await this.SignInManager.PasswordSignInAsync(user.Name, user.Password, true, shouldLockout: false);
+                    await SignInManager.PasswordSignInAsync(user.Name, user.Password, true, shouldLockout: false);
 
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        return this.Json(new ActionResultData<string>("/Home/Index"), JsonRequestBehavior.AllowGet);
+                        return Json(new ActionResultData<string>("/Home/Index"), JsonRequestBehavior.AllowGet);
                     default:
-                        return this.Json(new ActionResultStatus(10, "用户名或密码错误"), JsonRequestBehavior.AllowGet);
+                        return Json(new ActionResultStatus(10, "用户名或密码错误"), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
             {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
 
         public ActionResult SignOut()
         {
-            this.AuthenticationManager.SignOut();
-            return this.View("Login");
+            AuthenticationManager.SignOut();
+            return View("Login");
         }
 
         public ActionResult ChangePasswordIndex()
         {
-            return this.PartialView("_ChangePassword");
+            return PartialView("_ChangePassword");
         }
 
         public ActionResult UserIndex()
         {
-            var roles = this.RoleManager.Roles.ToList();
-            return this.PartialView("_UserIndex", roles);
+            var roles = RoleManager.Roles.ToList();
+            return PartialView("_UserIndex", roles);
         }
 
         [Authorize(Roles = "系统管理员组")]
         public ActionResult GetUserList(int pageIndex, int pageSize = 20)
         {
-            var roles = this.RoleManager.Roles.ToList();
-            var users = this.UserManager.Users.ToList();
+            var roles = RoleManager.Roles.ToList();
+            var users = UserManager.Users.ToList();
             var list = new List<UserInfoView>();
             users.ForEach(
                           u =>
@@ -210,17 +210,17 @@ namespace Erp.Eam.Controllers
                 Total = list.Count
             };
             pager.GetShowIndex();
-            return this.Json(pager, JsonRequestBehavior.AllowGet);
+            return Json(pager, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public async Task<ActionResult> ChangePassword(ChangedPasswordView changedPassword)
         {
-            var result = await this.UserManager.ChangePasswordAsync(
-                                                         this.User.Identity.GetUserId(),
+            var result = await UserManager.ChangePasswordAsync(
+                                                         User.Identity.GetUserId(),
                         changedPassword.CurrentPassword,
                         changedPassword.NewPassword);
-            return this.Json(result.Succeeded ? new ActionResultData<string>("密码修改成功！") : new ActionResultStatus(10, result.Errors.First()), JsonRequestBehavior.AllowGet);
+            return Json(result.Succeeded ? new ActionResultData<string>("密码修改成功！") : new ActionResultStatus(10, result.Errors.First()), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -231,9 +231,9 @@ namespace Erp.Eam.Controllers
         [Authorize(Roles = "系统管理员组")]
         public ActionResult EditUser(string userId)
         {
-            var user = this.UserManager.FindById(userId);
-            this.ViewBag.Roles = this.RoleManager.Roles.ToList();
-            return this.PartialView("_EditUser", user ?? new ApplicationUser() { Id = string.Empty });
+            var user = UserManager.FindById(userId);
+            ViewBag.Roles = RoleManager.Roles.ToList();
+            return PartialView("_EditUser", user ?? new ApplicationUser() { Id = string.Empty });
         }
 
         /// <summary>
@@ -260,12 +260,12 @@ namespace Erp.Eam.Controllers
                     user.Roles.Add(new IdentityUserRole() { RoleId = roleName, UserId = user.Id });
                 }
 
-                this.UserManager.Create(user, infoView.Password);
-                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                UserManager.Create(user, infoView.Password);
+                return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -280,10 +280,10 @@ namespace Erp.Eam.Controllers
         {
             try
             {
-                var user = this.UserManager.FindByName(infoView.LoginName);
+                var user = UserManager.FindByName(infoView.LoginName);
                 if (user == null)
                 {
-                    return this.Json(new ActionResultStatus(10, "用户不存在！"), JsonRequestBehavior.AllowGet);
+                    return Json(new ActionResultStatus(10, "用户不存在！"), JsonRequestBehavior.AllowGet);
                 }
 
                 user.UserName = infoView.LoginName;
@@ -294,14 +294,14 @@ namespace Erp.Eam.Controllers
                     user.Roles.Add(new IdentityUserRole { RoleId = roleId, UserId = user.Id });
                 }
 
-                this.UserManager.Update(user);
-                var token = this.UserManager.GeneratePasswordResetToken(infoView.LoginName);
-                var result = this.UserManager.ResetPassword(infoView.LoginName, token, infoView.Password);
-                return this.Json(!result.Succeeded ? new ActionResultStatus(10, result.Errors.First()) : new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                UserManager.Update(user);
+                var token = UserManager.GeneratePasswordResetToken(infoView.LoginName);
+                var result = UserManager.ResetPassword(infoView.LoginName, token, infoView.Password);
+                return Json(!result.Succeeded ? new ActionResultStatus(10, result.Errors.First()) : new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -318,18 +318,18 @@ namespace Erp.Eam.Controllers
         {
             try
             {
-                var user = this.UserManager.FindById(id);
+                var user = UserManager.FindById(id);
                 if (user == null)
                 {
-                    return this.Json(new ActionResultStatus(10, "用户不存在！"), JsonRequestBehavior.AllowGet);
+                    return Json(new ActionResultStatus(10, "用户不存在！"), JsonRequestBehavior.AllowGet);
                 }
 
-                this.UserManager.Delete(user);
-                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                UserManager.Delete(user);
+                return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
     }

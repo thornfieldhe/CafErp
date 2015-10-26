@@ -39,20 +39,20 @@ namespace Erp.Eam.Controllers
                 if (category != null)
                 {
                     category.Delete();
-                    return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                    return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
                 }
 
-                return this.Json(new ActionResultStatus(10, "商品分类不存在！"), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(10, "商品分类不存在！"), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
 
         public ActionResult CategoryIndex()
         {
-            return this.PartialView("_CategoryIndex");
+            return PartialView("_CategoryIndex");
         }
 
         /// <summary>
@@ -71,11 +71,11 @@ namespace Erp.Eam.Controllers
             {
                 var category = new ProductCategory() { Name = categoryView.Name, ParentId = categoryView.ParentId };
                 category.Create();
-                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -95,14 +95,14 @@ namespace Erp.Eam.Controllers
                     category.Name = categoryView.Name;
                     category.ParentId = categoryView.ParentId;
                     category.Save();
-                    return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                    return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
                 }
 
-                return this.Json(new ActionResultStatus(10, "分类不存在！"), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(10, "分类不存在！"), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -115,7 +115,7 @@ namespace Erp.Eam.Controllers
         {
             var list = ProductCategory.GetAll()
                .OrderBy(r => r.Level).ThenBy(r => r.Name).ToList();
-            return this.Json(list, JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
         #endregion
 

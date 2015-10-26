@@ -90,8 +90,8 @@ namespace Erp.Eam.Migrations
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
-            this.ContextKey = "DefaultConnection";
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "DefaultConnection";
         }
     }
 }

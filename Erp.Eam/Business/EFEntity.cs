@@ -37,8 +37,8 @@ namespace Erp.Eam.Business
         protected EFEntity(Guid id)
             : base(id)
         {
-            this.DbContex = ContextWapper.Instance.Context;
-            this.Init();
+            DbContex = ContextWapper.Instance.Context;
+            Init();
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Erp.Eam.Business
         /// <typeparam name="R">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="Pager"/>.
+        /// The <see cref="pager"/>.
         /// </returns>
         public static Pager<R> Pages<T, R>(
             Pager<R> pager,
@@ -226,11 +226,11 @@ namespace Erp.Eam.Business
         /// </returns>
         public int Create()
         {
-            this.PreInsert();
-            this.Validate();
-            this.Insert();
-            this.PostInsert();
-            return this.DbContex.SaveChanges();
+            PreInsert();
+            Validate();
+            Insert();
+            PostInsert();
+            return DbContex.SaveChanges();
         }
 
         /// <summary>
@@ -241,11 +241,11 @@ namespace Erp.Eam.Business
         /// </returns>
         public int Save()
         {
-            this.PreUpdate();
-            this.Validate();
-            this.Update();
-            this.PostUpdate();
-            return this.DbContex.SaveChanges();
+            PreUpdate();
+            Validate();
+            Update();
+            PostUpdate();
+            return DbContex.SaveChanges();
         }
 
         /// <summary>
@@ -256,10 +256,10 @@ namespace Erp.Eam.Business
         /// </returns>
         public int Delete()
         {
-            this.PreRemove();
-            this.Remove();
-            this.PostRemove();
-            return this.DbContex.SaveChanges();
+            PreRemove();
+            Remove();
+            PostRemove();
+            return DbContex.SaveChanges();
         }
 
         /// <summary>
@@ -273,7 +273,7 @@ namespace Erp.Eam.Business
         /// </returns>
         public K Find(Guid id)
         {
-            return this.QuerySingle(i => i.Id == id);
+            return QuerySingle(i => i.Id == id);
         }
 
         #region 模块内部方法
@@ -292,9 +292,9 @@ namespace Erp.Eam.Business
         /// </returns>
         internal List<K> Query(Expression<Func<K, bool>> func, bool useCache = false)
         {
-            var query = this.DbContex.Set<K>().Where(func);
-            var items = this.PreQuery(query, useCache);
-            return this.PostQuery(items);
+            var query = DbContex.Set<K>().Where(func);
+            var items = PreQuery(query, useCache);
+            return PostQuery(items);
         }
 
         /// <summary>
@@ -308,9 +308,9 @@ namespace Erp.Eam.Business
         /// </returns>
         internal List<K> Query(bool useCache = false)
         {
-            var query = this.DbContex.Set<K>();
-            var items = this.PreQuery(query, useCache);
-            return this.PostQuery(items);
+            var query = DbContex.Set<K>();
+            var items = PreQuery(query, useCache);
+            return PostQuery(items);
         }
 
         /// <summary>
@@ -324,9 +324,9 @@ namespace Erp.Eam.Business
         /// </returns>
         internal K QuerySingle(Expression<Func<K, bool>> func)
         {
-            var query = this.DbContex.Set<K>().Where(func);
-            var item = this.PreQuerySingle(query);
-            return this.PostQuerySingle(item);
+            var query = DbContex.Set<K>().Where(func);
+            var item = PreQuerySingle(query);
+            return PostQuerySingle(item);
         }
 
         #endregion
@@ -346,7 +346,7 @@ namespace Erp.Eam.Business
         /// </summary>
         protected virtual void Update()
         {
-            this.ChangedDate = DateTime.Now;
+            ChangedDate = DateTime.Now;
         }
 
         /// <summary>
@@ -354,7 +354,7 @@ namespace Erp.Eam.Business
         /// </summary>
         protected virtual void Insert()
         {
-            this.DbContex.Set<K>().Add(this as K);
+            DbContex.Set<K>().Add(this as K);
         }
 
         /// <summary>
@@ -362,7 +362,7 @@ namespace Erp.Eam.Business
         /// </summary>
         protected virtual void Remove()
         {
-            this.DbContex.Set<K>().Remove(this as K);
+            DbContex.Set<K>().Remove(this as K);
         }
 
         /// <summary>
@@ -377,7 +377,7 @@ namespace Erp.Eam.Business
         /// </summary>
         protected virtual void PreUpdate()
         {
-            this.ChangedDate = DateTime.Now;
+            ChangedDate = DateTime.Now;
         }
 
         /// <summary>
@@ -397,7 +397,7 @@ namespace Erp.Eam.Business
             var items = useCache
                             ? query.FromCache(CachePolicy.WithDurationExpiration(TimeSpan.FromSeconds(60))).ToList()
                             : query.ToList();
-            return this.PostQuery(items);
+            return PostQuery(items);
         }
 
         /// <summary>
@@ -470,7 +470,7 @@ namespace Erp.Eam.Business
         /// </returns>
         protected virtual List<K> PostQuery(List<K> items)
         {
-            items.ForEach(i => i.DbContex = this.DbContex);
+            items.ForEach(i => i.DbContex = DbContex);
             return items;
         }
 
@@ -485,7 +485,7 @@ namespace Erp.Eam.Business
         /// </returns>
         protected virtual K PostQuerySingle(K item)
         {
-            item.IfNotNull(i => i.DbContex = this.DbContex);
+            item.IfNotNull(i => i.DbContex = DbContex);
             return item;
         }
 
@@ -509,7 +509,7 @@ namespace Erp.Eam.Business
         /// </summary>
         public Pager()
         {
-            this.PageSize = 20;
+            PageSize = 20;
         }
 
         /// <summary>
@@ -548,7 +548,7 @@ namespace Erp.Eam.Business
         {
             get
             {
-                return this.PageIndex == 1;
+                return PageIndex == 1;
             }
         }
 
@@ -556,9 +556,9 @@ namespace Erp.Eam.Business
         {
             get
             {
-                var temp0 = this.Total % this.PageSize;//总页数是否能够整出每页数
-                var temp1 = temp0 == 0 ? this.Total / this.PageSize : this.Total / this.PageSize + 1; //总分页数;
-                return temp1 == this.PageIndex;
+                var temp0 = Total % PageSize;//总页数是否能够整出每页数
+                var temp1 = temp0 == 0 ? Total / PageSize : Total / PageSize + 1; //总分页数;
+                return temp1 == PageIndex;
             }
         }
 
@@ -577,47 +577,47 @@ namespace Erp.Eam.Business
         /// </summary>
         public void GetShowIndex()
         {
-            var temp0 = this.Total % this.PageSize;//总页数是否能够整出每页数
-            var temp1 = temp0 == 0 ? this.Total / this.PageSize : this.Total / this.PageSize + 1; //总分页数;
+            var temp0 = Total % PageSize;//总页数是否能够整出每页数
+            var temp1 = temp0 == 0 ? Total / PageSize : Total / PageSize + 1; //总分页数;
 
-            this.ShowIndex = new List<int>();
+            ShowIndex = new List<int>();
             for (var i = 0; i < temp1; i++)
             {
-                if (i * this.PageSize < this.PageIndex && (i + 1) * this.PageSize >= this.PageIndex)
+                if (i * PageSize < PageIndex && (i + 1) * PageSize >= PageIndex)
                 {
                     for (var j = 1; j <= 5; j++)
                     {
-                        if (temp1 >= i * this.PageSize + j)
+                        if (temp1 >= i * PageSize + j)
                         {
-                            this.ShowIndex.Add(i * this.PageSize + j);
+                            ShowIndex.Add(i * PageSize + j);
                         }
                     }
                 }
             }
 
 
-            if (temp1 > 5 && this.PageIndex % 5 == 0)
+            if (temp1 > 5 && PageIndex % 5 == 0)
             {
-                for (int i = 0; i < this.ShowIndex.Count; i++)
+                for (int i = 0; i < ShowIndex.Count; i++)
                 {
-                    this.ShowIndex[i] = this.ShowIndex[i] + 1;
+                    ShowIndex[i] = ShowIndex[i] + 1;
                 }
             }
 
 
-            else if (this.PageIndex >= 6 && this.PageIndex % 5 == 1)
+            else if (PageIndex >= 6 && PageIndex % 5 == 1)
             {
-                if (this.ShowIndex.Count == 5)
+                if (ShowIndex.Count == 5)
                 {
-                    for (int i = 0; i < this.ShowIndex.Count; i++)
+                    for (int i = 0; i < ShowIndex.Count; i++)
                     {
-                        this.ShowIndex[i] = this.ShowIndex[i] - 1;
+                        ShowIndex[i] = ShowIndex[i] - 1;
                     }
                 }
                 else
                 {
-                    this.ShowIndex.Add(this.PageIndex - 1);
-                    this.ShowIndex.Sort();
+                    ShowIndex.Add(PageIndex - 1);
+                    ShowIndex.Sort();
                 }
             }
         }

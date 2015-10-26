@@ -12,10 +12,10 @@ public abstract class Handler
 {
 	public Handler(HttpContext context)
 	{
-        this.Request = context.Request;
-        this.Response = context.Response;
-        this.Context = context;
-        this.Server = context.Server;
+        Request = context.Request;
+        Response = context.Response;
+        Context = context;
+        Server = context.Server;
 	}
 
     public abstract void Process();

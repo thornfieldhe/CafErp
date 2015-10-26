@@ -29,8 +29,8 @@ public class ListFileManager : Handler
     public ListFileManager(HttpContext context, string pathToList, string[] searchExtensions)
         : base(context)
     {
-        this.SearchExtensions = searchExtensions.Select(x => x.ToLower()).ToArray();
-        this.PathToList = pathToList;
+        SearchExtensions = searchExtensions.Select(x => x.ToLower()).ToArray();
+        PathToList = pathToList;
     }
 
     public override void Process()

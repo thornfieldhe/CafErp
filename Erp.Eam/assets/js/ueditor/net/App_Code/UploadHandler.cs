@@ -17,8 +17,8 @@ public class UploadHandler : Handler
     public UploadHandler(HttpContext context, UploadConfig config)
         : base(context)
     {
-        this.UploadConfig = config;
-        this.Result = new UploadResult() { State = UploadState.Unknown };
+        UploadConfig = config;
+        Result = new UploadResult() { State = UploadState.Unknown };
     }
 
     public override void Process()
@@ -88,7 +88,7 @@ public class UploadHandler : Handler
 
     private void WriteResult()
     {
-        this.WriteJson(new
+        WriteJson(new
         {
             state = GetStateMessage(Result.State),
             url = Result.Url,

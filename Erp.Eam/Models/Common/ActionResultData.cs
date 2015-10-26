@@ -43,10 +43,10 @@ namespace Erp.Eam.Models
             int errorCode = 0,
             string errorMessage = "")
         {
-            this.Data = result;
-            this.Status = status;
-            this.Message = errorMessage;
-            this.ErrorCode = errorCode;
+            Data = result;
+            Status = status;
+            Message = errorMessage;
+            ErrorCode = errorCode;
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Erp.Eam.Models
         /// </summary>>
         public ActionResultStatus()
         {
-            this.Status = ActionStatuses.OK;
+            Status = ActionStatuses.OK;
         }
 
         /// <summary>
@@ -112,9 +112,9 @@ namespace Erp.Eam.Models
         /// </param>>
         public ActionResultStatus(int errorCode = 0, string errorMessage = "")
         {
-            this.Status = ActionStatuses.Error;
-            this.Message = errorMessage;
-            this.ErrorCode = errorCode;
+            Status = ActionStatuses.Error;
+            Message = errorMessage;
+            ErrorCode = errorCode;
         }
 
         /// <summary>
@@ -126,9 +126,9 @@ namespace Erp.Eam.Models
         /// </param>>
         public ActionResultStatus(Exception ex)
         {
-            this.Status = ActionStatuses.Error;
-            this.Message = ex.Message;
-            this.ErrorCode = 100;
+            Status = ActionStatuses.Error;
+            Message = ex.Message;
+            ErrorCode = 100;
         }
 
         /// <summary>

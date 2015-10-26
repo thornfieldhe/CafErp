@@ -8,7 +8,7 @@ namespace Erp.Eam
     {
         public void Configuration(IAppBuilder app)
         {
-            this.ConfigureAuth(app);
+            ConfigureAuth(app);
         }
     }
 }

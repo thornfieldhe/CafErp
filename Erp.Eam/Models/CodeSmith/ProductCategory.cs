@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Article.cs" company="">
+// <copyright file="ProductCategory.cs" company="">
 //   
 // </copyright>
 // <summary>
@@ -35,9 +35,9 @@ namespace Erp.Eam.Models
         protected override void AddDescriptions()
         {
             base.AddDescriptions();
-            this.AddDescription("Name:" + this.Name);
-            this.AddDescription("ParentId:" + (this.ParentId.HasValue ? this.ParentId.Value.ToString() : string.Empty));
-            this.AddDescription("Level:" + this.Level);
+            AddDescription("Name:" + Name);
+            AddDescription("ParentId:" + (ParentId.HasValue ? ParentId.Value.ToString() : string.Empty));
+            AddDescription("Level:" + Level);
         }
         #endregion
     }
