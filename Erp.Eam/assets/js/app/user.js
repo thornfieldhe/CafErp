@@ -1,8 +1,9 @@
 ﻿var users=[];
 
 	function bindUsers(index) {
-		$.get("/Home/GetUserList?pageIndex="+index+"&pageSize=20", function(e) {
+		$.get("/Home/GetUserList?pageIndex="+index+"&pageSize=10", function(e) {
 			users = e.Datas;
+			console.log(users);
 			e = $.extend(true, e, { colspan: 4 ,pageChangeAction:"bindUsers" });
 			var html =juicer($("#table").html(), { data: e });
 			$('#userGrid').html(html);
@@ -55,6 +56,10 @@
 						notEmpty: {
 							message: '密码不能为空'
 						}, 
+						stringLength: {
+						min: 6,
+						message: '密码不能少于6位'
+						},
 						identical: {
 						field: 'confirmPassword',
 						message: '密码与确认密码不一致'

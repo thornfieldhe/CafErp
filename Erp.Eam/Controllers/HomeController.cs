@@ -246,28 +246,33 @@ namespace Erp.Eam.Controllers
         /// <summary>
         /// 新增用户
         /// </summary>
-        /// <param name="infoView"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "系统管理员组")]
-        public ActionResult CreateUser(UserInfoView infoView)
+        public ActionResult CreateUser(UserInfoView item)
         {
             try
             {
                 var user = new ApplicationUser
                 {
                     Id = Guid.NewGuid().ToString(),
-                    UserName = infoView.LoginName,
+                    UserName = item.LoginName,
                     EmailConfirmed = false,
-                    FullName = infoView.FullName,
+                    FullName = item.FullName,
                     TwoFactorEnabled = true,
                 };
-                foreach (var roleName in infoView.RoleIds)
+                foreach (var roleName in item.RoleIds)
                 {
                     user.Roles.Add(new IdentityUserRole() { RoleId = roleName, UserId = user.Id });
                 }
 
-                UserManager.Create(user, infoView.Password);
+                if (string.IsNullOrWhiteSpace(item.Password))
+                {
+                    return Json(new ActionResultStatus(10, "密码不能为空！"), JsonRequestBehavior.AllowGet);
+                }
+
+                UserManager.Create(user, item.Password);
                 return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -302,9 +307,19 @@ namespace Erp.Eam.Controllers
                 }
 
                 UserManager.Update(user);
-                var token = UserManager.GeneratePasswordResetToken(infoView.LoginName);
-                var result = UserManager.ResetPassword(infoView.LoginName, token, infoView.Password);
-                return Json(!result.Succeeded ? new ActionResultStatus(10, result.Errors.First()) : new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+                if (!string.IsNullOrWhiteSpace(infoView.Password))
+                {
+                    var token = UserManager.GeneratePasswordResetToken(infoView.LoginName);
+                    var result = UserManager.ResetPassword(infoView.LoginName, token, infoView.Password);
+                    return
+                        Json(
+                             !result.Succeeded
+                                 ? new ActionResultStatus(10, result.Errors.First())
+                                 : new ActionResultStatus(),
+                            JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
-﻿var tree,treeNodes,selectNode,
+﻿
+var tree,treeNodes,selectNode,
 isAddAction=false,
 setting = {
 			data: {

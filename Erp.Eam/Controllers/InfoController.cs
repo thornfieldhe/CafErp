@@ -77,7 +77,6 @@
                 if (info != null)
                 {
                     info.Name = infoView.Name;
-                    info.Category = infoView.Category;
                     info.Save();
                     return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
                 }

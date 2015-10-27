@@ -52,7 +52,7 @@
 					$(this).removeClass("active");
 				});
 				$(document).addClass("active");
-				$("#bodyTitle").html(title);
+				$("#bodyTitle").html(parentTitle);
 		    });
 	}
 
