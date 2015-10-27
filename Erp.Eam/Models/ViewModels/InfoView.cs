@@ -10,8 +10,9 @@
 namespace Erp.Eam.Models
 {
     using System;
+    using CAF;
 
-    public class InfoView
+    public class InfoView : IEntityBase
     {
         public Guid Id
         {

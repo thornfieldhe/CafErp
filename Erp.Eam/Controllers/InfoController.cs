@@ -1,4 +1,13 @@
-﻿namespace Erp.Eam.Controllers
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="InfoController.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Defines the InfoController type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Erp.Eam.Controllers
 {
     using System;
     using System.Web.Mvc;
@@ -6,89 +15,8 @@
     using Erp.Eam.Business;
     using Erp.Eam.Models;
 
-    public class InfoController : BaseController
+    public class InfoController : BaseController<Info, InfoView>
     {
-        /// <summary>
-        /// 删除单位
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult DeleteInfo(Guid id)
-        {
-            try
-            {
-                var item = Info.Get(id);
-                if (item != null)
-                {
-                    item.Delete();
-                    return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
-                }
-
-                return Json(new ActionResultStatus(10, "信息不存在！"), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public ActionResult InfoIndex()
-        {
-            return PartialView("_InfoIndex");
-        }
-
-        /// <summary>
-        /// 新增单位
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult CreateInfo(InfoView info)
-        {
-            if (info == null)
-            {
-                throw new ArgumentNullException("into");
-            }
-
-            try
-            {
-                var item = new Info() { Name = info.Name, Category = info.Category };
-                item.Create();
-                return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        /// <summary>
-        /// 更新单位
-        /// </summary>
-        /// <param name="infoView"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult UpdateInfo(InfoView infoView)
-        {
-            try
-            {
-                var info = Info.Get(infoView.Id);
-                if (info != null)
-                {
-                    info.Name = infoView.Name;
-                    info.Save();
-                    return Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
-                }
-
-                return Json(new ActionResultStatus(10, "分类不存在！"), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
-            }
-        }
-
         /// <summary>
         /// 获取分类列表
         /// </summary>

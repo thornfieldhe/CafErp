@@ -7,7 +7,7 @@
     /// <summary>
     /// The slide.
     /// </summary>
-    public partial class Slide : EFEntity<Slide>
+    public partial class Slide : EfBusiness<Slide>
     {
         #region 构造函数
 

@@ -16,7 +16,7 @@ namespace Erp.Cms.Models
     /// <summary>
     /// 文章模型
     /// </summary>
-    public partial class Article : EFEntity<Article>
+    public partial class Article : EfBusiness<Article>
     {
         #region 构造函数
 

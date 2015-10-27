@@ -3,8 +3,13 @@ using System.Web.Routing;
 
 namespace Erp.Eam
 {
+    using System;
     using System.Data.Entity;
     using System.Web.Optimization;
+
+    using AutoMapper;
+
+    using Erp.Eam.Models;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -19,6 +24,8 @@ namespace Erp.Eam
 
         private void InitMap()
         {
+            Mapper.CreateMap<Info, InfoView>();
+            Mapper.CreateMap<InfoView, Info>().ForMember(n => n.Id, m => m.MapFrom(r => Guid.NewGuid()));
         }
     }
 }

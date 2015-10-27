@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EFEntity.cs" company="">
+// <copyright file="EfBusiness.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   Defines the EFEntity type.
+//   Defines the EfBusiness type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace Erp.Cms.Business
@@ -24,17 +24,17 @@ namespace Erp.Cms.Business
     /// </summary>
     /// <typeparam name="K">
     /// </typeparam>
-    public abstract class EFEntity<K> : BaseEntity<K>, IDbAction where K : EFEntity<K>, IEntityBase, new()
+    public abstract class EfBusiness<K> : BaseBusiness<K>, IDbAction where K : EfBusiness<K>, IBusinessBase, new()
     {
         #region 构造函数
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EFEntity{K}"/> class.
+        /// Initializes a new instance of the <see cref="EfBusiness{K}"/> class.
         /// </summary>
         /// <param name="id">
         /// The id.
         /// </param>
-        protected EFEntity(Guid id)
+        protected EfBusiness(Guid id)
             : base(id)
         {
             this.DbContex = ContextWapper.Instance.Context;
@@ -42,9 +42,9 @@ namespace Erp.Cms.Business
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EFEntity{K}"/> class.
+        /// Initializes a new instance of the <see cref="EfBusiness{K}"/> class.
         /// </summary>
-        protected EFEntity() : this(Guid.NewGuid())
+        protected EfBusiness() : this(Guid.NewGuid())
         {
         }
 

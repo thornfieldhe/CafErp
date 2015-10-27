@@ -25,7 +25,7 @@
 
 	function editInfo(id, name, title, category, callback) {
 		var html = juicer($("#submitForm").html(), { Id: id, Name: name, Category: category });
-		editInDialog("编辑" + title, "/Info/UpdateInfo", html, onFormInit, callback);
+		editInDialog("编辑" + title, "/Info/Update", html, onFormInit, callback);
 	}
 	
 	function bindStorehouses(index) {
@@ -33,7 +33,7 @@
 	}
 
 	function deleteInfo(id, name, callback) {
-		delInDialog(name, "/Info/DeleteInfo", id, callback);
+		delInDialog(name, "/Info/Delete", id, callback);
 	}
 
 	function init() {
@@ -61,7 +61,7 @@
 
 	function creatInfo(title, category, callback) {
 		var html = juicer($("#submitForm").html(), { Name: "", Id: "", Category: category });
-		editInDialog("新增" + title, "/Info/CreateInfo", html, onFormInit, callback);
+		editInDialog("新增" + title, "/Info/Insert", html, onFormInit, callback);
 	}
 
 	$("#newUnit").on('click', function() {

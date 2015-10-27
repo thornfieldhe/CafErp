@@ -16,7 +16,7 @@ namespace Erp.Eam.Models
     /// <summary>
     /// 文章模型
     /// </summary>
-    public partial class ProductCategory : EFEntity<ProductCategory>
+    public partial class ProductCategory : EfBusiness<ProductCategory>
     {
         #region 构造函数
 

@@ -1,28 +1,92 @@
 ﻿using System.Web.Mvc;
 namespace Erp.Eam.Controllers
 {
-    using System.Web.Mvc.Filters;
+    using System;
+    using System.Collections.Generic;
 
-    public class BaseController : Controller
+    using AutoMapper;
+
+    using CAF;
+    using Erp.Eam.Business;
+    using Erp.Eam.Models;
+
+    public class BaseController<K, T> : Controller where K : EfBusiness<K>, new() where T : IEntityBase
     {
-        protected override void OnAuthentication(AuthenticationContext filterContext)
+        public virtual ActionResult Index()
         {
-            base.OnAuthentication(filterContext);
+            return PartialView("_Index");
         }
 
-        protected override void OnException(ExceptionContext filterContext)
+        public virtual ActionResult Get(Guid id)
         {
-            throw filterContext.Exception;
+            var item = EfBusiness<K>.Get(id);
+            return this.Json(new ActionResultData<K>(item), JsonRequestBehavior.AllowGet);
         }
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        public virtual ActionResult GetView<T>(Guid id)
         {
-            base.OnActionExecuting(filterContext);
+            var item = EfBusiness<K>.Get(id);
+            var result = Mapper.Map<T>(item);
+            return this.Json(new ActionResultData<T>(result), JsonRequestBehavior.AllowGet);
         }
 
-        protected override void OnResultExecuting(ResultExecutingContext filterContext)
+        public virtual ActionResult GetAll()
         {
-            base.OnResultExecuting(filterContext);
+            var items = EfBusiness<K>.GetAll();
+            return this.Json(new ActionResultData<List<K>>(items), JsonRequestBehavior.AllowGet);
+        }
+
+        public virtual ActionResult GetViews<T>()
+        {
+            var items = EfBusiness<K>.GetAll();
+            var result = Mapper.Map<List<T>>(items);
+            return this.Json(new ActionResultData<List<T>>(result), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Insert(T value)
+        {
+            try
+            {
+                var item = Mapper.Map<K>(value);
+                item.Create();
+                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public virtual ActionResult Update(T value)
+        {
+            try
+            {
+                var item = EfBusiness<K>.Get(value.Id);
+                Mapper.Map(value, item);
+                item.Save();
+                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public virtual ActionResult Delete(Guid id)
+        {
+            try
+            {
+                var item = EfBusiness<K>.Get(id);
+                item.Delete();
+                return this.Json(new ActionResultStatus(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return this.Json(new ActionResultStatus(ex), JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

@@ -18,33 +18,32 @@
 				className: "btn-primary",
 				callback: function() {
 					$(form).data('bootstrapValidator').validate();
-							if ($(form).data('bootstrapValidator').isValid()) {
-								$.ajax({
-									type: "post",
-									url: url,
-									data: $("form").serialize(),
-									async: false,
-									success: function(e) {
-										if (e.Status === 1) {
-											$("#unknownError").show().find(".help-block").html(e.Message);
-											return false;
-										} else {
-											erp.subscriber.publish(subscriber);
-											return true;
-										}
-									}
-								});
+					var result=false;
+					if ($(form).data('bootstrapValidator').isValid()) {
+						$.ajax({
+							type: "post",
+							url: url,
+							data: $("form").serialize(),
+							async: false,
+							success: function(e) {
+								if (e.Status === 1) {
+									$("#unknownError").show().find(".help-block").html(e.Message);
+								} else {
+									erp.subscriber.publish(subscriber);
+									result= true;
+								}
 							}
-							return false;
+						});
 					}
+					return result;
 				}
 			}
-		});
-		if (callback!==null) {
-			callback();
 		}
-		
+	});
+	if (callback!==null) {
+		callback();
 	}
+}
 
 	//弹出对话框删除对象
 	function delInDialog(title,url,id,subscriber) {

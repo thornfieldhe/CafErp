@@ -1,11 +1,14 @@
 ﻿function changePassword() {
-	$.post("/Home/ChangePassword", $("form").serialize(), function(e) {
-		if (e.Status === 0) {
-			Notify(e.Data, 'top-right', '5000', 'success', 'fa-check', true); 
-		} else {
-						Notify(e.Message, 'top-right', '5000', 'danger', 'fa-times', true); 
-		}
-	});
+	$(form).data('bootstrapValidator').validate();
+	if ($(form).data('bootstrapValidator').isValid()) {
+			$.post("/Home/ChangePassword", $("form").serialize(), function(e) {
+				if (e.Status === 0) {
+					Notify(e.Data, 'top-right', '5000', 'success', 'fa-check', true); 
+				} else {
+					Notify(e.Message, 'top-right', '5000', 'danger', 'fa-times', true); 
+				}
+		});
+	}
 }
 
 

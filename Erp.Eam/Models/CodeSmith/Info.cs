@@ -16,7 +16,7 @@ namespace Erp.Eam.Models
     /// <summary>
     /// The info.
     /// </summary>
-    public partial class Info : EFEntity<Info>
+    public partial class Info : EfBusiness<Info>
     {
         #region 构造函数
         public Info(Guid id) : base(id)

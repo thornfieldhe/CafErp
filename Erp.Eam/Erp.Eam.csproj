@@ -705,7 +705,7 @@
     <Content Include="Views\Home\_UserIndex.cshtml" />
     <Content Include="Views\Home\_EditUser.cshtml" />
     <Content Include="Views\Home\404.cshtml" />
-    <Content Include="Views\Info\_InfoIndex.cshtml" />
+    <Content Include="Views\Info\_Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
