@@ -1,4 +1,4 @@
-﻿var loadSpecification, loadColor, loadBrand=false;
+﻿var loadSpecification, loadColor, loadBrand,loadStorehouse=false;
 	function bindInfos(index, category, callback, element, changeAction) {
 		$.get("/Info/GetInfoList?category=" + category + "&pageIndex=" + index + "&pageSize=10", function(e) {
 			e = $.extend(true, e, { colspan: 3, pageChangeAction: changeAction, tabName: "单位", callback: callback });
@@ -27,6 +27,10 @@
 		var html = juicer($("#submitForm").html(), { Id: id, Name: name, Category: category });
 		editInDialog("编辑" + title, "/Info/UpdateInfo", html, onFormInit, callback);
 	}
+	
+	function bindStorehouses(index) {
+		bindInfos(index, 4, "storehouseChangedSubscriber", "#storehouseGrid", "bindStorehouses");
+	}
 
 	function deleteInfo(id, name, callback) {
 		delInDialog(name, "/Info/DeleteInfo", id, callback);
@@ -46,6 +50,13 @@
 		erp.subscriber.addSubscriber("brandChangedSubscriber", function(d) {
 			bindBrands(1);
 		});
+		erp.subscriber.addSubscriber("storehouseChangedSubscriber", function(d) {
+			bindStorehouses(1);
+		});
+		loadSpecification = false;
+		loadColor = false;
+		loadBrand = false;
+		loadStorehouse=false;
 	}
 
 	function creatInfo(title, category, callback) {
@@ -65,9 +76,11 @@
 	$("#newBrand").on('click', function() {
 		creatInfo("品牌", 3, "brandChangedSubscriber");
 	});
+		$("#newStorehouse").on('click', function() {
+		creatInfo("库位", 4, "storehouseChangedSubscriber");
+	});
 
 	$('#myTab a').click(function(e) {
-			console.log($(this),e);
 		switch ($(this).attr("href")) {
 					case "#specification":
 					if(!loadSpecification)
@@ -88,17 +101,23 @@
 							loadBrand = true;
 						}
 						break;
+					case "#storehouse":
+						if (!loadStorehouse) {
+							bindStorehouses(1);
+							loadStorehouse = true;
+						}
+						break;
 		}
 	});
 
-	function validate(name) {
+	function validate() {
 		$("#form").bootstrapValidator({
 			message: name + '验证未通过',
 			fields: {
-				text: {
+				name: {
 					validators: {
 						notEmpty: {
-							message: name + '名称不能为空'
+							message: '名称不能为空'
 						}
 					}
 				}

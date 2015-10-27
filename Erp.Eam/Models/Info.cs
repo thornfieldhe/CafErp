@@ -14,24 +14,29 @@ namespace Erp.Eam.Models
     public enum InfoCategory
     {
         /// <summary>
-        /// The unit.
+        /// 单位
         /// </summary>
         Unit = 0,
 
         /// <summary>
-        /// The specification.
+        /// 规格
         /// </summary>
         Specification = 1,
 
         /// <summary>
-        /// The color.
+        /// 颜色
         /// </summary>
         Color = 2,
 
         /// <summary>
-        /// The brand.
+        /// 品牌
         /// </summary>
-        Brand = 3
+        Brand = 3,
+
+        /// <summary>
+        /// 仓库
+        /// </summary>
+        Storehouse = 4
     }
 
     /// <summary>

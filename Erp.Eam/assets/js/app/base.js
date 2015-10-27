@@ -17,23 +17,25 @@
 				label: "<i class='fa    fa-floppy-o'></i>保存",
 				className: "btn-primary",
 				callback: function() {
-							$(form).data('bootstrapValidator').validate();
-						var result=true;
-						$.ajax({
-							type: "post",
-							url: url,
-							data: $("form").serialize(),
-							async: false,
-							success: function(e) {
-								if (e.Status === 1) {
-									$("#unknownError").show().find(".help-block").html(e.Message);
-									result = false;
-								} else {
-									erp.subscriber.publish(subscriber);
-								}
+					$(form).data('bootstrapValidator').validate();
+							if ($(form).data('bootstrapValidator').isValid()) {
+								$.ajax({
+									type: "post",
+									url: url,
+									data: $("form").serialize(),
+									async: false,
+									success: function(e) {
+										if (e.Status === 1) {
+											$("#unknownError").show().find(".help-block").html(e.Message);
+											return false;
+										} else {
+											erp.subscriber.publish(subscriber);
+											return true;
+										}
+									}
+								});
 							}
-						});
-						return result;
+							return false;
 					}
 				}
 			}

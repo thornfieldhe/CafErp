@@ -27,7 +27,7 @@
 }
 
 function bindSlides(index) {
-			$.get("/Manage/GetSlideList?pageIndex="+index+"&pageSize=10", function(e) {
+			$.get("/Manage/GetSlideList?pageIndex="+index+"&pageSize=20", function(e) {
 			e = $.extend(true, e, { colspan: 4,pageChangeAction:"bindSlides"});
 			var html =juicer($("#table").html(), { data: e });
 			$('#slideGrid').html(html);
