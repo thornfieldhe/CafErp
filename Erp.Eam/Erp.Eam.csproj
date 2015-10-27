@@ -701,6 +701,7 @@
     <Content Include="Views\Home\_EditUser.cshtml" />
     <Content Include="Views\Home\404.cshtml" />
     <Content Include="Views\Info\_Index.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
