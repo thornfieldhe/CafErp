@@ -34,9 +34,9 @@ function onClickDropdownList(event, treeId, treeNode) {
 }	
 
 function loadTree() {
-		$.get("/Product/GetCategoryList", function(e) {
-			treeNodes = e;
-			var datas=  _.map(e,function(n) {
+		$.get("/ProductCategory/GetAll", function(e) {
+			treeNodes = e.Data;
+			var datas=  _.map(e.Data,function(n) {
 				return  { name: n.Name, id:n.Id,pId:n.ParentId,levelCode:n.LevelCode};
 			});
 		tree=$.fn.zTree.init($("#CategoryTree"), setting, datas);
@@ -80,7 +80,7 @@ function showCategories() {
  function editCategory() {
 		isAddAction = false;
 		var html =juicer($("#submitForm").html(),{Name:selectNode.name,Id:selectNode.id,ParentId:selectNode.pId,ParentName:selectNode.getParentNode()===null?"":selectNode.getParentNode().name});
-		editInDialog("编辑目录", "/Product/UpdateCategory",html,onFormInit,"columnChangedSubscriber");
+		editInDialog("编辑目录", "/ProductCategory/Update",html,onFormInit,"columnChangedSubscriber");
 }
 
  function newCategory() {
@@ -88,7 +88,7 @@ function showCategories() {
 		var levelOneNodes=_.filter(treeNodes,function(r){return r.LevelCode.length===2});
 		var minNode =_.min(levelOneNodes,function(r){return r.Order});
 		var html =juicer($("#submitForm").html(),{Name:"",Id:"",ParentId:minNode.Id,ParentName:minNode.Name});
-		editInDialog("新增产品分类", "/Product/CreateCategory",html,onFormInit,"columnChangedSubscriber");
+		editInDialog("新增产品分类", "/ProductCategory/Insert",html,onFormInit,"columnChangedSubscriber");
 		$('#treeCategory2').slimScroll({
 		height: '100px'
 		});
@@ -96,7 +96,7 @@ function showCategories() {
 
 function deleteCategory() {
 		isAddAction = false;
-	delInDialog(selectNode.name, "/Product/DeleteCategory", selectNode.id, "columnChangedSubscriber");
+	delInDialog(selectNode.name, "/ProductCategory/Delete", selectNode.id, "columnChangedSubscriber");
 }
 
 function onBodyDown(event) {

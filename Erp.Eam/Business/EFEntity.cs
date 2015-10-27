@@ -14,6 +14,8 @@ namespace Erp.Eam.Business
     using System.Linq;
     using System.Linq.Expressions;
 
+    using AutoMapper;
+
     using CAF;
 
     using EntityFramework.Caching;
@@ -165,6 +167,37 @@ namespace Erp.Eam.Business
             }
 
             pager.Datas = result;
+            pager.GetShowIndex();
+            return pager;
+        }
+
+        public static Pager<R> Pages<R>(
+    Pager<R> pager,
+    bool isAsc) where R : new()
+        {
+            var context = ContextWapper.Instance.Context;
+            pager.Total = context.Set<K>().Count();
+            List<K> result;
+            if (isAsc)
+            {
+                result =
+                    context.Set<K>()
+                        .OrderBy(k => k.CreatedDate)
+                        .Skip(pager.PageSize * (pager.PageIndex - 1))
+                        .Take(pager.PageSize)
+                        .ToList();
+            }
+            else
+            {
+                result =
+                    context.Set<K>()
+                        .OrderByDescending(k => k.CreatedDate)
+                        .Skip(pager.PageSize * (pager.PageIndex - 1))
+                        .Take(pager.PageSize)
+                        .ToList();
+            }
+
+            pager.Datas = Mapper.Map<List<R>>(result);
             pager.GetShowIndex();
             return pager;
         }

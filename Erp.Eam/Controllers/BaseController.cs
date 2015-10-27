@@ -10,7 +10,7 @@ namespace Erp.Eam.Controllers
     using Erp.Eam.Business;
     using Erp.Eam.Models;
 
-    public class BaseController<K, T> : Controller where K : EfBusiness<K>, new() where T : IEntityBase
+    public class BaseController<K, T> : Controller where K : EfBusiness<K>, new() where T : IEntityBase, new()
     {
         public virtual ActionResult Index()
         {
@@ -23,7 +23,7 @@ namespace Erp.Eam.Controllers
             return this.Json(new ActionResultData<K>(item), JsonRequestBehavior.AllowGet);
         }
 
-        public virtual ActionResult GetView<T>(Guid id)
+        public virtual ActionResult GetView(Guid id)
         {
             var item = EfBusiness<K>.Get(id);
             var result = Mapper.Map<T>(item);
@@ -36,11 +36,18 @@ namespace Erp.Eam.Controllers
             return this.Json(new ActionResultData<List<K>>(items), JsonRequestBehavior.AllowGet);
         }
 
-        public virtual ActionResult GetViews<T>()
+        public virtual ActionResult GetViews()
         {
             var items = EfBusiness<K>.GetAll();
             var result = Mapper.Map<List<T>>(items);
             return this.Json(new ActionResultData<List<T>>(result), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Pager(int pageIndex, int pageSize = 20)
+        {
+            var pager = new Pager<T>() { PageIndex = pageIndex, PageSize = pageSize };
+            pager = EfBusiness<K>.Pages<T>(pager, true);
+            return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

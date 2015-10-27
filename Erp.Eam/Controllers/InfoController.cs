@@ -18,7 +18,7 @@ namespace Erp.Eam.Controllers
     public class InfoController : BaseController<Info, InfoView>
     {
         /// <summary>
-        /// 获取分类列表
+        /// 获取信息列表
         /// </summary>
         /// <param name="category">
         /// The category.

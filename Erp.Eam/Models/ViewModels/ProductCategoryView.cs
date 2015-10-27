@@ -1,8 +1,19 @@
-﻿namespace Erp.Eam.Models
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ProductCategoryView.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   Defines the ProductCategoryView type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Erp.Eam.Models
 {
     using System;
 
-    public class ProductCategoryView
+    using CAF;
+
+    public class ProductCategoryView : IEntityBase
     {
         public string Name
         {

@@ -25,7 +25,10 @@ namespace Erp.Eam
         private void InitMap()
         {
             Mapper.CreateMap<Info, InfoView>();
-            Mapper.CreateMap<InfoView, Info>().ForMember(n => n.Id, m => m.MapFrom(r => Guid.NewGuid()));
+            Mapper.CreateMap<InfoView, Info>().ForMember(n => n.Id, m => m.MapFrom(r => r.Id == Guid.Empty ? Guid.NewGuid() : r.Id));
+
+            Mapper.CreateMap<ProductCategory, ProductCategoryView>();
+            Mapper.CreateMap<ProductCategoryView, ProductCategory>().ForMember(n => n.Id, m => m.MapFrom(r => r.Id == Guid.Empty ? Guid.NewGuid() : r.Id));
         }
     }
 }
