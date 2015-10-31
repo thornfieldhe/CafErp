@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ApplicationDbContext.cs" company="">
+// <copyright file="DbContext.cs" company="">
 //   
 // </copyright>
 // <summary>
@@ -15,11 +15,12 @@ namespace Erp.Eam.Business
 
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class DbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+        public DbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            
         }
 
         public DbSet<ProductCategory> ProductCategories
@@ -32,9 +33,10 @@ namespace Erp.Eam.Business
             get; set;
         }
 
-        public static ApplicationDbContext Create()
+        public static DbContext Create()
         {
-            return new ApplicationDbContext();
+            
+            return new DbContext();
         }
     }
 }

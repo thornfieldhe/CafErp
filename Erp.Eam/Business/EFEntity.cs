@@ -56,9 +56,9 @@ namespace Erp.Eam.Business
         /// Gets or sets the db contex.
         /// </summary>
         [NotMapped]
-        internal ApplicationDbContext DbContex
+        internal DbContext DbContex
         {
-            get; set;
+            get;private set;
         }
 
         #region 静态方法
@@ -101,7 +101,6 @@ namespace Erp.Eam.Business
         /// The use cache.
         /// </param>
         /// <returns>
-        /// The <see cref="List"/>.
         /// </returns>
         public static List<K> Get(Expression<Func<K, bool>> func, bool useCache = false)
         {

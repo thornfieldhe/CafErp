@@ -186,10 +186,11 @@
     <Compile Include="assets\js\ueditor\net\App_Code\NotSupportedHandler.cs" />
     <Compile Include="assets\js\ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="assets\js\ueditor\net\App_Code\UploadHandler.cs" />
-    <Compile Include="Business\ApplicationDbContext.cs" />
+    <Compile Include="Business\DbContext.cs" />
     <Compile Include="Business\ApplicationUser.cs" />
     <Compile Include="Business\ContextWapper.cs" />
     <Compile Include="Business\EFEntity.cs" />
+    <Compile Include="Business\IContextWapper.cs" />
     <Compile Include="Business\Tools.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
@@ -649,13 +650,11 @@
     <Content Include="assets\js\ztree\metro.css" />
     <Content Include="assets\js\ztree\zTreeStyle.css" />
     <Content Include="assets\sound\alert.mp3" />
-    <Content Include="assets\upload\2015090623473511.jpg" />
-    <Content Include="assets\upload\2015090623545466.jpg" />
-    <Content Include="assets\upload\2015090700164253.jpg" />
     <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

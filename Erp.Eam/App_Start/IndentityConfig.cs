@@ -37,11 +37,11 @@
         {
         }
 
-        public static ApplicationRoleManager CreateForEF(ApplicationDbContext db = null)
+        public static ApplicationRoleManager CreateForEF(DbContext db = null)
         {
             if (db == null)
             {
-                db = ApplicationDbContext.Create();
+                db = DbContext.Create();
             }
 
             var manager = new ApplicationRoleManager(new RoleStore<IdentityRole>(db));
@@ -51,7 +51,7 @@
 
         public static ApplicationRoleManager CreateForOwin(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            var db = context?.Get<ApplicationDbContext>();
+            var db = context?.Get<DbContext>();
             return CreateForEF(db);
         }
     }
@@ -65,10 +65,10 @@
         {
         }
 
-        public static ApplicationUserManager CreateForEF(ApplicationDbContext db)
+        public static ApplicationUserManager CreateForEF(DbContext db)
         {
             if (db == null)
-                db = ApplicationDbContext.Create();
+                db = DbContext.Create();
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
             return manager;
         }
@@ -80,7 +80,7 @@
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<DbContext>()));
             // 配置用户名的验证逻辑
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
