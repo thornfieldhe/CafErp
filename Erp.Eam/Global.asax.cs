@@ -5,11 +5,15 @@ namespace Erp.Eam
 {
     using System;
     using System.Data.Entity;
+    using System.Linq;
+    using System.Reflection;
     using System.Web.Optimization;
 
     using AutoMapper;
 
+    using Erp.Eam.Business;
     using Erp.Eam.Models;
+    using TAF;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -19,6 +23,7 @@ namespace Erp.Eam
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer(new Erp.Eam.Migrations.DbInitializer());
+            Ioc.RegisterMvc(Assembly.GetExecutingAssembly(), new IocConfig());
             InitMap();
         }
 

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
 
     using Erp.Eam.Business;
-
+    using Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
@@ -37,11 +37,11 @@
         {
         }
 
-        public static ApplicationRoleManager CreateForEF(DbContext db = null)
+        public static ApplicationRoleManager CreateForEF(EFDbContext db = null)
         {
             if (db == null)
             {
-                db = DbContext.Create();
+                db = EFDbContext.Create();
             }
 
             var manager = new ApplicationRoleManager(new RoleStore<IdentityRole>(db));
@@ -51,7 +51,7 @@
 
         public static ApplicationRoleManager CreateForOwin(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            var db = context?.Get<DbContext>();
+            var db = context?.Get<EFDbContext>();
             return CreateForEF(db);
         }
     }
@@ -65,10 +65,10 @@
         {
         }
 
-        public static ApplicationUserManager CreateForEF(DbContext db)
+        public static ApplicationUserManager CreateForEF(EFDbContext db)
         {
             if (db == null)
-                db = DbContext.Create();
+                db = EFDbContext.Create();
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
             return manager;
         }
@@ -80,7 +80,7 @@
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<DbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<EFDbContext>()));
             // 配置用户名的验证逻辑
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
@@ -117,12 +117,12 @@
             //                });
             //                manager.EmailService = new EmailService();
             //                manager.SmsService = new SmsService();
-            //                var dataProtectionProvider = options.DataProtectionProvider;
-            //                if (dataProtectionProvider != null)
-            //                {
-            //                    manager.UserTokenProvider =
-            //                        new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
-            //                }
+                            var dataProtectionProvider = options.DataProtectionProvider;
+                            if (dataProtectionProvider != null)
+                            {
+                                manager.UserTokenProvider =
+                                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                            }
             return manager;
         }
     }

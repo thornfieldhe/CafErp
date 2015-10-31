@@ -15,16 +15,13 @@ namespace Erp.Eam.Controllers
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-
-    using CAF;
-
-    using Erp.Eam.Business;
     using Erp.Eam.Models;
-
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using TAF;
+    using TAF.Utility;
 
     /// <summary>
     /// The manage controller.
@@ -57,7 +54,8 @@ namespace Erp.Eam.Controllers
         {
             get
             {
-                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                userManager = userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return userManager;
             }
 
             private set
@@ -118,8 +116,8 @@ namespace Erp.Eam.Controllers
         {
             try
             {
-                var user = UserManager.Users.Single(r => r.UserName == User.Identity.Name);
-                return View(user);
+                var user = UserManager.Users.SingleOrDefault(r => r.UserName == User.Identity.Name);
+                return user == null ? View("404") : View(user);
             }
             catch (Exception EX_NAME)
             {
@@ -262,7 +260,7 @@ namespace Erp.Eam.Controllers
                     FullName = item.FullName,
                     TwoFactorEnabled = true,
                 };
-                foreach (var roleName in item.RoleIds)
+                foreach (var roleName in item.RoleIds.AsList())
                 {
                     user.Roles.Add(new IdentityUserRole() { RoleId = roleName, UserId = user.Id });
                 }
@@ -309,8 +307,8 @@ namespace Erp.Eam.Controllers
                 UserManager.Update(user);
                 if (!string.IsNullOrWhiteSpace(infoView.Password))
                 {
-                    var token = UserManager.GeneratePasswordResetToken(infoView.LoginName);
-                    var result = UserManager.ResetPassword(infoView.LoginName, token, infoView.Password);
+                    var token = UserManager.GeneratePasswordResetToken(infoView.Id);
+                    var result = UserManager.ResetPassword(infoView.Id, token, infoView.Password);
                     return
                         Json(
                              !result.Succeeded

@@ -5,9 +5,9 @@
     using System.Linq;
     using Business;
 
-    using CAF.Utility;
-
-    using WebGrease.Css.Extensions;
+    using TAF;
+    using TAF.Core;
+    using TAF.Utility;
 
     /// <summary>
     /// The slide.
@@ -43,8 +43,8 @@
 
         public static void CreateList(IList<Slide> items)
         {
-            var contex = ContextWapper.Instance.Context;
-            contex.Slides.AddRange(items);
+            var contex = Ioc.Create<IContextWapper>().Context;
+            contex.Set<Slide>().AddRange(items);
             contex.SaveChanges();
         }
 
@@ -55,7 +55,7 @@
         public static string[] RandomImages()
         {
             var slides =
-                ContextWapper.Instance.Context.Slides.Where(r => r.Rate > 0)
+                Ioc.Create<IContextWapper>().Context.Set<Slide>().Where(r => r.Rate > 0)
                     .Select(r => new
                     {
                         Url = r.FilePath,

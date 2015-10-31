@@ -13,6 +13,8 @@ namespace Erp.Cms.Models
 
     using Erp.Cms.Business;
 
+    using TAF;
+
     /// <summary>
     /// 文章模型
     /// </summary>

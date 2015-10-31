@@ -1,24 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Tools.cs" company="">
+// <copyright file="ManageController.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   工具类
+//   The manage controller.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace Erp.Eam.Business
+namespace Erp.Eam.Controllers
 {
-    using System;
+    using System.Web.Mvc;
+
+    using Erp.Eam.Models;
+
+    using TAF;
 
     /// <summary>
-    /// 工具类
+    /// The manage controller.
     /// </summary>
-    public class Tools
+    [Authorize]
+    public class ProductCategoryController : BaseController<ProductCategory, ProductCategoryView>
     {
-        public static string GetTimeStamp()
-        {
-            return DateTime.Now.ToString("yyyyMMddHHmmssff");
-        }
     }
 }

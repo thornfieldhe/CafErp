@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Erp.Eam</RootNamespace>
     <AssemblyName>Erp.Eam</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
       <Private>True</Private>
@@ -63,16 +68,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -114,6 +117,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -186,13 +190,10 @@
     <Compile Include="assets\js\ueditor\net\App_Code\NotSupportedHandler.cs" />
     <Compile Include="assets\js\ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="assets\js\ueditor\net\App_Code\UploadHandler.cs" />
-    <Compile Include="Business\DbContext.cs" />
-    <Compile Include="Business\ApplicationUser.cs" />
-    <Compile Include="Business\ContextWapper.cs" />
-    <Compile Include="Business\EFEntity.cs" />
-    <Compile Include="Business\IContextWapper.cs" />
-    <Compile Include="Business\Tools.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Config\DbContext.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Config\ContextWapper.cs" />
+    <Compile Include="Config\IocConfig.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -212,7 +213,6 @@
     <Compile Include="Models\Info.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\CodeSmith\ProductCategory.cs" />
-    <Compile Include="Models\Common\ActionResultData.cs" />
     <Compile Include="Models\ViewModels\InfoView.cs" />
     <Compile Include="Models\ViewModels\ProductCategoryView.cs" />
     <Compile Include="Models\ViewModels\ChangedPasswordView.cs" />
@@ -709,22 +709,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\WorkStation\CAF\CAF.Utility\CAF.Utility.csproj">
-      <Project>{adf4fdbb-1377-4d72-8356-e61db18ab1b5}</Project>
-      <Name>CAF.Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\WorkStation\CAF\CAF\CAF.csproj">
-      <Project>{690f29b2-d2a9-4e0b-a7e1-454c93bd5296}</Project>
-      <Name>CAF</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201510261658014_init.resx">
       <DependentUpon>201510261658014_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510261710216_addTable_Info.resx">
       <DependentUpon>201510261710216_addTable_Info.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WorkStation\TAF\TAF.Business\TAF.Business.csproj">
+      <Project>{f264abb3-3d0f-4d27-bc98-59d177baeafd}</Project>
+      <Name>TAF.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WorkStation\TAF\TAF.Utility\TAF.Utility.csproj">
+      <Project>{6ab3c277-a165-4327-b0fd-2c131dfb9a9d}</Project>
+      <Name>TAF.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -14,6 +14,7 @@ namespace Erp.Eam.Controllers
 
     using Erp.Eam.Business;
     using Erp.Eam.Models;
+    using TAF;
 
     public class InfoController : BaseController<Info, InfoView>
     {

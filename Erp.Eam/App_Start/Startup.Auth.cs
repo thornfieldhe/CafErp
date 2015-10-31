@@ -3,6 +3,7 @@
     using System;
 
     using Erp.Eam.Business;
+    using Erp.Eam.Models;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
@@ -16,7 +17,7 @@
         public void ConfigureAuth(IAppBuilder app)
         {
             // 配置数据库上下文、用户管理器和登录管理器，以便为每个请求使用单个实例
-            app.CreatePerOwinContext(DbContext.Create);
+            app.CreatePerOwinContext(EFDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

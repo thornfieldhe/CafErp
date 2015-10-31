@@ -15,13 +15,13 @@ namespace Erp.Eam.Migrations
     using System.Linq;
 
     using Erp.Eam.Business;
+    using Erp.Eam.Models;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    using DbContext = Erp.Eam.Business.DbContext;
 
-    public class DbInitializer : CreateDatabaseIfNotExists<DbContext>
+    public class DbInitializer : CreateDatabaseIfNotExists<EFDbContext>
     {
         public const string SaUserId = "76edf148-3e31-4e9e-8cf8-f17d3c96f05f";
 
@@ -43,7 +43,7 @@ namespace Erp.Eam.Migrations
 
         public const string Managers = "管理组";
 
-        protected override void Seed(DbContext context)
+        protected override void Seed(EFDbContext context)
         {
             base.Seed(context);
             const string fullName = "系统管理员";

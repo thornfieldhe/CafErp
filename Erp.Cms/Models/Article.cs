@@ -14,7 +14,8 @@ namespace Erp.Cms.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    using CAF;
+    using TAF;
+    using TAF.Utility;
 
     [Flags]
     public enum Category

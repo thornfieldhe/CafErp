@@ -14,8 +14,8 @@ namespace Erp.Eam.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    using CAF;
-
+    using TAF;
+    using TAF.Utility;
 
     /// <summary>
     /// 产品分类

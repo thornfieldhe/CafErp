@@ -2,18 +2,19 @@
 {
     using System.Data.Entity;
 
-    using CAF;
+    using TAF;
+    using TAF.Core;
 
     /// <summary>
     /// 上下文包装类用于封装Contex
     /// </summary>
-    internal class ContextWapper : SingletonBase<ContextWapper>, IContextWapper
+    internal class ContextWapper : IContextWapper
     {
         public DbContext Context
         {
             get
             {
-                var context = new DbContext();
+                var context = new EFDbContext();
                 return context;
             }
         }

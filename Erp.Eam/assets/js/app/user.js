@@ -53,9 +53,6 @@
 				},
 				password: {
 					validators: {
-						notEmpty: {
-							message: '密码不能为空'
-						}, 
 						stringLength: {
 						min: 6,
 						message: '密码不能少于6位'
@@ -68,9 +65,6 @@
 				},
 				confirmPassword: {
 					validators: {
-						notEmpty: {
-							message: '确认密码不能为空'
-						}, 
 						identical: {
 						field: 'password',
 						message: '密码与确认密码不一致'

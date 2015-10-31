@@ -1,4 +1,4 @@
-﻿namespace Erp.Eam.Business
+﻿namespace Erp.Eam.Models
 {
     using System.Collections.Generic;
     using System.Linq;

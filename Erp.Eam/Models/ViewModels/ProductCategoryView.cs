@@ -11,7 +11,8 @@ namespace Erp.Eam.Models
 {
     using System;
 
-    using CAF;
+    using TAF;
+    using TAF.Core;
 
     public class ProductCategoryView : IEntityBase
     {

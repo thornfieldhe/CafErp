@@ -10,7 +10,8 @@
 namespace Erp.Eam.Models
 {
     using System;
-    using CAF;
+    using TAF;
+    using TAF.Core;
 
     public class InfoView : IEntityBase
     {

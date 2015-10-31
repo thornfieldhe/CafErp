@@ -4,6 +4,8 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using Business;
 
+    using TAF;
+
     /// <summary>
     /// The slide.
     /// </summary>

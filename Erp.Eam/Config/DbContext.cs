@@ -15,12 +15,11 @@ namespace Erp.Eam.Business
 
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class DbContext : IdentityDbContext<ApplicationUser>
+    public class EFDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbContext()
+        public EFDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            
         }
 
         public DbSet<ProductCategory> ProductCategories
@@ -33,10 +32,9 @@ namespace Erp.Eam.Business
             get; set;
         }
 
-        public static DbContext Create()
+        public static EFDbContext Create()
         {
-            
-            return new DbContext();
+            return new EFDbContext();
         }
     }
 }
