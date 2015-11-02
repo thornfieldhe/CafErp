@@ -19,7 +19,7 @@
 					loadPage("/ProductCategory/Index", "基本信息", "商品类别","#menuProductCategory",false);
 		break;
 		case 2:
-					loadPage("/Manage/CatalogsIndex", "基本信息", "商品资料","#menuCatalog",false);
+					loadPage("/Product/Index", "基本信息", "商品资料","#menuProduct",false);
 		break;
 		case 3:
 					loadPage("/Manage/ArticlesIndex", "基本信息", "仓库设置","#menuArticle",false);

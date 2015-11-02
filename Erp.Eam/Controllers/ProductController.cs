@@ -17,7 +17,7 @@ namespace Erp.Eam.Controllers
     /// The manage controller.
     /// </summary>
     [Authorize]
-    public class ProductCategoryController : BaseController<ProductCategory, ProductCategoryView, ProductCategoryView>
+    public class ProductController : BaseController<Product, ProductView, ProductListView>
     {
     }
 }

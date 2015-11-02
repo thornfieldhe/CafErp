@@ -14,7 +14,7 @@ namespace Erp.Eam.Controllers
     using TAF;
     using TAF.Mvc;
 
-    public class InfoController : BaseController<Info, InfoView>
+    public class InfoController : BaseController<Info, InfoView, InfoView>
     {
         /// <summary>
         /// 获取信息列表
@@ -32,8 +32,7 @@ namespace Erp.Eam.Controllers
         /// </returns>
         public ActionResult GetInfoList(InfoCategory category, int pageIndex, int pageSize = 20)
         {
-            var pager = new Pager<InfoView>() { PageIndex = pageIndex, PageSize = pageSize };
-            pager = Info.Pages(pager, r => r.Category == category, r => r.Name);
+            var pager = Info.Pages(new Pager<InfoView>() { PageIndex = pageIndex, PageSize = pageSize }, r => r.Category == category, r => r.Name);
             return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
     }

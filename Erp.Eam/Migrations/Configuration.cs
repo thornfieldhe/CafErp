@@ -87,9 +87,9 @@ namespace Erp.Eam.Migrations
         }
     }
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DbContext>
+    internal sealed class EFDbConfiguration : DbMigrationsConfiguration<EFDbContext>
     {
-        public Configuration()
+        public EFDbConfiguration()
         {
             AutomaticMigrationsEnabled = false;
             ContextKey = "DefaultConnection";

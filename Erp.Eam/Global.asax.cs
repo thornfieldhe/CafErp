@@ -5,13 +5,13 @@ namespace Erp.Eam
 {
     using System;
     using System.Data.Entity;
-    using System.Linq;
     using System.Reflection;
     using System.Web.Optimization;
 
     using AutoMapper;
 
     using Erp.Eam.Business;
+    using Erp.Eam.Migrations;
     using Erp.Eam.Models;
     using TAF;
 
@@ -22,6 +22,7 @@ namespace Erp.Eam
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Erp.Eam.Business.EFDbContext, EFDbConfiguration>());
             Database.SetInitializer(new Erp.Eam.Migrations.DbInitializer());
             Ioc.RegisterMvc(Assembly.GetExecutingAssembly(), new IocConfig());
             InitMap();

@@ -191,6 +191,15 @@
     <Compile Include="assets\js\ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="assets\js\ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="Config\DbContext.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Migrations\201511021337114_addtable_product.cs" />
+    <Compile Include="Migrations\201511021337114_addtable_product.Designer.cs">
+      <DependentUpon>201511021337114_addtable_product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511021459245_addtable_update.cs" />
+    <Compile Include="Migrations\201511021459245_addtable_update.Designer.cs">
+      <DependentUpon>201511021459245_addtable_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Config\ContextWapper.cs" />
     <Compile Include="Config\IocConfig.cs" />
@@ -210,10 +219,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CodeSmith\Info.cs" />
+    <Compile Include="Models\CodeSmith\Product.cs" />
     <Compile Include="Models\Info.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\CodeSmith\ProductCategory.cs" />
     <Compile Include="Models\ViewModels\InfoView.cs" />
+    <Compile Include="Models\ViewModels\ProductViews.cs" />
     <Compile Include="Models\ViewModels\ProductCategoryView.cs" />
     <Compile Include="Models\ViewModels\ChangedPasswordView.cs" />
     <Compile Include="Models\ViewModels\UserViews.cs" />
@@ -284,6 +296,7 @@
     <Content Include="assets\img\sort_desc_disabled.png" />
     <Content Include="assets\img\temp1.png" />
     <Content Include="assets\js\app\base.js" />
+    <Content Include="assets\js\app\product.js" />
     <Content Include="assets\js\app\info.js" />
     <Content Include="assets\js\app\productCategory.js" />
     <Content Include="assets\js\app\changePassword.js" />
@@ -701,6 +714,8 @@
     <Content Include="Views\Home\404.cshtml" />
     <Content Include="Views\Info\_Index.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Product\_Index.cshtml" />
+    <Content Include="Views\Product\_Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -714,6 +729,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510261710216_addTable_Info.resx">
       <DependentUpon>201510261710216_addTable_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511021337114_addtable_product.resx">
+      <DependentUpon>201511021337114_addtable_product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511021459245_addtable_update.resx">
+      <DependentUpon>201511021459245_addtable_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

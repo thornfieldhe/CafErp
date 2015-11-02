@@ -9,9 +9,6 @@
 
 namespace Erp.Cms.Models
 {
-    using System;
-
-    using Erp.Cms.Business;
 
     using TAF;
 
@@ -20,18 +17,6 @@ namespace Erp.Cms.Models
     /// </summary>
     public partial class Article : EfBusiness<Article>
     {
-        #region 构造函数
-
-        public Article(Guid id) : base(id)
-        {
-        }
-
-        public Article() : this(Guid.NewGuid())
-        {
-        }
-
-        #endregion
-
         #region 覆写基类方法
 
         protected override void AddDescriptions()

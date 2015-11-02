@@ -62,11 +62,13 @@ namespace Erp.Eam.Models
 
         protected override void PreInsert()
         {
+            Name = Name.Trim();
             LevelCode = GetMaxLevelCode();
         }
 
         protected override void PreUpdate()
         {
+            Name = Name.Trim();
             if (IsLevelChanged())
             {
                 var level = GetMaxLevelCode();

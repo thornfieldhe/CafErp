@@ -248,8 +248,7 @@ namespace Erp.Cms.Controllers
         /// </returns>
         public ActionResult GetColumnList(int pageIndex, int pageSize = 20)
         {
-            var pager = new Pager<ColumnView>() { PageIndex = pageIndex, PageSize = pageSize };
-            pager = Article.Pages(pager, r => r.Category == Category.Columns, r => r.Order, true);
+            var pager = Article.Pages(new Pager<ColumnView>() { PageIndex = pageIndex, PageSize = pageSize }, r => r.Category == Category.Columns, r => r.Order, true);
             return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 
@@ -425,9 +424,8 @@ namespace Erp.Cms.Controllers
         /// </returns>
         public ActionResult GetArticleList(Guid catalogId, int pageIndex, int pageSize = 20)
         {
-            var pager = new Pager<ArticleView>() { PageIndex = pageIndex, PageSize = pageSize };
-            pager = Article.Pages(
-                pager,
+            var pager = Article.Pages(
+                new Pager<ArticleView>() { PageIndex = pageIndex, PageSize = pageSize },
                 r => r.Category == Category.Articles && r.ParentId == catalogId,
                 r => r.Order);
 
@@ -486,12 +484,11 @@ namespace Erp.Cms.Controllers
 
         public ActionResult GetSlideList(int pageIndex, int pageSize = 20)
         {
-            var pager = new Pager<SlideView>() { PageIndex = pageIndex, PageSize = pageSize };
-            pager = Slide.Pages(
-                                pager,
-                r => true,
-                r => r.CreatedDate,
-                false);
+            var pager = Slide.Pages(
+                                    new Pager<SlideView>() { PageIndex = pageIndex, PageSize = pageSize },
+                   r => true,
+                   r => r.CreatedDate,
+                   false);
             return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
 

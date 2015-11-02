@@ -32,6 +32,12 @@ namespace Erp.Eam.Business
             get; set;
         }
 
+        public DbSet<Product> Products
+        {
+            get; set;
+        }
+
+
         public static EFDbContext Create()
         {
             return new EFDbContext();

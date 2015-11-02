@@ -54,5 +54,20 @@ namespace Erp.Eam.Models
         {
             get; set;
         }
+
+        #region 覆写基类方法
+
+        protected override void PreInsert()
+        {
+            Name = Name.Trim();
+        }
+
+        protected override void PreUpdate()
+        {
+            Name = Name.Trim();
+        }
+
+        #endregion
+
     }
 }
