@@ -9,7 +9,7 @@
 
 	function editItem(id) {
 		$.get("/Product/Edit", function(e) {
-				editInDialog("编辑商品", "/Product/Edit/"+id,e,onFormInit,"itemChangedSubscriber");
+				editInDialog("编辑商品", "/Product/Update/"+id,e,onFormInit,"itemChangedSubscriber");
 		});
 	}
 
@@ -27,7 +27,7 @@
 
 	$("#newItem").on('click', function() {
 			$.get("/Product/Edit", function(e) {
-				editInDialog("编辑商品", "/Product/Update",e,onFormInit,"itemChangedSubscriber");
+				editInDialog("编辑商品", "/Product/Insert",e,onFormInit,"itemChangedSubscriber");
 		});
 	});
 
