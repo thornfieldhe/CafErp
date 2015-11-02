@@ -11,8 +11,7 @@ namespace Erp.Eam.Controllers
     using System.Web.Mvc;
 
     using Erp.Eam.Models;
-
-    using TAF;
+    using TAF.Mvc;
 
     /// <summary>
     /// The manage controller.

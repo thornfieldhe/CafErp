@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Erp.Cms.Business
+﻿namespace Erp.Cms.Business
 {
     using Autofac;
-
     using TAF.Core;
-    using TAF.Validation;
 
     /// <summary>
     /// 依赖注入配置

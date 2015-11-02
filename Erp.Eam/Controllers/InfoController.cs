@@ -9,12 +9,10 @@
 
 namespace Erp.Eam.Controllers
 {
-    using System;
     using System.Web.Mvc;
-
-    using Erp.Eam.Business;
     using Erp.Eam.Models;
     using TAF;
+    using TAF.Mvc;
 
     public class InfoController : BaseController<Info, InfoView>
     {
@@ -35,7 +33,7 @@ namespace Erp.Eam.Controllers
         public ActionResult GetInfoList(InfoCategory category, int pageIndex, int pageSize = 20)
         {
             var pager = new Pager<InfoView>() { PageIndex = pageIndex, PageSize = pageSize };
-            pager = Info.Pages(pager, r => r.Category == category, r => r.Name, r => new InfoView() { Name = r.Name, Category = r.Category, Id = r.Id }, true);
+            pager = Info.Pages(pager, r => r.Category == category, r => r.Name);
             return this.Json(pager, JsonRequestBehavior.AllowGet);
         }
     }

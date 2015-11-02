@@ -610,7 +610,6 @@
     <Compile Include="Business\ApplicationUser.cs" />
     <Compile Include="Business\ContextWapper.cs" />
     <Compile Include="Business\IocConfig.cs" />
-    <Compile Include="Business\Tools.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">

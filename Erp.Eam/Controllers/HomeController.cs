@@ -21,6 +21,7 @@ namespace Erp.Eam.Controllers
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using TAF;
+    using TAF.Mvc;
     using TAF.Utility;
 
     /// <summary>
@@ -215,6 +216,7 @@ namespace Erp.Eam.Controllers
                 Total = list.Count
             };
             pager.GetShowIndex();
+
             return Json(pager, JsonRequestBehavior.AllowGet);
         }
 

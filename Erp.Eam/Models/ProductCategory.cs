@@ -13,8 +13,6 @@ namespace Erp.Eam.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-
-    using TAF;
     using TAF.Utility;
 
     /// <summary>
@@ -47,7 +45,7 @@ namespace Erp.Eam.Models
         /// </summary>
         public int Level
         {
-            get; set;
+            get; protected set;
         }
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace Erp.Eam.Models
         /// </summary>
         public string LevelCode
         {
-            get; set;
+            get; protected set;
         }
 
         #endregion
