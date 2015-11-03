@@ -9,7 +9,10 @@
 
 namespace Erp.Eam.Models
 {
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
 
     public enum InfoCategory
     {
@@ -53,6 +56,18 @@ namespace Erp.Eam.Models
         public InfoCategory Category
         {
             get; set;
+        }
+
+        /// <summary>
+        /// 获取信息名值列表
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public static List<Tuple<Guid, string>> ToSelectItems(InfoCategory category)
+        {
+            var result = new List<Tuple<Guid, string>>() { new Tuple<Guid, string>(Guid.Empty, string.Empty) };
+            result.AddRange(Info.Get(r => r.Category == category).Select(r => new Tuple<Guid, string>(r.Id, r.Name)).OrderBy(r => r.Item2).ToList());
+            return result;
         }
 
         #region 覆写基类方法

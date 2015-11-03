@@ -118,7 +118,7 @@ namespace Erp.Eam.Controllers
             try
             {
                 var user = UserManager.Users.SingleOrDefault(r => r.UserName == User.Identity.Name);
-                return user == null ? View("404") : View(user);
+                return user == null ? View("Login") : View(user);
             }
             catch (Exception EX_NAME)
             {

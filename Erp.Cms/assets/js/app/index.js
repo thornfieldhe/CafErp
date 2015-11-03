@@ -13,7 +13,7 @@
 	function load(type) {
 		switch (type) {
 		case 0:
-					loadPage("/Home/Dashboard",null, "主页","#menuHome",true);
+					loadPage("/Manage/Dashboard",null, "主页","#menuHome",true);
 		break;
 		case 1:
 					loadPage("/Manage/ColumnIndex", "文章管理", "栏目管理","#menuColumn",false);

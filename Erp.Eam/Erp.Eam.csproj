@@ -355,7 +355,9 @@
     <Content Include="assets\js\knob\jquery.knob.js" />
     <Content Include="assets\js\lodash.min.js" />
     <Content Include="assets\js\nestable\jquery.nestable.min.js" />
+    <Content Include="assets\js\select2\select2.css" />
     <Content Include="assets\js\select2\select2.js" />
+    <Content Include="assets\js\select2\select2.png" />
     <Content Include="assets\js\skins.min.js" />
     <Content Include="assets\js\slider\jQRangeSlider\jQAllRangeSliders-withRuler-min.js" />
     <Content Include="assets\js\slider\jquery.nouislider.js" />
