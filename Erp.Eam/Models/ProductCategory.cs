@@ -10,6 +10,7 @@
 namespace Erp.Eam.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
@@ -58,12 +59,20 @@ namespace Erp.Eam.Models
 
         #endregion
 
+        public static IList<Tuple<Guid, string>> ToSelectItems()
+        {
+            var result = new List<Tuple<Guid, string>>() { new Tuple<Guid, string>(Guid.Empty, "请选择...") };
+            result.AddRange(ProductCategory.GetAll().OrderBy(r => r.LevelCode).Select(r => new Tuple<Guid, string>(r.Id, "|" + "-".Repeat(r.Level * 3) + r.Name)).ToList());
+            return result;
+        }
+
         #region 覆写基类方法
 
         protected override void PreInsert()
         {
             Name = Name.Trim();
             LevelCode = GetMaxLevelCode();
+            Level = LevelCode.Length / 2 - 1;
         }
 
         protected override void PreUpdate()
@@ -78,10 +87,10 @@ namespace Erp.Eam.Models
                                  r =>
                                      {
                                          r.LevelCode = level + r.LevelCode.Substring(LevelCode.Length, r.LevelCode.Length - LevelCode.Length);
-                                         r.Level = r.LevelCode.Length / 2;
+                                         r.Level = r.LevelCode.Length / 2 - 1;
                                      });
                 LevelCode = level;
-                Level = LevelCode.Length / 2;
+                Level = LevelCode.Length / 2 - 1;
             }
         }
 

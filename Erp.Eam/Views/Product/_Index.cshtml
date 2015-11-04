@@ -69,12 +69,14 @@
                         </select>
                     </th>
                     <th   style="width:150px">
-                        <div class="input-group" id="searchCategoryTree">
-                            <input type="text" class="form-control" readonly="readonly" name="searchProductCategory" >
-                            <div class="input-group-btn open">
-                                <a class="btn  " href="javascript:void(0);" aria-expanded="true" onclick=" showCategories() "><i class="fa fa-angle-down"></i></a>
-                            </div>
-                        </div>                        
+                        <select id="e1" style="width:100%">
+                            @{
+                                foreach (var item in ProductCategory.ToSelectItems())
+                                {
+                                    <option value="@item.Item1">@item.Item2</option>
+                                }
+                            }
+                        </select>
                     </th>
                     <th>
                         <select id="e3" style="width:100%">

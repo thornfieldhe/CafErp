@@ -27,11 +27,9 @@ namespace Erp.Eam.Controllers
     /// <summary>
     /// The manage controller.
     /// </summary>
-
+    [Authorize]
     public class HomeController : Controller
     {
-
-
         /// <summary>
         /// Gets the sign in manager.
         /// </summary>
