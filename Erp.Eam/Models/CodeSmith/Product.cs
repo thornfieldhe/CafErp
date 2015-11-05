@@ -32,7 +32,7 @@ namespace Erp.Eam.Models
             this.AddDescription("Unit2:" + this.Unit2);
             this.AddDescription("Conversion:" + this.Conversion);
             this.AddDescription("CategoryId:" + this.CategoryId);
-            this.AddDescription("ColorId:" + this.ColorId);
+            this.AddDescription("Color:" + this.Color);
         }
 
         #endregion

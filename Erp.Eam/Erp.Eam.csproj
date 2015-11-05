@@ -192,13 +192,9 @@
     <Compile Include="assets\js\ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="Config\DbContext.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Migrations\201511021337114_addtable_product.cs" />
-    <Compile Include="Migrations\201511021337114_addtable_product.Designer.cs">
-      <DependentUpon>201511021337114_addtable_product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511021459245_addtable_update.cs" />
-    <Compile Include="Migrations\201511021459245_addtable_update.Designer.cs">
-      <DependentUpon>201511021459245_addtable_update.cs</DependentUpon>
+    <Compile Include="Migrations\201511050123099_InitTables.cs" />
+    <Compile Include="Migrations\201511050123099_InitTables.Designer.cs">
+      <DependentUpon>201511050123099_InitTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Config\ContextWapper.cs" />
@@ -208,14 +204,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510261658014_init.cs" />
-    <Compile Include="Migrations\201510261658014_init.Designer.cs">
-      <DependentUpon>201510261658014_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510261710216_addTable_Info.cs" />
-    <Compile Include="Migrations\201510261710216_addTable_Info.Designer.cs">
-      <DependentUpon>201510261710216_addTable_Info.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CodeSmith\Info.cs" />
@@ -724,20 +712,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510261658014_init.resx">
-      <DependentUpon>201510261658014_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510261710216_addTable_Info.resx">
-      <DependentUpon>201510261710216_addTable_Info.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511021337114_addtable_product.resx">
-      <DependentUpon>201511021337114_addtable_product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511021459245_addtable_update.resx">
-      <DependentUpon>201511021459245_addtable_update.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\WorkStation\TAF\TAF.Business\TAF.Business.csproj">
       <Project>{f264abb3-3d0f-4d27-bc98-59d177baeafd}</Project>
       <Name>TAF.Business</Name>
@@ -746,6 +720,11 @@
       <Project>{6ab3c277-a165-4327-b0fd-2c131dfb9a9d}</Project>
       <Name>TAF.Utility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201511050123099_InitTables.resx">
+      <DependentUpon>201511050123099_InitTables.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

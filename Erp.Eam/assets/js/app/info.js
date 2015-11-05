@@ -3,7 +3,7 @@ var loadColor = false;
 var loadBrand = false;
 var loadStorehouse=false;
 	function bindInfos(index, category, callback, element, changeAction) {
-		$.get("/Info/GetInfoList?category=" + category + "&pageIndex=" + index + "&pageSize=10", function(e) {
+		$.get("/Info/List?category=" + category + "&pageIndex=" + index + "&pageSize=10", function(e) {
 			e = $.extend(true, e, { colspan: 3, pageChangeAction: changeAction, tabName: "单位", callback: callback });
 			var html = juicer($("#table").html(), { data: e });
 			$(element).html(html);

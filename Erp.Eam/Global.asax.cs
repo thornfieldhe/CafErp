@@ -22,7 +22,6 @@ namespace Erp.Eam
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Erp.Eam.Business.EFDbContext, EFDbConfiguration>());
             Database.SetInitializer(new Erp.Eam.Migrations.DbInitializer());
             Ioc.RegisterMvc(Assembly.GetExecutingAssembly(), new IocConfig());
             InitMap();

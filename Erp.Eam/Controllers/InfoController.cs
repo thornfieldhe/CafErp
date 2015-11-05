@@ -30,7 +30,7 @@ namespace Erp.Eam.Controllers
         /// </param>
         /// <returns>
         /// </returns>
-        public ActionResult GetInfoList(InfoCategory category, int pageIndex, int pageSize = 20)
+        public ActionResult List(InfoCategory category, int pageIndex, int pageSize = 20)
         {
             var pager = Info.Pages(new Pager<InfoView>() { PageIndex = pageIndex, PageSize = pageSize }, r => r.Category == category, r => r.Name);
             return this.Json(pager, JsonRequestBehavior.AllowGet);

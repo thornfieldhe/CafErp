@@ -91,16 +91,10 @@ namespace Erp.Eam.Models
         }
 
         /// <summary>
-        /// 商品颜色Id
+        /// 商品颜色
         /// </summary>
         [GuidRequired]
-        public Guid ColorId
-        {
-            get; set;
-        }
-
-        [ForeignKey("ColorId")]
-        public virtual Info Color
+        public string Color
         {
             get; set;
         }

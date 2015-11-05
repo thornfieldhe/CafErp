@@ -9,7 +9,6 @@
 namespace Erp.Eam.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
 
     using TAF.Core;
 
@@ -69,7 +68,6 @@ namespace Erp.Eam.Models
         /// <summary>
         /// Gets or sets the category id.
         /// </summary>
-        [GuidRequired]
         public Guid CategoryId
         {
             get; set;
@@ -145,7 +143,15 @@ namespace Erp.Eam.Models
             get; set;
         }
 
-        public string ColerName
+        /// <summary>
+        /// Gets or sets the unit.
+        /// </summary>
+        public Guid CategoryId
+        {
+            get; set;
+        }
+
+        public string Color
         {
             get; set;
         }

@@ -7,13 +7,13 @@ namespace Erp.Eam.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addtable_product : IMigrationMetadata
+    public sealed partial class InitTables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addtable_product));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitTables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201511021337114_addtable_product"; }
+            get { return "201511050123099_InitTables"; }
         }
         
         string IMigrationMetadata.Source

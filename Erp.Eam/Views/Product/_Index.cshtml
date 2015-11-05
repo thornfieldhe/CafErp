@@ -33,14 +33,17 @@
         <table class="table table-striped table-hover table-bordered ">
             <thead>
                 <tr role="row">
-                    <th style="width:150px;">
+                    <th  style="width:150px;">
                         商品编号
                     </th>
-                    <th style="width:300px;">
+                    <th >
                         商品名称
                     </th>
                     <th>
                         单位
+                    </th>
+                    <th  style="width:150px;">
+                        规格型号
                     </th>
                     <th>
                         商品类别
@@ -48,7 +51,7 @@
                     <th>
                         商品颜色
                     </th>
-                    <th style="width:200px;">
+                    <th  style="width:200px;">
                     </th>
                 </tr>
                 <tr role="row">
@@ -68,8 +71,11 @@
                             }
                         </select>
                     </th>
+                    <th>
+                        <input type="text" class="form-control" id="searchSpecification" placeholder="规格型号" />
+                    </th>
                     <th   style="width:150px">
-                        <select id="e1" style="width:100%">
+                        <select id="e2" style="width:100%">
                             @{
                                 foreach (var item in ProductCategory.ToSelectItems())
                                 {
@@ -89,8 +95,8 @@
                         </select>
                     </th>
                     <th>
-                        <a href="javascript:void(0)" class="btn btn-danger " ><i class="fa fa-search"></i> 搜索</a>
-                        <a href="javascript:void(0)" class="btn   " ><i class="fa fa-times"></i> 重置</a>
+                        <a href="javascript:void(0)" class="btn btn-danger "  onclick="search2()"><i class="fa fa-search"></i> 搜索</a>
+                        <a href="javascript:void(0)" class="btn"  onclick="resetSearch()"><i class="fa fa-times"></i> 重置</a>
                     </th>
                 </tr>
             </thead>
@@ -100,8 +106,9 @@
                     <td>${it.Code}</td>
                     <td>${it.Name}</td>
                     <td>${it.Unit}</td>
+                    <td>${it.Specification}</td>
                     <td>${it.CategoryName}</td>
-                    <td>${it.ColerName}</td>
+                    <td>${it.ColorName}</td>
                     <td>
                         <a href="javascript:void(0)" class="btn   edit" onclick=" editItem('${it.Id}','${it.Name}','${data.callback}') "><i class="fa fa-edit"></i> 编辑</a>
                         <a href="javascript:void(0)" class="btn btn-danger  " onclick=" deleteInfo('${it.Id}','[${it.Name}]','${data.callback}') "><i class="fa fa-trash-o"></i> 删除</a>

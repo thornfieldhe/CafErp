@@ -1,6 +1,7 @@
-﻿	function bindItems(index) {
-		$.get("/Product/GetViews?pageIndex=" + index + "&pageSize=10", function(e) {
-			e = $.extend(true, e, { colspan: 6, pageChangeAction:  "bindItems" });
+﻿	var queryEntity={};
+	function bindItems(index) {
+		$.get("/Product/List?pageIndex=" + index + "&pageSize=10",queryEntity, function(e) {
+			e = $.extend(true, e, { colspan: 7, pageChangeAction:  "bindItems" });
 			var html = juicer($("#table").html(), { data: e });
 			$("#itemGrid").html(html);
 			$("select[id^='e']").each(function(e) {
@@ -26,7 +27,26 @@
 			bindItems(1);
 		});
 	}
+	
+	function search2() {
+		queryEntity = {
+			code: $("#searchCode").val(),
+			name: $("#searchName").val(),
+			unitId: $("#e1").val(),
+			categoryId: $("#e2").val(),
+			colorId: $("#e3").val()
+		};
+		console.log(queryEntity);
+	}
 
+	function resetSearch() {
+			queryEntity = {};
+			$("#searchCode").val("");
+			$("#searchName").val("");
+			$("#e1").select2().val("00000000-0000-0000-0000-000000000000").trigger("change");
+			$("#e2").select2().val("00000000-0000-0000-0000-000000000000").trigger("change");
+			$("#e3").select2().val("00000000-0000-0000-0000-000000000000").trigger("change");
+		}
 
 	$("#newItem").on('click', function() {
 			$.get("/Product/Edit", function(e) {
