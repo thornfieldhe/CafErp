@@ -9,7 +9,6 @@
 
 namespace Erp.Eam.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
@@ -63,10 +62,10 @@ namespace Erp.Eam.Models
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        public static List<Tuple<Guid, string>> ToSelectItems(InfoCategory category)
+        public static List<string> ToSelectItems(InfoCategory category)
         {
-            var result = new List<Tuple<Guid, string>>() { new Tuple<Guid, string>(Guid.Empty, "请选择...") };
-            result.AddRange(Info.Get(r => r.Category == category).Select(r => new Tuple<Guid, string>(r.Id, r.Name)).OrderBy(r => r.Item2).ToList());
+            var result = new List<string>() { string.Empty };
+            result.AddRange(Info.Get(r => r.Category == category).Select(r => r.Name).OrderBy(r => r).ToList());
             return result;
         }
 

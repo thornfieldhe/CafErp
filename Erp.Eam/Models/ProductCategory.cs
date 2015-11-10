@@ -61,7 +61,7 @@ namespace Erp.Eam.Models
 
         public static IList<Tuple<Guid, string>> ToSelectItems()
         {
-            var result = new List<Tuple<Guid, string>>() { new Tuple<Guid, string>(Guid.Empty, "请选择...") };
+            var result = new List<Tuple<Guid, string>>() { new Tuple<Guid, string>(Guid.Empty, "") };
             result.AddRange(ProductCategory.GetAll().OrderBy(r => r.LevelCode).Select(r => new Tuple<Guid, string>(r.Id, "|" + "-".Repeat(r.Level * 3) + r.Name)).ToList());
             return result;
         }

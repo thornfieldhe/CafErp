@@ -29,16 +29,15 @@ namespace Erp.Eam.Controllers
                                  || (!string.IsNullOrWhiteSpace(query.Name) && (r.Name.Contains(query.Name.Trim()) || r.ShortName.Contains(query.Name.Trim().ToLower())))
                                  || (!string.IsNullOrEmpty(query.Code) && r.Code.ToLower().Contains(query.Code.Trim().ToLower()));
 
-
-            return
-                Json(
-                     Product.Pages<string, ProductListView>(
-                                                             new Pager<ProductListView>
-                                                             {
-                                                                 PageIndex = pageIndex,
-                                                                 PageSize = pageSize
-                                                             }, func,
-                         r => r.Name),
+            return Json(
+                        Product.Pages(
+                                      new Pager<ProductListView>
+                                      {
+                                          PageIndex = pageIndex,
+                                          PageSize = pageSize
+                                      },
+                                      func,
+                                      r => r.Name),
                     JsonRequestBehavior.AllowGet);
         }
     }

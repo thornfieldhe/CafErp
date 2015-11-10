@@ -13,7 +13,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12">
                                             <div class="table-toolbar">
-                                                <a href="javascript:void(0);" class="btn btn-primary " id="newItem">
+                                                <a href="javascript:void(0);" class="btn btn-primary " onclick="newItem('Product','新增商品')">
                                                     <i class="fa  fa-plus"></i> 新增
                                                 </a>
                                             </div>
@@ -66,7 +66,7 @@
                             @{
                                 foreach (var item in Info.ToSelectItems(InfoCategory.Unit))
                                 {
-                                    <option value="@item.Item1">@item.Item2</option>
+                                    <option value="@item">@item</option>
                                 }
                             }
                         </select>
@@ -89,7 +89,7 @@
                            @{
                                foreach (var item in Info.ToSelectItems(InfoCategory.Color))
                                {
-                               <option value = "@item.Item1" >@item.Item2</option>
+                               <option value = "@item" >@item</option>
                                }
                            }
                         </select>
@@ -110,8 +110,8 @@
                     <td>${it.CategoryName}</td>
                     <td>${it.ColorName}</td>
                     <td>
-                        <a href="javascript:void(0)" class="btn   edit" onclick=" editItem('${it.Id}','${it.Name}','${data.callback}') "><i class="fa fa-edit"></i> 编辑</a>
-                        <a href="javascript:void(0)" class="btn btn-danger  " onclick=" deleteInfo('${it.Id}','[${it.Name}]','${data.callback}') "><i class="fa fa-trash-o"></i> 删除</a>
+                        <a href="javascript:void(0)" class="btn   edit" onclick=" editItem('${it.Id}','Product','编辑商品') "><i class="fa fa-edit"></i> 编辑</a>
+                        <a href="javascript:void(0)" class="btn btn-danger  " onclick=" deleteInfo('${it.Id}','Product','[${it.Name}]') "><i class="fa fa-trash-o"></i> 删除</a>
                     </td>
                 </tr>
                 {%/each}

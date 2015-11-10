@@ -45,9 +45,9 @@
 	}
 }
 
-	//弹出对话框删除对象
-	function delInDialog(title,url,id,subscriber) {
-bootbox.confirm({
+//弹出对话框删除对象
+function delInDialog(title,url,id,subscriber) {
+	bootbox.confirm({
 			message: "确认删除"+title+"么？",
 			className: "modal-darkorange",
 			callback:function(result) {
@@ -79,6 +79,31 @@ bootbox.confirm({
 				className: "btn-danger"
 				}
 			}
+		});
+	}
+
+	function newItem(baseUrl,title) {
+		$.get("/"+baseUrl+"/Edit", function(e) {
+			editInDialog(title, "/"+baseUrl+"/Insert",e,onFormInit,"itemChangedSubscriber");
+		});
+	}
+	
+	function editItem(id,baseUrl,title) {
+		$.get("/"+baseUrl+"/Edit/"+id, function(e) {
+			editInDialog(title, "/"+baseUrl+"/Update",e,onFormInit,"itemChangedSubscriber");
+		});
+	}
+	
+	function deleteItem(id,baseUrl, name) {
+		delInDialog(name, "/"+baseUrl+"/Delete/"+ id, "itemChangedSubscriber");
+	}
+
+	
+	function initIndexPage() {
+		bindItems(1);
+		erp.subscriber.unSubscriber("itemChangedSubscriber");
+		erp.subscriber.addSubscriber("itemChangedSubscriber", function(d) {
+			bindItems(1);
 		});
 	}
 
