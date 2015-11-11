@@ -45,7 +45,7 @@ namespace Erp.Printer
             LoadData();
             listView1.Items.AddRange(Items.OrderBy(i => i.Text).ToArray());
             listView1.SelectedIndexChanged += ListView1_SelectedIndexChanged;
-            
+
         }
 
         private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,15 +143,22 @@ namespace Erp.Printer
                               });
                 LoadData();
                 listView1.Items.Clear();
-                listView1.Items.AddRange(Items.OrderBy(i=>i.Text).ToArray());
+                listView1.Items.AddRange(Items.OrderBy(i => i.Text).ToArray());
                 listView1.SelectedIndexChanged += ListView1_SelectedIndexChanged;
             }
         }
 
         private void Print(string filePath)
         {
-            printDocument1.PrinterSettings = new PrinterSettings() { PrintFileName = filePath, PaperSizes = { new PaperSize() { PaperName = "A4" } } };
-            printDocument1.Print();
+            try
+            {
+                printDocument1.PrinterSettings = new PrinterSettings() { PrintFileName = filePath, PaperSizes = { new PaperSize() { PaperName = "A4" } } };
+                printDocument1.Print();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
     }
