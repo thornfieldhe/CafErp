@@ -78,8 +78,7 @@ namespace Erp.Eam.Models
         /// <summary>
         /// 商品类别Id
         /// </summary>
-        [GuidRequired]
-        public Guid CategoryId
+        public Guid? CategoryId
         {
             get; set;
         }

@@ -36,7 +36,7 @@ namespace Erp.Eam.Controllers
         public ApplicationSignInManager SignInManager
         {
             get
-            {
+            {               
                 return signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
 

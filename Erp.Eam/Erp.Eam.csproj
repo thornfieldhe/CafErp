@@ -196,6 +196,10 @@
     <Compile Include="Migrations\201511050123099_InitTables.Designer.cs">
       <DependentUpon>201511050123099_InitTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511121358131_updateTable.cs" />
+    <Compile Include="Migrations\201511121358131_updateTable.Designer.cs">
+      <DependentUpon>201511121358131_updateTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Config\ContextWapper.cs" />
     <Compile Include="Config\IocConfig.cs" />
@@ -724,6 +728,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201511050123099_InitTables.resx">
       <DependentUpon>201511050123099_InitTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511121358131_updateTable.resx">
+      <DependentUpon>201511121358131_updateTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,6 +11,7 @@ namespace Erp.Printer
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Drawing.Printing;
     using System.IO;
     using System.Linq;
@@ -152,8 +153,14 @@ namespace Erp.Printer
         {
             try
             {
-                printDocument1.PrinterSettings = new PrinterSettings() { PrintFileName = filePath, PaperSizes = { new PaperSize() { PaperName = "A4" } } };
-                printDocument1.Print();
+                Process proc = new Process();
+                proc.StartInfo.CreateNoWindow = false;
+                proc.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                proc.StartInfo.UseShellExecute = true;
+                proc.StartInfo.FileName = filePath;//打印文件路径（本地完整路径包括文件名和后缀名）
+                proc.StartInfo.Verb = "print";
+                proc.Start();
+                proc.Close();
             }
             catch (Exception e)
             {

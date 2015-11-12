@@ -66,9 +66,19 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label no-padding-right">单位换算</label>
                 <div class="col-sm-10">
-                    <input type="text" class="spinbox-input form-control" placeholder="单位换算" name="conversion" value="@Model.Conversion"/>
+                    <div class="spinbox spinbox-horizontal spinbox-right">
+                        <div class="spinbox-buttons	btn-group">
+                            <button type="button" class="btn spinbox-down blueberry">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn spinbox-up purple">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="spinbox-input form-control" name="conversion" id="conversion" required value="@Model.Conversion" />
+                    </div>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
     <div class="row" id="unknownError" style="display: none;">
