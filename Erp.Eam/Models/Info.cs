@@ -61,10 +61,15 @@ namespace Erp.Eam.Models
         /// 获取信息名值列表
         /// </summary>
         /// <param name="category"></param>
+        /// <param name="allowEmpty"></param>
         /// <returns></returns>
-        public static List<string> ToSelectItems(InfoCategory category)
+        public static List<string> ToSelectItems(InfoCategory category, bool allowEmpty = true)
         {
-            var result = new List<string>() { string.Empty };
+            var result = new List<string>();
+            if (allowEmpty)
+            {
+                result.Add(string.Empty);
+            }
             result.AddRange(Info.Get(r => r.Category == category).Select(r => r.Name).OrderBy(r => r).ToList());
             return result;
         }

@@ -146,7 +146,7 @@ namespace Erp.Eam.Models
         /// <summary>
         /// Gets or sets the unit.
         /// </summary>
-        public Guid CategoryId
+        public Guid? CategoryId
         {
             get; set;
         }

@@ -40,8 +40,8 @@
                       "~/assets/js/angular/angular-messages.min.js"));
 
             bundles.Add(new ScriptBundle("~/assets/app").Include(
-                     "~/assets/js/app/index.js",
-                     "~/assets/js/app/base.js"));
+                     "~/scripts/index.js",
+                     "~/scripts/base.js"));
 
             BundleTable.EnableOptimizations = false;
         }
