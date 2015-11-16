@@ -1,16 +1,17 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ProductController.cs" company="">
+// <copyright file="ManageController.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   Erp.Eam
+//   The manage controller.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace Erp.Eam.Controller
+namespace Erp.Eam.Controllers
 {
     using System;
     using System.Web.Mvc;
+
+
     using Erp.Eam.Models;
     using TAF;
     using TAF.Mvc;
@@ -24,23 +25,22 @@ namespace Erp.Eam.Controller
         public ActionResult List(ProductListView query, int pageIndex, int pageSize = 20)
         {
             Func<Product, bool> func = r =>
-               (string.IsNullOrWhiteSpace(query.Code) || (!string.IsNullOrWhiteSpace(query.Code) && r.Code.ToStr() == query.Code.ToStr()))
-  && (string.IsNullOrWhiteSpace(query.Name) || (!string.IsNullOrWhiteSpace(query.Name) && r.Name.ToStr() == query.Name.ToStr()))
-  && (string.IsNullOrWhiteSpace(query.Unit) || (!string.IsNullOrWhiteSpace(query.Unit) && r.Unit.ToStr() == query.Unit.ToStr()))
-  && (string.IsNullOrWhiteSpace(query.Category) || (!string.IsNullOrWhiteSpace(query.Category) && r.CategoryId.ToStr() == query.Category.ToStr()))
-  && (string.IsNullOrWhiteSpace(query.Color) || (!string.IsNullOrWhiteSpace(query.Color) && r.Color.ToStr() == query.Color.ToStr()));
+            (string.IsNullOrWhiteSpace(query.Category) || (!string.IsNullOrWhiteSpace(query.Category) && r.CategoryId.ToStr() == query.Category.ToStr()))
+            && (string.IsNullOrWhiteSpace(query.Color) || r.Color == query.Color.ToStr())
+            && (string.IsNullOrWhiteSpace(query.Unit.ToStr()) || (r.Unit == query.Unit || r.Unit2 == query.Unit.ToStr()))
+            && (string.IsNullOrWhiteSpace(query.Name) || r.Name.Contains(query.Name.ToStr().Trim()) || r.ShortName.Contains(query.Name.ToStr().Trim().ToLower()))
+            && (string.IsNullOrWhiteSpace(query.Code) || r.Code.ToLower().Contains(query.Code.ToStr().Trim().ToLower()));
 
-            return Json(Product.Pages(new Pager<ProductListView>
-            {
-                PageIndex = pageIndex,
-                PageSize = pageSize
-            },
+            return Json(
+                        Product.Pages(
+                                      new Pager<ProductListView>
+                                      {
+                                          PageIndex = pageIndex,
+                                          PageSize = pageSize
+                                      },
                                       func,
                                       r => r.Name),
                     JsonRequestBehavior.AllowGet);
         }
     }
 }
-
-
-
