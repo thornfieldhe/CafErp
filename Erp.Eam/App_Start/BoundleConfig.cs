@@ -33,7 +33,9 @@
                      "~/assets/js/ztree/jquery.ztree.core-3.5.js",
                      "~/assets/js/toastr/toastr.js",
                      "~/assets/js/fuelux/spinbox/fuelux.spinbox.min.js",
-                     "~/assets/js/validation/bootstrapValidator.js"));
+                     "~/assets/js/validation/bootstrapValidator.js",
+                     "~/assets/js/vue.min.js",
+                     "~/assets/js/select2/select2.js"));
 
             bundles.Add(new ScriptBundle("~/assets/angular").Include(
                       "~/assets/js/angular/angular.min.js",
@@ -41,7 +43,8 @@
 
             bundles.Add(new ScriptBundle("~/assets/app").Include(
                      "~/scripts/index.js",
-                     "~/scripts/base.js"));
+                     "~/scripts/base.js"
+                     ));
 
             BundleTable.EnableOptimizations = false;
         }

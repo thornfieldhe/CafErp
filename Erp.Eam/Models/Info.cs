@@ -1,15 +1,16 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Info.cs" company="">
-//   综合信息
+//  
 // </copyright>
 // <summary>
-//   Defines the Info type.
+//    综合信息
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Erp.Eam.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
@@ -45,13 +46,22 @@ namespace Erp.Eam.Models
     /// 基本信息
     /// </summary>
     [Table("Infos")]
+    [System.ComponentModel.Description("综合信息")]
     public partial class Info
     {
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [System.ComponentModel.Description("名称")]
         public string Name
         {
             get; set;
         }
 
+        /// <summary>
+        /// 分类
+        /// </summary>
+        [Description("分类")]
         public InfoCategory Category
         {
             get; set;
@@ -70,7 +80,7 @@ namespace Erp.Eam.Models
             {
                 result.Add(string.Empty);
             }
-            result.AddRange(Info.Get(r => r.Category == category).Select(r => r.Name).OrderBy(r => r).ToList());
+            result.AddRange(Get(r => r.Category == category).Select(r => r.Name).OrderBy(r => r).ToList());
             return result;
         }
 

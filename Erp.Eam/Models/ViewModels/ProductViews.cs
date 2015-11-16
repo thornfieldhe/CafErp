@@ -68,7 +68,7 @@ namespace Erp.Eam.Models
         /// <summary>
         /// Gets or sets the category id.
         /// </summary>
-        public Guid CategoryId
+        public Guid? CategoryId
         {
             get; set;
         }
@@ -76,7 +76,7 @@ namespace Erp.Eam.Models
         /// <summary>
         /// Gets or sets the color id.
         /// </summary>
-        public Guid ColorId
+        public string Color
         {
             get; set;
         }
@@ -111,6 +111,7 @@ namespace Erp.Eam.Models
     /// </summary>
     public class ProductListView : IEntityBase
     {
+
         /// <summary>
         /// Gets or sets the code.
         /// </summary>
@@ -138,15 +139,7 @@ namespace Erp.Eam.Models
         /// <summary>
         /// Gets or sets the category name.
         /// </summary>
-        public string CategoryName
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// Gets or sets the unit.
-        /// </summary>
-        public Guid? CategoryId
+        public string Category
         {
             get; set;
         }

@@ -6,6 +6,8 @@ var loadStorehouse=false;
 		$.get("/Info/List?category=" + category + "&pageIndex=" + index + "&pageSize=10", function(e) {
 			e = $.extend(true, e, { colspan: 3, pageChangeAction: changeAction, tabName: "单位", callback: callback });
 			var html = juicer($("#table").html(), { data: e });
+
+
 			$(element).html(html);
 		});
 	}

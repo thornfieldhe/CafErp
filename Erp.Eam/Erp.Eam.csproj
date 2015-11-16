@@ -200,6 +200,14 @@
     <Compile Include="Migrations\201511121358131_updateTable.Designer.cs">
       <DependentUpon>201511121358131_updateTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511160904493_update.cs" />
+    <Compile Include="Migrations\201511160904493_update.Designer.cs">
+      <DependentUpon>201511160904493_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511160909225_update1.cs" />
+    <Compile Include="Migrations\201511160909225_update1.Designer.cs">
+      <DependentUpon>201511160909225_update1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Config\ContextWapper.cs" />
     <Compile Include="Config\IocConfig.cs" />
@@ -287,6 +295,7 @@
     <Content Include="assets\img\sort_desc.png" />
     <Content Include="assets\img\sort_desc_disabled.png" />
     <Content Include="assets\img\temp1.png" />
+    <Content Include="assets\js\vue.min.js" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\product.js" />
     <Content Include="Scripts\info.js" />
@@ -732,6 +741,15 @@
     <EmbeddedResource Include="Migrations\201511121358131_updateTable.resx">
       <DependentUpon>201511121358131_updateTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511160904493_update.resx">
+      <DependentUpon>201511160904493_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511160909225_update1.resx">
+      <DependentUpon>201511160909225_update1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

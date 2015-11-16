@@ -10,6 +10,7 @@
 namespace Erp.Eam.Models
 {
     using TAF;
+    using TAF.Utility;
 
     /// <summary>
     /// 商品
@@ -18,23 +19,21 @@ namespace Erp.Eam.Models
     {
         #region 覆写基类方法
 
-        /// <summary>
-        /// The add descriptions.
-        /// </summary>
         protected override void AddDescriptions()
         {
             base.AddDescriptions();
-            this.AddDescription("Name:" + this.Name);
-            this.AddDescription("Code:" + this.Code);
-            this.AddDescription("ShortName:" + this.ShortName);
-            this.AddDescription("Specification:" + this.Specification);
-            this.AddDescription("Unit:" + this.Unit);
-            this.AddDescription("Unit2:" + this.Unit2);
-            this.AddDescription("Conversion:" + this.Conversion);
-            this.AddDescription("CategoryId:" + this.CategoryId);
-            this.AddDescription("Color:" + this.Color);
+            AddDescription("Code:" + Code.ToStr());
+            AddDescription("Name:" + Name.ToStr());
+            AddDescription("Specification:" + Specification.ToStr());
+            AddDescription("ShortName:" + ShortName.ToStr());
+            AddDescription("Unit:" + Unit.ToStr());
+            AddDescription("Unit2:" + Unit2.ToStr());
+            AddDescription("Color:" + Color.ToStr());
+            AddDescription("Conversion:" + Conversion.ToStr());
         }
-
         #endregion
     }
 }
+
+
+

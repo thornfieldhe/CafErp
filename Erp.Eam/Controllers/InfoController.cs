@@ -14,7 +14,7 @@ namespace Erp.Eam.Controllers
     using TAF;
     using TAF.Mvc;
 
-    public class InfoController : BaseController<Info, InfoView, InfoView>
+    public class InfoController : BaseController<Info, InfoView, KeyValueEntity>
     {
         /// <summary>
         /// 获取信息列表

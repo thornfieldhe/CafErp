@@ -92,7 +92,6 @@ namespace Erp.Eam.Models
         /// <summary>
         /// 商品颜色
         /// </summary>
-        [GuidRequired]
         public string Color
         {
             get; set;

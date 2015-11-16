@@ -59,10 +59,10 @@ namespace Erp.Eam.Models
 
         #endregion
 
-        public static IList<Tuple<Guid, string>> ToSelectItems()
+        public static IList<Tuple<string, string>> ToSelectItems()
         {
-            var result = new List<Tuple<Guid, string>>() { new Tuple<Guid, string>(Guid.Empty, "") };
-            result.AddRange(ProductCategory.GetAll().OrderBy(r => r.LevelCode).Select(r => new Tuple<Guid, string>(r.Id, "|" + "-".Repeat(r.Level * 3) + r.Name)).ToList());
+            var result = new List<Tuple<string, string>>() { new Tuple<string, string>(string.Empty, string.Empty) };
+            result.AddRange(ProductCategory.GetAll().OrderBy(r => r.LevelCode).Select(r => new Tuple<string, string>(r.Id.ToString(), "|" + "-".Repeat(r.Level * 3) + r.Name)).ToList());
             return result;
         }
 

@@ -10,11 +10,13 @@
 namespace Erp.Eam.Models
 {
     using System;
-    using TAF;
+    using System.ComponentModel;
     using TAF.Core;
 
+    [Description("信息")]
     public class InfoView : IEntityBase
     {
+        [Description("键")]
         public Guid Id
         {
             get; set;

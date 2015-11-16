@@ -10,16 +10,16 @@
                 <div class="row">
                     <div class="col-lg-12 col-sm-12 col-xs-6">
                         <div class="tabbable">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-12">
-                                            <div class="table-toolbar">
-                                                <a href="javascript:void(0);" class="btn btn-primary " onclick="newItem('Product','新增商品')">
-                                                    <i class="fa  fa-plus"></i> 新增
-                                                </a>
-                                            </div>
-                                            <div id="itemGrid" class="row"></div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12">
+                                        <div class="table-toolbar">
+                                            <a href="javascript:void(0);" class="btn btn-primary " onclick="newItem('Product','新增商品')">
+                                                <i class="fa  fa-plus"></i> 新增
+                                            </a>
                                         </div>
+                                        <div id="itemGrid" class="row"></div>
                                     </div>
+                                </div>
                         </div>
                         <div class="horizontal-space"></div>
                     </div>
@@ -62,7 +62,7 @@
                         <input type="text" class="form-control" id="searchName" placeholder="商品名称" /> 
                     </th>
                     <th>
-                        <select id="e1"  style="width:100%">
+                        <select id="searchUnit"  style="width:100%">
                             @{
                                 foreach (var item in Info.ToSelectItems(InfoCategory.Unit))
                                 {
@@ -75,7 +75,7 @@
                         <input type="text" class="form-control" id="searchSpecification" placeholder="规格型号" />
                     </th>
                     <th   style="width:150px">
-                        <select id="e2" style="width:100%">
+                        <select id="searchCategoryId" style="width:100%">
                             @{
                                 foreach (var item in ProductCategory.ToSelectItems())
                                 {
@@ -85,17 +85,17 @@
                         </select>
                     </th>
                     <th>
-                        <select id="e3" style="width:100%">
+                        <select id="searchColor" style="width:100%">
                            @{
                                foreach (var item in Info.ToSelectItems(InfoCategory.Color))
                                {
-                               <option value = "@item" >@item</option>
+                                   <option value = "@item" >@item</option>
                                }
                            }
                         </select>
                     </th>
                     <th>
-                        <a href="javascript:void(0)" class="btn btn-danger "  onclick="search2()"><i class="fa fa-search"></i> 搜索</a>
+                        <a href="javascript:void(0)" class="btn btn-danger "  onclick="filter()"><i class="fa fa-search"></i> 搜索</a>
                         <a href="javascript:void(0)" class="btn"  onclick="resetSearch()"><i class="fa fa-times"></i> 重置</a>
                     </th>
                 </tr>
@@ -107,11 +107,11 @@
                     <td>${it.Name}</td>
                     <td>${it.Unit}</td>
                     <td>${it.Specification}</td>
-                    <td>${it.CategoryName}</td>
-                    <td>${it.ColorName}</td>
+                    <td>${it.Category}</td>
+                    <td>${it.Color}</td>
                     <td>
                         <a href="javascript:void(0)" class="btn   edit" onclick=" editItem('${it.Id}','Product','编辑商品') "><i class="fa fa-edit"></i> 编辑</a>
-                        <a href="javascript:void(0)" class="btn btn-danger  " onclick=" deleteInfo('${it.Id}','Product','[${it.Name}]') "><i class="fa fa-trash-o"></i> 删除</a>
+                        <a href="javascript:void(0)" class="btn btn-danger  " onclick=" deleteItem('${it.Id}','Product','[${it.Name}]') "><i class="fa fa-trash-o"></i> 删除</a>
                     </td>
                 </tr>
                 {%/each}
@@ -120,5 +120,130 @@
         </table>
     </div>
 </script>
-<script src="~/assets/js/select2/select2.js"></script>
+<script type="text/html" id="submitForm">
+    <form id="form" class="form-horizontal" name="form">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">商品编号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="商品编号" name="code" value="${Code}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">商品名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="商品名称" name="name" value="${Name}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">单位</label>
+                    <div class="col-sm-10">
+                        <select id="unit" name="unit" style="width:100%">
+                            @{
+                                foreach (var item in Info.ToSelectItems(InfoCategory.Unit))
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">辅助单位</label>
+                    <div class="col-sm-10">
+                        <select id="unit2" name="unit2" style="width:100%">
+                            @{
+                                foreach (var item in Info.ToSelectItems(InfoCategory.Unit))
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">单位换算</label>
+                    <div class="col-sm-10">
+                        <div class="spinbox spinbox-horizontal spinbox-right">
+                            <div class="spinbox-buttons	btn-group">
+                                <button type="button" class="btn spinbox-down blueberry">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn spinbox-up purple">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="spinbox-input form-control" name="conversion" id="conversion" required value="${Conversion}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">商品类别</label>
+                    <div class="col-sm-10">
+                        <select id="categoryId" name="categoryId" style="width:100%">
+                            @{
+                                foreach (var item in ProductCategory.ToSelectItems())
+                                {
+                                    <option value="@item.Item1">@item.Item2</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right">商品颜色</label>
+                    <div class="col-sm-10">
+                        <select id="color" name="color" style="width:100%">
+                            @{
+                                foreach (var item in Info.ToSelectItems(InfoCategory.Color))
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="unknownError" style="display: none;">
+            <div class="col-md-12">
+                <div class="form-group  has-feedback has-error">
+                    <div class="col-md-10 col-md-offset-2">
+                        <small class="help-block"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="hidden" class="form-control" name="id" value="${Id}" />
+            </div>
+        </div>
+    </form>
+</script>
 <script src="~/scripts/product.js"></script>

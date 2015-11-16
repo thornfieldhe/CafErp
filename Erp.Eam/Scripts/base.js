@@ -58,8 +58,7 @@ function delInDialog(title,url,id,subscriber) {
 							data: {id:id},
 							async: false,
 							success: function(e) {
-								if (e.Status === 1) {
-									
+								if (e.Status === 1) {									
 									result = false;
 								} else {
 									erp.subscriber.publish(subscriber);
@@ -84,18 +83,20 @@ function delInDialog(title,url,id,subscriber) {
 
 	function newItem(baseUrl,title) {
 		$.get("/"+baseUrl+"/Edit", function(e) {
-			editInDialog(title, "/"+baseUrl+"/Insert",e,onFormInit,"itemChangedSubscriber");
+			var html = juicer($("#submitForm").html(), e);
+			editInDialog(title, "/"+baseUrl+"/Insert",html,onFormInit,"itemChangedSubscriber");
 		});
 	}
 	
 	function editItem(id,baseUrl,title) {
 		$.get("/"+baseUrl+"/Edit/"+id, function(e) {
-			editInDialog(title, "/"+baseUrl+"/Update",e,onFormInit,"itemChangedSubscriber");
+			var html = juicer($("#submitForm").html(), e);
+			editInDialog(title, "/"+baseUrl+"/Update",html,onFormInit,"itemChangedSubscriber");
 		});
 	}
 	
 	function deleteItem(id,baseUrl, name) {
-		delInDialog(name, "/"+baseUrl+"/Delete/"+ id, "itemChangedSubscriber");
+		delInDialog(name, "/"+baseUrl+"/Delete/", id, "itemChangedSubscriber");
 	}
 
 	

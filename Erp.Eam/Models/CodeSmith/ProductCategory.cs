@@ -3,17 +3,17 @@
 //   
 // </copyright>
 // <summary>
-//   Defines the Article type.
+//   商品分类
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Erp.Eam.Models
 {
-
     using TAF;
+    using TAF.Utility;
 
     /// <summary>
-    /// 文章模型
+    /// 商品分类
     /// </summary>
     public partial class ProductCategory : EfBusiness<ProductCategory>
     {
@@ -22,10 +22,13 @@ namespace Erp.Eam.Models
         protected override void AddDescriptions()
         {
             base.AddDescriptions();
-            AddDescription("Name:" + Name);
-            AddDescription("ParentId:" + (ParentId.HasValue ? ParentId.Value.ToString() : string.Empty));
-            AddDescription("Level:" + Level);
+            AddDescription("Name:" + Name.ToStr());
+            AddDescription("Level:" + Level.ToStr());
+            AddDescription("LevelCode:" + LevelCode.ToStr());
         }
         #endregion
     }
 }
+
+
+

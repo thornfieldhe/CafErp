@@ -3,17 +3,17 @@
 //   
 // </copyright>
 // <summary>
-//   The info.
+//   综合信息
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Erp.Eam.Models
 {
-
     using TAF;
+    using TAF.Utility;
 
     /// <summary>
-    /// The info.
+    /// 综合信息
     /// </summary>
     public partial class Info : EfBusiness<Info>
     {
@@ -22,9 +22,12 @@ namespace Erp.Eam.Models
         protected override void AddDescriptions()
         {
             base.AddDescriptions();
-            AddDescription("Name:" + Name);
-            AddDescription("Category:" + Category.ToString());
+            AddDescription("Name:" + Name.ToStr());
+            AddDescription("Category:" + Category.ToStr());
         }
         #endregion
     }
 }
+
+
+

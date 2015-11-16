@@ -1,22 +1,28 @@
 ﻿	var queryEntity={};
 	function bindItems(index) {
+		console.log(queryEntity);
 		$.get("/Product/List?pageIndex=" + index + "&pageSize=10",queryEntity, function(e) {
 			e = $.extend(true, e, { colspan: 7, pageChangeAction:  "bindItems" });
 			var html = juicer($("#table").html(), { data: e });
 			$("#itemGrid").html(html);
-			$("select[id^='e']").each(function(e) {
+			$("select").each(function(e) {
 					$(this).select2();
 			});
+			$("#searchCode").val(queryEntity.code);
+			$("#searchName").val(queryEntity.name);
+			$("#searchUnit").val(queryEntity.unit).trigger("change");
+			$("#searchCategory").val(queryEntity.category).trigger("change");
+			$("#searchColor").val(queryEntity.color).trigger("change");
 		});
 	}
 
-	function search2() {
+	function filter() {
 		queryEntity = {
 			code: $("#searchCode").val(),
 			name: $("#searchName").val(),
-			unitId: $("#e1").val(),
-			categoryId: $("#e2").val(),
-			colorId: $("#e3").val()
+			unit: $("#searchUnit").val(),
+			category: $("#searchCategory").val(),
+			color: $("#searchColor").val()
 		};
 		bindItems(1);
 	}
@@ -25,14 +31,14 @@
 			queryEntity = {};
 			$("#searchCode").val("");
 			$("#searchName").val("");
-			$("#e1").select2().val("").trigger("change");
-			$("#e2").select2().val("00000000-0000-0000-0000-000000000000").trigger("change");
-			$("#e3").select2().val("").trigger("change");
+			$("#searchCategoryId").select2().val("").trigger("change");
+			$("#searchColor").select2().val("").trigger("change");
+			$("#searchUnit").select2().val("").trigger("change");
 		}
 
 	function validate() {
 		$("#form").bootstrapValidator({
-			message: name + '验证未通过',
+			message: '验证未通过',
 			fields: {
 				code: {
 					validators: {
@@ -69,13 +75,6 @@
 						}
 					}
 				},				
-				colorId: {
-					validators: {
-						notEmpty: {
-							message: '商品颜色不能为空'
-						}
-					}
-				},				
 				conversion: {
 					validators: {
 						notEmpty: {
@@ -88,8 +87,11 @@
 	}
 
 	function onFormInit() {
+		$('.spinbox').spinbox('value', 1);
+		$("select").each(function(e) {
+				$(this).select2();
+		});
 		validate();
-		$('.spinbox').spinbox();
 	}
 
 	initIndexPage();
