@@ -60,6 +60,7 @@ namespace Erp.Eam
                 .ForMember(n => n.Category, m => m.MapFrom(m1 => m1.CategoryId.HasValue ? m1.Category.Name : string.Empty));
             Mapper.CreateMap<ProductView, Product>()
                 .ForMember(n => n.Id, m => m.MapFrom(r => r.Id.IsEmpty() ? Guid.NewGuid() : r.Id));
+            Mapper.CreateMap<Product, ProductView>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNet.Identity.EntityFramework
+﻿@using Erp.Eam.Models
 @model Erp.Eam.Models.Product
 <form id="form" class="form-horizontal" name="form">
     <div class="row">
@@ -26,7 +26,21 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label no-padding-right">单位</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="单位" name="unit" value="@Model.Unit"/>
+                    <select id="unit" name="unit" style="width:100%">
+                        @{
+                            foreach (var item in Info.ToSelectItems(InfoCategory.Unit,false))
+                            {
+                                if (Model.Unit == item)
+                                {
+                                <option value="@item" selected="selected">@item</option>
+                                }
+                                else
+                                {
+                                <option value="@item">@item</option>
+                                }
+                            }
+                        }
+                    </select>
                 </div>
             </div>
         </div>
@@ -36,7 +50,21 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label no-padding-right">辅助单位</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="辅助单位" name="unit2" value="@Model.Unit2"/>
+                    <select id="unit2" name="unit2" style="width:100%">
+                        @{
+                                foreach (var item in Info.ToSelectItems(InfoCategory.Unit,false))
+                                {
+                                    if (Model.Unit2 == item)
+                                    {
+                                        <option value="@item" selected="selected">@item</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item" >@item</option>
+                                    }
+                                }
+                        }
+                    </select>
                 </div>
             </div>
         </div>
@@ -46,7 +74,21 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label no-padding-right">商品类别</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="商品类别" name="categoryId" value="@Model.CategoryId"/>
+                    <select id="categoryId" name="categoryId" style="width:100%">
+                        @{
+                                foreach (var item in ProductCategory.ToSelectItems())
+                                {
+                                    if (Model.CategoryId.ToString() == item.Item1)
+                                    {
+                                    <option value="@item.Item1" selected="selected">@item.Item2</option>
+                                    }
+                                    else
+                                    {
+                                    <option value="@item.Item1">@item.Item2</option>
+                                    }
+                                }
+                        }
+                    </select>
                 </div>
             </div>
         </div>
@@ -56,7 +98,21 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label no-padding-right">商品颜色</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="商品颜色" name="colorId" value="@Model.Color"/>
+                    <select id="color" name="color" style="width:100%">
+                        @{
+                                foreach (var item in Info.ToSelectItems(InfoCategory.Color,true))
+                                {
+                                        if (Model.Color == item)
+                                        {
+                                        <option value="@item" selected="selected">@item</option>
+                                        }
+                                        else
+                                        {
+                                        <option value="@item">@item</option>
+                                        }
+                                }
+                        }
+                    </select>
                 </div>
             </div>
         </div>

@@ -1,4 +1,14 @@
 ﻿	var queryEntity={};
+
+	function onFormInit() {
+		$('.spinbox').spinbox('value', 1);
+		$("#unit").select2();
+		$("#unit2").select2();
+		$("#categoryId").select2();
+		$("#color").select2();
+		validate();
+	}
+
 	function bindItems(index) {
 		console.log(queryEntity);
 		$.get("/Product/List?pageIndex=" + index + "&pageSize=10",queryEntity, function(e) {
@@ -86,13 +96,7 @@
 		});
 	}
 
-	function onFormInit() {
-		$('.spinbox').spinbox('value', 1);
-		$("select").each(function(e) {
-				$(this).select2();
-		});
-		validate();
-	}
+
 
 	initIndexPage();
 	

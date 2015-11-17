@@ -75,7 +75,7 @@
                         <input type="text" class="form-control" id="searchSpecification" placeholder="规格型号" />
                     </th>
                     <th   style="width:150px">
-                        <select id="searchCategoryId" style="width:100%">
+                        <select id="searchCategory" style="width:100%">
                             @{
                                 foreach (var item in ProductCategory.ToSelectItems())
                                 {
@@ -151,7 +151,7 @@
                             @{
                                 foreach (var item in Info.ToSelectItems(InfoCategory.Unit))
                                 {
-                                    <option value="@item">@item</option>
+                                    <option value="@item" >@item</option>
                                 }
                             }
                         </select>

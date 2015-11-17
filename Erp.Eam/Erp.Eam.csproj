@@ -715,6 +715,7 @@
     <Content Include="Views\Home\404.cshtml" />
     <Content Include="Views\Info\_Index.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Product\_Index%28vue%29.cshtml" />
     <Content Include="Views\Product\_Index.cshtml" />
     <Content Include="Views\Product\_Edit.cshtml" />
     <None Include="Web.Debug.config">
