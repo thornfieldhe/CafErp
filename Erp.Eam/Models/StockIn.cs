@@ -10,6 +10,8 @@ namespace Erp.Eam.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
     using Business;
 
     using Microsoft.AspNet.Identity;
@@ -39,6 +41,7 @@ namespace Erp.Eam.Models
         /// <summary>
         /// 创建者
         /// </summary>
+        [NotMapped]
         public ApplicationUser Creator
         {
             get
@@ -50,6 +53,7 @@ namespace Erp.Eam.Models
         /// <summary>
         /// 更新者
         /// </summary>
+        [NotMapped]
         public string ModifyBy
         {
             get; set;
@@ -84,5 +88,36 @@ namespace Erp.Eam.Models
         }
 
         #endregion
+
+        #region 重载
+
+        protected override void PreInsert()
+        {
+            var stocks = new List<Stock>();
+            this.Details.ForEach(
+                                 s =>
+                                     {
+                                         var stock = this.DbContex.Set<Stock>().FirstOrDefault(r => r.ProductId == s.ProductId && r.Storehouse == this.Store);
+                                         if (stock == null)
+                                         {
+                                             stock = new Stock
+                                             {
+                                                 Amount = s.Amount,
+                                                 ProductId = s.ProductId,
+                                                 Storehouse = Store
+                                             };
+                                             stocks.Add(stock);
+                                         }
+                                         else
+                                         {
+                                             stock.Amount += s.Amount;
+                                         }
+                                     });
+            this.DbContex.Set<Stock>().AddRange(stocks);
+            base.PreInsert();
+        }
+
+        #endregion
+
     }
 }

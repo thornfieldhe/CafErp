@@ -66,6 +66,28 @@ namespace Erp.Eam
             .ForMember(n => n.Category, m => m.MapFrom(m1 => m1.CategoryId.HasValue ? m1.Category.Name.ToStr() : string.Empty)) // 单独处理Guid对象
             .ForMember(n => n.Color, m => m.MapFrom(m1 => m1.Color.ToStr()))
             .ForMember(n => n.Brand, m => m.MapFrom(m1 => m1.Brand.ToStr()));
+
+            Mapper.CreateMap<StockInView, StockIn>();
+            Mapper.CreateMap<StockIn, StockInView>();
+            Mapper.CreateMap<StockIn, StockInListView>()
+                .ForMember(n => n.Code, m => m.MapFrom(m1 => m1.Code.ToStr()))
+                .ForMember(n => n.CreatedBy, m => m.MapFrom(m1 => m1.Creator.FullName.ToStr()))
+                .ForMember(n => n.ModifyBy, m => m.MapFrom(m1 => m1.Creator.FullName.ToStr()))
+                .ForMember(n => n.CreatedAt, m => m.MapFrom(m1 => m1.CreatedDate.ToShortDateString()))
+                .ForMember(n => n.Store, m => m.MapFrom(m1 => m1.Store.ToStr()));
+
+            Mapper.CreateMap<StockView, Stock>();
+            Mapper.CreateMap<Stock, StockView>();
+            Mapper.CreateMap<Stock, StockListView>()
+                .ForMember(n => n.Storehouse, m => m.MapFrom(m1 => m1.Storehouse.ToStr()))
+                .ForMember(n => n.Product, m => m.MapFrom(m1 => m1.Product.Name))
+                .ForMember(n => n.Code, m => m.MapFrom(m1 => m1.Product.Code))
+                .ForMember(n => n.Specification, m => m.MapFrom(m1 => m1.Product.Specification))
+                .ForMember(n => n.Brand, m => m.MapFrom(m1 => m1.Product.Brand))
+                .ForMember(n => n.Category, m => m.MapFrom(m1 => m1.Product.Category.Name))
+                .ForMember(n => n.Unit, m => m.MapFrom(m1 => m1.Product.Unit))
+                .ForMember(n => n.Color, m => m.MapFrom(m1 => m1.Product.Color))
+                .ForMember(n => n.Brand, m => m.MapFrom(m1 => m1.Product.Brand));
         }
     }
 }

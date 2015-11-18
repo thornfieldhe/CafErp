@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="StockInViews.cs" company="">
+// <copyright file="StockViews.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   入库单视图
+//   库存视图
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -16,9 +16,19 @@ namespace Erp.Eam.Models
     /// <summary>
     /// 列表视图
     /// </summary>
-    public class StockInListView : IEntityBase
+    public class StockListView : IEntityBase
     {
         public Guid Id
+        {
+            get; set;
+        }
+
+        public string Storehouse
+        {
+            get; set;
+        }
+
+        public string Product
         {
             get; set;
         }
@@ -28,22 +38,32 @@ namespace Erp.Eam.Models
             get; set;
         }
 
-        public string CreatedBy
+        public string Specification
         {
             get; set;
         }
 
-        public string ModifyBy
+        public string Brand
         {
             get; set;
         }
 
-        public string CreatedAt
+        public string Category
         {
             get; set;
         }
 
-        public string Store
+        public string Unit
+        {
+            get; set;
+        }
+
+        public string Color
+        {
+            get; set;
+        }
+
+        public decimal Amount
         {
             get; set;
         }
@@ -53,24 +73,24 @@ namespace Erp.Eam.Models
     /// <summary>
     /// 对象视图
     /// </summary>
-    public class StockInView : IEntityBase
+    public class StockView : IEntityBase
     {
         public Guid Id
         {
             get; set;
         }
 
-        public string Code
+        public string Storehouse
         {
             get; set;
         }
 
-        public string Creator
+        public Guid ProductId
         {
             get; set;
         }
 
-        public string Store
+        public decimal Amount
         {
             get; set;
         }

@@ -47,6 +47,11 @@ namespace Erp.Eam.Business
             get; set;
         }
 
+        public DbSet<Stock> Stocks
+        {
+            get; set;
+        }
+
         public static EFDbContext Create()
         {
             return new EFDbContext();

@@ -45,7 +45,7 @@
 			queryEntity = {};
 			$("#searchCode").val("");
 			$("#searchName").val("");
-			$("#searchCategoryId").select2().val("").trigger("change");
+			$("#searchCategory").select2().val("").trigger("change");
 			$("#searchColor").select2().val("").trigger("change");
 			$("#searchUnit").select2().val("").trigger("change");
 			$("#searchSpecification").select2().val("").trigger("change");
