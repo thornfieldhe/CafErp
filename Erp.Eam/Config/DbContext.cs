@@ -15,7 +15,7 @@ namespace Erp.Eam.Business
 
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class EFDbContext : IdentityDbContext<ApplicationUser>
+    public partial class EFDbContext : IdentityDbContext<ApplicationUser>
     {
         public EFDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -37,6 +37,15 @@ namespace Erp.Eam.Business
             get; set;
         }
 
+        public DbSet<StockIn> StockIns
+        {
+            get; set;
+        }
+
+        public DbSet<StockInDetail> StockInDetails
+        {
+            get; set;
+        }
 
         public static EFDbContext Create()
         {

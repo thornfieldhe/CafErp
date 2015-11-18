@@ -56,11 +56,16 @@ namespace Erp.Eam
             Mapper.CreateMap<ProductCategoryView, ProductCategory>()
                 .ForMember(n => n.Id, m => m.MapFrom(r => r.Id.IsEmpty() ? Guid.NewGuid() : r.Id));
 
-            Mapper.CreateMap<Product, ProductListView>()
-                .ForMember(n => n.Category, m => m.MapFrom(m1 => m1.CategoryId.HasValue ? m1.Category.Name : string.Empty));
-            Mapper.CreateMap<ProductView, Product>()
-                .ForMember(n => n.Id, m => m.MapFrom(r => r.Id.IsEmpty() ? Guid.NewGuid() : r.Id));
+            Mapper.CreateMap<ProductView, Product>();
             Mapper.CreateMap<Product, ProductView>();
+            Mapper.CreateMap<Product, ProductListView>()
+            .ForMember(n => n.Code, m => m.MapFrom(m1 => m1.Code.ToStr()))
+            .ForMember(n => n.Name, m => m.MapFrom(m1 => m1.Name.ToStr()))
+            .ForMember(n => n.Specification, m => m.MapFrom(m1 => m1.Specification.ToStr()))
+            .ForMember(n => n.Unit, m => m.MapFrom(m1 => m1.Unit.ToStr()))
+            .ForMember(n => n.Category, m => m.MapFrom(m1 => m1.CategoryId.HasValue ? m1.Category.Name.ToStr() : string.Empty)) // 单独处理Guid对象
+            .ForMember(n => n.Color, m => m.MapFrom(m1 => m1.Color.ToStr()))
+            .ForMember(n => n.Brand, m => m.MapFrom(m1 => m1.Brand.ToStr()));
         }
     }
 }

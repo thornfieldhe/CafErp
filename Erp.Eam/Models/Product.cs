@@ -50,6 +50,14 @@ namespace Erp.Eam.Models
         }
 
         /// <summary>
+        /// 商品品牌
+        /// </summary>
+        public string Brand
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// 拼音码
         /// </summary>
         public string ShortName

@@ -27,6 +27,7 @@ namespace Erp.Eam.Controllers
             Func<Product, bool> func = r =>
             (string.IsNullOrWhiteSpace(query.Category) || (!string.IsNullOrWhiteSpace(query.Category) && r.CategoryId.ToStr() == query.Category.ToStr()))
             && (string.IsNullOrWhiteSpace(query.Color) || r.Color == query.Color.ToStr())
+            && (string.IsNullOrWhiteSpace(query.Specification) || r.Specification == query.Specification.ToStr())
             && (string.IsNullOrWhiteSpace(query.Unit.ToStr()) || (r.Unit == query.Unit || r.Unit2 == query.Unit.ToStr()))
             && (string.IsNullOrWhiteSpace(query.Name) || r.Name.Contains(query.Name.ToStr().Trim()) || r.ShortName.Contains(query.Name.ToStr().Trim().ToLower()))
             && (string.IsNullOrWhiteSpace(query.Code) || r.Code.ToLower().Contains(query.Code.ToStr().Trim().ToLower()));

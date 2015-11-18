@@ -6,6 +6,8 @@
 		$("#unit2").select2();
 		$("#categoryId").select2();
 		$("#color").select2();
+		$("#brand").select2();
+		$("#specification").select2();
 		validate();
 	}
 
@@ -23,6 +25,7 @@
 			$("#searchUnit").val(queryEntity.unit).trigger("change");
 			$("#searchCategory").val(queryEntity.category).trigger("change");
 			$("#searchColor").val(queryEntity.color).trigger("change");
+			$("#searchSpecification").val(queryEntity.specification).trigger("change");
 		});
 	}
 
@@ -32,7 +35,8 @@
 			name: $("#searchName").val(),
 			unit: $("#searchUnit").val(),
 			category: $("#searchCategory").val(),
-			color: $("#searchColor").val()
+			color: $("#searchColor").val(),
+			specification: $("#searchSpecification").val()
 		};
 		bindItems(1);
 	}
@@ -44,6 +48,7 @@
 			$("#searchCategoryId").select2().val("").trigger("change");
 			$("#searchColor").select2().val("").trigger("change");
 			$("#searchUnit").select2().val("").trigger("change");
+			$("#searchSpecification").select2().val("").trigger("change");
 		}
 
 	function validate() {
@@ -89,9 +94,17 @@
 					validators: {
 						notEmpty: {
 							message: '单位换算不能为空'
+						},
+						numeric: {
+							message: '单位换算必须是数字'
+						}, 
+							greaterThan: {
+								value : 0,
+								inclusive: false,
+								message: '单位换算必须大于0'
 						}
 					}
-				},
+				}
 			}
 		});
 	}

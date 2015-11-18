@@ -16,25 +16,28 @@
 					loadPage("/Home/Dashboard",null, "主页","#menuHome",true);
 		break;
 		case 1:
-					loadPage("/ProductCategory/Index", "基本信息", "商品类别","#menuProductCategory",false);
-		break;
-		case 2:
-					loadPage("/Product/Index", "基本信息", "商品资料","#menuProduct",false);
-		break;
-		case 3:
-					loadPage("/Manage/ArticlesIndex", "基本信息", "仓库设置","#menuArticle",false);
-		break;
-		case 4:
-					loadPage("/Home/ChangePasswordIndex", "用户管理", "员工设置","#menuChangePass",false);
-		break;		
-		case 5:
-					loadPage("/Home/SlideIndex", "基本信息", "仓库设置","#menuSlide",false);
-		break;
-		case 6:
 					loadPage("/Home/UserIndex", "用户管理", "用户管理","#menuUsers",false);
 		break;
-				case 7:
+		case 2:
+					loadPage("/Home/ChangePasswordIndex", "用户管理", "员工设置","#menuChangePass",false);
+		break;	
+		case 3:
+					loadPage("/ProductCategory/Index", "基本信息", "商品类别","#menuProductCategory",false);
+		break;
+		case 4:
+					loadPage("/Product/Index", "基本信息", "商品资料","#menuProduct",false);
+		break;
+		case 5:
 					loadPage("/Info/Index", "基本信息", "综合信息设置","#menuUsers",false);
+		break;
+		case 6:
+					loadPage("/StockIn/Index", "库存管理", "入库单","#menuArticle",false);
+		break;
+		case 7:
+					loadPage("/StockOut/Index", "库存管理", "出库单","#menuChangePass",false);
+		break;	
+		case 8:
+					loadPage("/Home/SlideIndex", "库存管理", "盘点单","#menuSlide",false);
 		break;
 		default:
 		}

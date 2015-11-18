@@ -13,9 +13,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-12">
                                         <div class="table-toolbar">
-                                            <a href="javascript:void(0);" class="btn btn-primary " onclick="newItem('Product','新增商品')">
-                                                <i class="fa  fa-plus"></i> 新增
-                                            </a>
+                                            @Html.Partial("_AddButton", new Tuple<string, string>("Product", "新增商品"))
                                         </div>
                                         <div id="itemGrid" class="row"></div>
                                     </div>
@@ -72,7 +70,14 @@
                         </select>
                     </th>
                     <th>
-                        <input type="text" class="form-control" id="searchSpecification" placeholder="规格型号" />
+                        <select id="searchSpecification" style="width:100%">
+                            @{
+                                foreach (var item in Info.ToSelectItems(InfoCategory.Specification))
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        </select>
                     </th>
                     <th   style="width:150px">
                         <select id="searchCategory" style="width:100%">
@@ -95,8 +100,7 @@
                         </select>
                     </th>
                     <th>
-                        <a href="javascript:void(0)" class="btn btn-danger "  onclick="filter()"><i class="fa fa-search"></i> 搜索</a>
-                        <a href="javascript:void(0)" class="btn"  onclick="resetSearch()"><i class="fa fa-times"></i> 重置</a>
+                        @Html.Partial("_GridSearch")
                     </th>
                 </tr>
             </thead>
@@ -110,8 +114,7 @@
                     <td>${it.Category}</td>
                     <td>${it.Color}</td>
                     <td>
-                        <a href="javascript:void(0)" class="btn   edit" onclick=" editItem('${it.Id}','Product','编辑商品') "><i class="fa fa-edit"></i> 编辑</a>
-                        <a href="javascript:void(0)" class="btn btn-danger  " onclick=" deleteItem('${it.Id}','Product','[${it.Name}]') "><i class="fa fa-trash-o"></i> 删除</a>
+                        @Html.Partial("_RowEditCmd1",new Tuple<string,string>("Product","编辑商品"))
                     </td>
                 </tr>
                 {%/each}

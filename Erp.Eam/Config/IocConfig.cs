@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IocConfig.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   依赖注入配置
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Erp.Eam.Business
 {
     using Autofac;
 
     using TAF.Core;
-    using TAF.Validation;
 
     /// <summary>
     /// 依赖注入配置
@@ -18,7 +21,9 @@ namespace Erp.Eam.Business
         /// <summary>
         /// 加载配置
         /// </summary>
-        /// <param name="builder">容器生成器</param>
+        /// <param name="builder">
+        /// 容器生成器
+        /// </param>
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);

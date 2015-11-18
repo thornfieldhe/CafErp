@@ -24,19 +24,115 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">商品类别</label>
+                <div class="col-sm-10">
+                    <select id="categoryId" name="categoryId" style="width: 100%">
+                        @{
+                            foreach (var item in ProductCategory.ToSelectItems())
+                            {
+                                if (Model.CategoryId.ToString() == item.Item1)
+                                {
+                                    <option value="@item.Item1" selected="selected">@item.Item2</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Item1">@item.Item2</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">商品规格</label>
+                <div class="col-sm-10">
+                    <select id="specification" name="specification" style="width: 100%">
+                        @{
+                            foreach (var item in Info.ToSelectItems(InfoCategory.Specification))
+                            {
+                                if (Model.Specification == item)
+                                {
+                                    <option value="@item" selected="selected">@item</option>
+                                }
+                                else
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">商品品牌</label>
+                <div class="col-sm-10">
+                    <select id="brand" name="brand" style="width: 100%">
+                        @{
+                            foreach (var item in Info.ToSelectItems(InfoCategory.Brand))
+                            {
+                                if (Model.Brand== item)
+                                {
+                                    <option value="@item" selected="selected">@item</option>
+                                }
+                                else
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">商品颜色</label>
+                <div class="col-sm-10">
+                    <select id="color" name="color" style="width: 100%">
+                        @{
+                            foreach (var item in Info.ToSelectItems(InfoCategory.Color, true))
+                            {
+                                if (Model.Color == item)
+                                {
+                                    <option value="@item" selected="selected">@item</option>
+                                }
+                                else
+                                {
+                                    <option value="@item">@item</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
                 <label class="col-sm-2 control-label no-padding-right">单位</label>
                 <div class="col-sm-10">
                     <select id="unit" name="unit" style="width:100%">
                         @{
-                            foreach (var item in Info.ToSelectItems(InfoCategory.Unit,false))
+                            foreach (var item in Info.ToSelectItems(InfoCategory.Unit, false))
                             {
                                 if (Model.Unit == item)
                                 {
-                                <option value="@item" selected="selected">@item</option>
+                                    <option value="@item" selected="selected">@item</option>
                                 }
                                 else
                                 {
-                                <option value="@item">@item</option>
+                                    <option value="@item">@item</option>
                                 }
                             }
                         }
@@ -52,65 +148,17 @@
                 <div class="col-sm-10">
                     <select id="unit2" name="unit2" style="width:100%">
                         @{
-                                foreach (var item in Info.ToSelectItems(InfoCategory.Unit,false))
+                            foreach (var item in Info.ToSelectItems(InfoCategory.Unit, false))
+                            {
+                                if (Model.Unit2 == item)
                                 {
-                                    if (Model.Unit2 == item)
-                                    {
-                                        <option value="@item" selected="selected">@item</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@item" >@item</option>
-                                    }
+                                    <option value="@item" selected="selected">@item</option>
                                 }
-                        }
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label class="col-sm-2 control-label no-padding-right">商品类别</label>
-                <div class="col-sm-10">
-                    <select id="categoryId" name="categoryId" style="width:100%">
-                        @{
-                                foreach (var item in ProductCategory.ToSelectItems())
+                                else
                                 {
-                                    if (Model.CategoryId.ToString() == item.Item1)
-                                    {
-                                    <option value="@item.Item1" selected="selected">@item.Item2</option>
-                                    }
-                                    else
-                                    {
-                                    <option value="@item.Item1">@item.Item2</option>
-                                    }
+                                    <option value="@item">@item</option>
                                 }
-                        }
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label class="col-sm-2 control-label no-padding-right">商品颜色</label>
-                <div class="col-sm-10">
-                    <select id="color" name="color" style="width:100%">
-                        @{
-                                foreach (var item in Info.ToSelectItems(InfoCategory.Color,true))
-                                {
-                                        if (Model.Color == item)
-                                        {
-                                        <option value="@item" selected="selected">@item</option>
-                                        }
-                                        else
-                                        {
-                                        <option value="@item">@item</option>
-                                        }
-                                }
+                            }
                         }
                     </select>
                 </div>
@@ -122,19 +170,19 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label no-padding-right">单位换算</label>
                 <div class="col-sm-10">
-                    <div class="spinbox spinbox-horizontal spinbox-right">
-                        <div class="spinbox-buttons	btn-group">
-                            <button type="button" class="btn spinbox-down blueberry">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn spinbox-up purple">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                        <input type="text" class="spinbox-input form-control" name="conversion" id="conversion" required value="@Model.Conversion" />
-                    </div>
-                    </div>
+                        <input type="text" class="spinbox-input form-control" name="conversion" id="conversion" value="@Model.Conversion"/>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">备注</label>
+                <div class="col-sm-10">
+                        <textarea class="spinbox-input form-control" name="note" id="note">@Model.Note</textarea>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row" id="unknownError" style="display: none;">

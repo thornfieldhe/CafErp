@@ -82,6 +82,14 @@ namespace Erp.Eam.Models
         }
 
         /// <summary>
+        /// 品牌
+        /// </summary>
+        public string Brand
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Gets or sets the conversion.
         /// </summary>
         public decimal Conversion
@@ -144,7 +152,23 @@ namespace Erp.Eam.Models
             get; set;
         }
 
+        public string Brand
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Gets or sets the color id.
+        /// </summary>
         public string Color
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// 品牌
+        /// </summary>
+        public string Specification
         {
             get; set;
         }

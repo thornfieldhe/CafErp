@@ -192,6 +192,7 @@
     <Compile Include="assets\js\ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="Config\DbContext.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\StockInController.cs" />
     <Compile Include="Migrations\201511050123099_InitTables.cs" />
     <Compile Include="Migrations\201511050123099_InitTables.Designer.cs">
       <DependentUpon>201511050123099_InitTables.cs</DependentUpon>
@@ -208,6 +209,18 @@
     <Compile Include="Migrations\201511160909225_update1.Designer.cs">
       <DependentUpon>201511160909225_update1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511171228182_update2.cs" />
+    <Compile Include="Migrations\201511171228182_update2.Designer.cs">
+      <DependentUpon>201511171228182_update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511171520527_addtables.cs" />
+    <Compile Include="Migrations\201511171520527_addtables.Designer.cs">
+      <DependentUpon>201511171520527_addtables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511171524059_update3.cs" />
+    <Compile Include="Migrations\201511171524059_update3.Designer.cs">
+      <DependentUpon>201511171524059_update3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Config\ContextWapper.cs" />
     <Compile Include="Config\IocConfig.cs" />
@@ -220,14 +233,19 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CodeSmith\Info.cs" />
     <Compile Include="Models\CodeSmith\Product.cs" />
+    <Compile Include="Models\CodeSmith\StockInDetails.cs" />
+    <Compile Include="Models\CodeSmith\StockIn.cs" />
     <Compile Include="Models\Info.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\CodeSmith\ProductCategory.cs" />
+    <Compile Include="Models\StockIn.cs" />
+    <Compile Include="Models\StockInDetails.cs" />
     <Compile Include="Models\ViewModels\InfoView.cs" />
     <Compile Include="Models\ViewModels\ProductViews.cs" />
     <Compile Include="Models\ViewModels\ProductCategoryView.cs" />
     <Compile Include="Models\ViewModels\ChangedPasswordView.cs" />
+    <Compile Include="Models\ViewModels\StockInViews.cs" />
     <Compile Include="Models\ViewModels\UserViews.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -718,6 +736,10 @@
     <Content Include="Views\Product\_Index%28vue%29.cshtml" />
     <Content Include="Views\Product\_Index.cshtml" />
     <Content Include="Views\Product\_Edit.cshtml" />
+    <Content Include="Views\Shared\_RowEditCmd1.cshtml" />
+    <Content Include="Views\Shared\_AddButton.cshtml" />
+    <Content Include="Views\Shared\_GridSearch.cshtml" />
+    <Content Include="Views\StockIn\_Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -747,6 +769,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511160909225_update1.resx">
       <DependentUpon>201511160909225_update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511171228182_update2.resx">
+      <DependentUpon>201511171228182_update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511171520527_addtables.resx">
+      <DependentUpon>201511171520527_addtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511171524059_update3.resx">
+      <DependentUpon>201511171524059_update3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
