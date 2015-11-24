@@ -78,7 +78,7 @@ namespace Erp.Eam
 
             Mapper.CreateMap<StockView, Stock>();
             Mapper.CreateMap<Stock, StockView>();
-            Mapper.CreateMap<Stock, StockListView>()
+            Mapper.CreateMap<Stock, StockChangeListView>()
                 .ForMember(n => n.Storehouse, m => m.MapFrom(m1 => m1.Storehouse.ToStr()))
                 .ForMember(n => n.Product, m => m.MapFrom(m1 => m1.Product.Name))
                 .ForMember(n => n.Code, m => m.MapFrom(m1 => m1.Product.Code))
@@ -86,6 +86,9 @@ namespace Erp.Eam
                 .ForMember(n => n.Brand, m => m.MapFrom(m1 => m1.Product.Brand))
                 .ForMember(n => n.Category, m => m.MapFrom(m1 => m1.Product.Category.Name))
                 .ForMember(n => n.Unit, m => m.MapFrom(m1 => m1.Product.Unit))
+                .ForMember(n => n.Stock, m => m.MapFrom(m1 => m1.Amount))
+                .ForMember(n => n.Amount, m => m.MapFrom(m1 => 1m))
+                .ForMember(n => n.Units, m => m.MapFrom(m1 => new Tuple<string, string>(m1.Product.Unit, m1.Product.Unit2)))
                 .ForMember(n => n.Color, m => m.MapFrom(m1 => m1.Product.Color))
                 .ForMember(n => n.Brand, m => m.MapFrom(m1 => m1.Product.Brand));
         }

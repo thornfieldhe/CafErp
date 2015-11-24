@@ -1,0 +1,4 @@
+﻿<a href="javascript:void(0)" class="btn   edit" v-on:click="edit(it,$index)"  v-show="!it.EditModel"><i class="fa fa-edit"></i> 编辑</a>
+<a href="javascript:void(0)" class="btn btn-danger  "  v-on:click="delete(it)"  v-show="!it.EditModel"><i class="fa fa-trash-o"></i> 删除</a>
+<a href="javascript:void(0)" class="btn btn-default  " v-on:click="it.EditModel = false"  v-show="it.EditModel"><i class="fa   fa-mail-reply"></i> 取消</a>
+<a href="javascript:void(0)" class="btn btn-primary  " v-on:click="update(it,$index)"  v-show="it.EditModel"><i class="fa    fa-floppy-o"></i> 更新</a>

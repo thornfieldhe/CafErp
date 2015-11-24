@@ -12,7 +12,6 @@
 	}
 
 	function bindItems(index) {
-		console.log(queryEntity);
 		$.get("/Product/List?pageIndex=" + index + "&pageSize=10",queryEntity, function(e) {
 			e = $.extend(true, e, { colspan: 7, pageChangeAction:  "bindItems" });
 			var html = juicer($("#table").html(), { data: e });

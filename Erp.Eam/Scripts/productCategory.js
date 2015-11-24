@@ -34,7 +34,7 @@ function onClickDropdownList(event, treeId, treeNode) {
 }	
 
 function loadTree() {
-		$.get("/ProductCategory/GetAll", function(e) {
+		$.get("/ProductCategory/GetViews", function(e) {
 			treeNodes = e.Data;
 			var datas=  _.map(e.Data,function(n) {
 				return  { name: n.Name, id:n.Id,pId:n.ParentId,levelCode:n.LevelCode};

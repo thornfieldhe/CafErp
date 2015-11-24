@@ -1,1 +1,125 @@
-﻿
+﻿@using System.Web.Optimization
+@using Erp.Eam.Models
+<div class="row" id="main">
+    <div class="col-xs-12 col-md-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-primary">
+                <span class="widget-caption">入库单管理</span>
+            </div>
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-6">
+                        <div class="tabbable">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="dataTables_wrapper form-inline no-footer">
+                                        <div class="dataTables_filter">
+                                            <label><input type="search" class="form-control input-sm" placeholder="" aria-controls="simpledatatable" id="search" v-on:keyup.enter="addStock" v-model="query.code" ></label>
+                                                选择仓库  <select id="store" style="width: 80px" >
+                                                @{
+                                                    foreach (var item in Info.ToSelectItems(InfoCategory.Storehouse))
+                                                    {
+                                                        <option value="@item">@item</option>
+                                                    }
+                                                }
+                                            </select>
+                                            
+                                        </div>
+                                        <div class="dataTables_length" id="simpledatatable_length">
+                                            @Html.Partial("_AddButton", new Tuple<string, string>("StockIn", "新增入库单"))
+                                        </div>
+                                    </div>
+
+                                    <div id="itemGrid" class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-striped table-hover table-bordered ">
+                                                <thead>
+                                                <tr role="row">
+                                                    <th >
+                                                        序号
+                                                    </th>
+                                                    <th style="width: 150px">
+                                                        商品编号
+                                                    </th>
+                                                    <th style="width: 200px">
+                                                        商品名称
+                                                    </th>
+                                                    <th>
+                                                        数量
+                                                    </th>
+                                                    <th>
+                                                        单位
+                                                    </th>
+                                                    <th>
+                                                        规格型号
+                                                    </th>
+                                                    <th>
+                                                        商品类别
+                                                    </th>
+                                                    <th>
+                                                        商品颜色
+                                                    </th>
+                                                    <th>
+                                                        仓库
+                                                    </th>
+                                                    <th>
+                                                        库存
+                                                    </th>
+                                                    <th style="width: 200px;">
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="it in items" id="row_{{ $index }}">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{it.Code}}</td>
+                                                        <td>{{it.Product}}</td>
+                                                        <td>
+                                                            <div v-show="!it.EditModel" >{{it.Amount}}</div>
+                                                            <div v-show="it.EditModel">
+                                                                <div class="spinbox spinbox-horizontal spinbox-right">
+                                                                    <div class="spinbox-buttons	btn-group">
+                                                                        <button type="button" class="btn spinbox-down blueberry">
+                                                                            <i class="fa fa-minus"></i>
+                                                                        </button>
+                                                                        <button type="button" class="btn spinbox-up purple">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <input type="text" class="spinbox-input form-control" placeholder="数量" value="{{it.Amount}}" style="width:80px">
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div v-show="!it.EditModel" >{{it.Unit}}</div>
+                                                            <div v-show="it.EditModel">
+                                                                <select  style="width:100%" >
+                                                                            <option value="{{it.Units.Item1}}">{{it.Units.Item1}}</option>
+                                                                            <option value="{{it.Units.Item2}}">{{it.Units.Item2}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{it.Specification}}</td>
+                                                        <td>{{it.Category}}</td>
+                                                        <td>{{it.Color}}</td>
+                                                        <td>{{it.Storehouse}}</td>
+                                                        <td>{{it.Stock}}</td>
+                                                        <td>
+                                                            @Html.Partial("_RowEditCmd2")
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="horizontal-space"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/scripts/stockin.js"></script>

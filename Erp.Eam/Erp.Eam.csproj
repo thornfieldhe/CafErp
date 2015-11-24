@@ -319,6 +319,7 @@
     <Content Include="Scripts\info.js" />
     <Content Include="Scripts\productCategory.js" />
     <Content Include="Scripts\changePassword.js" />
+    <Content Include="Scripts\stockIn.js" />
     <Content Include="Scripts\user.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="assets\js\backbone.min.js" />
@@ -740,6 +741,7 @@
     <Content Include="Views\Shared\_AddButton.cshtml" />
     <Content Include="Views\Shared\_GridSearch.cshtml" />
     <Content Include="Views\StockIn\_Index.cshtml" />
+    <Content Include="Views\Shared\_RowEditCmd2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

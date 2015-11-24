@@ -53,21 +53,32 @@ namespace Erp.Eam.Models
             get; set;
         }
 
-        public string Unit
+        public Tuple<string, string> Units
         {
             get; set;
         }
 
+        public string Unit
+        {
+            get; set;
+        }
         public string Color
         {
             get; set;
         }
 
+        public decimal Stock
+        {
+            get; set;
+        }
+    }
+
+    public class StockChangeListView : StockListView
+    {
         public decimal Amount
         {
             get; set;
         }
-
     }
 
     /// <summary>
