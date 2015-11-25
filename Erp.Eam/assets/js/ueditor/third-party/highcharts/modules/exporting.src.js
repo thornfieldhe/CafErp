@@ -416,7 +416,7 @@ extend(Chart.prototype, {
 	 * Display a popup menu for choosing the export type
 	 *
 	 * @param {String} className An identifier for the menu
-	 * @param {Array} items A collection with text and onclicks for the items
+	 * @param {Array} items A collection with text and onclicks for the list
 	 * @param {Number} x The x position of the opener button
 	 * @param {Number} y The y position of the opener button
 	 * @param {Number} width The width of the opener button

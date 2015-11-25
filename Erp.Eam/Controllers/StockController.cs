@@ -10,6 +10,7 @@
 namespace Erp.Eam.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -18,6 +19,7 @@ namespace Erp.Eam.Controllers
     using Erp.Eam.Models;
 
     using Microsoft.Ajax.Utilities;
+    using Microsoft.AspNet.Identity;
 
     using TAF;
     using TAF.Mvc;
@@ -83,12 +85,14 @@ namespace Erp.Eam.Controllers
                     Category = product.Category.Name,
                     Color = product.Color,
                     Units = new Tuple<string, string>(product.Unit, product.Unit2),
+                    ProductId = product.Id,
                     Unit = product.Unit,
                     Id = Guid.NewGuid()
                 }), JsonRequestBehavior.AllowGet);
             }
             return this.Json(new ActionResultData<StockChangeListView>(Mapper.Map<StockChangeListView>(stock)), JsonRequestBehavior.AllowGet);
         }
+
     }
 }
 

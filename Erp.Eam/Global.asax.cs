@@ -73,8 +73,7 @@ namespace Erp.Eam
                 .ForMember(n => n.Code, m => m.MapFrom(m1 => m1.Code.ToStr()))
                 .ForMember(n => n.CreatedBy, m => m.MapFrom(m1 => m1.Creator.FullName.ToStr()))
                 .ForMember(n => n.ModifyBy, m => m.MapFrom(m1 => m1.Creator.FullName.ToStr()))
-                .ForMember(n => n.CreatedAt, m => m.MapFrom(m1 => m1.CreatedDate.ToShortDateString()))
-                .ForMember(n => n.Store, m => m.MapFrom(m1 => m1.Store.ToStr()));
+                .ForMember(n => n.CreatedAt, m => m.MapFrom(m1 => m1.CreatedDate.ToShortDateString()));
 
             Mapper.CreateMap<StockView, Stock>();
             Mapper.CreateMap<Stock, StockView>();
@@ -91,6 +90,8 @@ namespace Erp.Eam
                 .ForMember(n => n.Units, m => m.MapFrom(m1 => new Tuple<string, string>(m1.Product.Unit, m1.Product.Unit2)))
                 .ForMember(n => n.Color, m => m.MapFrom(m1 => m1.Product.Color))
                 .ForMember(n => n.Brand, m => m.MapFrom(m1 => m1.Product.Brand));
+            Mapper.CreateMap<StockChangeListView, StockInDetail>()
+                .ForMember(n => n.Store, m => m.MapFrom(m1 => m1.Storehouse));
         }
     }
 }

@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Erp.Eam.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
@@ -15,6 +16,8 @@ namespace Erp.Eam.Models
     using Business;
 
     using Microsoft.AspNet.Identity;
+
+    using TAF.Utility;
 
     [Table("StockIns")]
     public partial class StockIn
@@ -72,14 +75,6 @@ namespace Erp.Eam.Models
         }
 
         /// <summary>
-        /// 仓库
-        /// </summary>
-        public string Store
-        {
-            get; set;
-        }
-
-        /// <summary>
         /// 入库明细
         /// </summary>
         public virtual List<StockInDetail> Details
@@ -93,26 +88,38 @@ namespace Erp.Eam.Models
 
         protected override void PreInsert()
         {
+            var preCode = DateTime.Now.ToDateString(true);
+            var stockItem = StockIn.Get(r => r.Code.StartsWith(preCode)).OrderByDescending(r => r.Code).FirstOrDefault();
+            if (stockItem != null)
+            {
+                this.Code = "RK" + (stockItem.Code.ReplaceFirst("RK", "").ToLong() + 1).ToString();
+            }
+            else
+            {
+                this.Code = $"RK{preCode}001";
+            }
+
+
             var stocks = new List<Stock>();
             this.Details.ForEach(
-                                 s =>
-                                     {
-                                         var stock = this.DbContex.Set<Stock>().FirstOrDefault(r => r.ProductId == s.ProductId && r.Storehouse == this.Store);
-                                         if (stock == null)
-                                         {
-                                             stock = new Stock
-                                             {
-                                                 Amount = s.Amount,
-                                                 ProductId = s.ProductId,
-                                                 Storehouse = Store
-                                             };
-                                             stocks.Add(stock);
-                                         }
-                                         else
-                                         {
-                                             stock.Amount += s.Amount;
-                                         }
-                                     });
+                     s =>
+                     {
+                         var stock = this.DbContex.Set<Stock>().FirstOrDefault(r => r.ProductId == s.ProductId && r.Storehouse == s.Store);
+                         if (stock == null)
+                         {
+                             stock = new Stock
+                             {
+                                 Amount = s.Amount,
+                                 ProductId = s.ProductId,
+                                 Storehouse = s.Store
+                             };
+                             stocks.Add(stock);
+                         }
+                         else
+                         {
+                             stock.Amount += s.Amount;
+                         }
+                     });
             this.DbContex.Set<Stock>().AddRange(stocks);
             base.PreInsert();
         }

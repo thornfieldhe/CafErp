@@ -46,26 +46,14 @@
 }
 
 //弹出对话框删除对象
-function delInDialog(title,url,id,subscriber) {
+function delInDialogBase(title,calback) {
 	bootbox.confirm({
 			message: "确认删除"+title+"么？",
 			className: "modal-darkorange",
 			callback:function(result) {
 				if (result) {
-						$.ajax({
-							type: "post",
-							url: url,
-							data: {id:id},
-							async: false,
-							success: function(e) {
-								if (e.Status === 1) {									
-									result = false;
-								} else {
-									erp.subscriber.publish(subscriber);
-								}
-							}
-						});
-			}
+					calback(result);
+				}
 			},
 			buttons: {
 				cancel: {
@@ -80,6 +68,24 @@ function delInDialog(title,url,id,subscriber) {
 			}
 		});
 	}
+
+function delInDialog(title,url,id,subscriber) {
+	delInDialogBase(title, function(result) {
+			$.ajax({
+				type: "post",
+				url: url,
+				data: { id: id },
+				async: false,
+				success: function(e) {
+					if (e.Status === 1) {
+						result = false;
+					} else {
+						erp.subscriber.publish(subscriber);
+					}
+				}
+			});
+	});
+}
 
 	function newItem(baseUrl,title) {
 		$.get("/"+baseUrl+"/Edit", function(e) {

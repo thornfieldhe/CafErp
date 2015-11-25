@@ -33,6 +33,11 @@ namespace Erp.Eam.Models
             get; set;
         }
 
+        public Guid ProductId
+        {
+            get; set;
+        }
+
         public string Code
         {
             get; set;
@@ -56,7 +61,7 @@ namespace Erp.Eam.Models
         public Tuple<string, string> Units
         {
             get; set;
-        }
+        } = new Tuple<string, string>("", "");
 
         public string Unit
         {

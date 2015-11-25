@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201511181256046_addtable.Designer.cs">
       <DependentUpon>201511181256046_addtable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511250947045_change.cs" />
+    <Compile Include="Migrations\201511250947045_change.Designer.cs">
+      <DependentUpon>201511250947045_change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Config\ContextWapper.cs" />
     <Compile Include="Config\IocConfig.cs" />
@@ -777,6 +781,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511181256046_addtable.resx">
       <DependentUpon>201511181256046_addtable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511250947045_change.resx">
+      <DependentUpon>201511250947045_change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

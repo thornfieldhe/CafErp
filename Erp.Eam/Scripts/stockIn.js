@@ -8,7 +8,7 @@
 		items:[]
 		},
 		methods: {
-			addStock:function() {
+			add:function() {
 				var $this = this;
 				if ($this.query.storehouse === "") {
 					Notify("请选择仓库！", 'top-right', '5000', 'danger', 'fa-times', true);
@@ -18,7 +18,6 @@
 						if (e.Status === 0) {
 							$.extend(true, e.Data, { EditModel:false });
 							var item=_.find($this.items, function (p){return p.Code===e.Data.Code});
-							console.log(item);
 							if (item!==undefined) {
 								item.Amount += 1;
 							} else {
@@ -42,27 +41,25 @@
 				vue.items[index].Unit = $("#row_"+index+" select").val();
 				vue.items[index].Amount = $("#row_"+index+" [type='text']").val();
 			},
+			cancel(it,index) {
+				it.EditModel = false;
+				$("#row_"+index+" select").val(vue.items[index].Unit).trigger("change");
+				$("#row_"+index+" [type='text']").val(vue.items[index].Amount);
+			},
 			delete(it) {
-			var $this = this;
-				bootbox.confirm({
-					message: "确认删除产品["+it.Product+"]么？",
-					className: "modal-darkorange",
-					callback:function(result) {
-						if (result) {
-							var news=	_.reject($this.items, function(i) {return i.Id === it.Id; });
-							$this.items = news;
-						}
-					},
-					buttons: {
-						cancel: {
-							label: " <i class='fa   fa-mail-reply'></i> 取消",
-							className: "btn-default",
-							callback: function () { }
-						},
-						confirm: {
-							label: "<i class='fa   fa-trash-o'></i>删除",
-							className: "btn-danger"
-						}
+				var $this = this;
+				delInDialogBase(it.Product, function(result) {
+					var news = _.reject($this.items, function(i) { return i.Id === it.Id; });
+					$this.items = news;
+				});
+			},
+			submit() {
+				$.post("/StockIn/BatchAdding", { list: this.items }, function(e) {
+					if (e.Status === 1) {
+						Notify(e.Message, 'top-right', '5000', 'success', 'fa-times', true);
+					} else {
+						Notify("入库单新增成功！", 'top-right', '5000', 'danger', 'fa-times', true);
+						this.items=[];
 					}
 				});
 			}

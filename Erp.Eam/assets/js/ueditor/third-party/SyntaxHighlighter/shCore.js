@@ -859,7 +859,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
 
             /** Collection of toolbar items. */
             items : {
-                // Ordered lis of items in the toolbar. Can't expect `for (var n in items)` to be consistent.
+                // Ordered lis of items in the toolbar. Can't expect `for (var n in list)` to be consistent.
                 list: ['expandSource', 'help'],
 
                 expandSource: {

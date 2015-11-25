@@ -18,22 +18,41 @@ namespace Erp.Eam.Models
         /// <summary>
         /// 产品Id
         /// </summary>
-        public Guid ProductId { get; set; }
+        public Guid ProductId
+        {
+            get; set;
+        }
 
         /// <summary>
         /// 入库量
         /// </summary>
-        public decimal Amount { get; set; }
+        public decimal Amount
+        {
+            get; set;
+        }
 
         /// <summary>
         /// 入库单编号
         /// </summary>
-        public Guid StockInId { get; set; }
+        public Guid StockInId
+        {
+            get; set;
+        }
 
+        /// <summary>
+        /// 仓库
+        /// </summary>
+        public string Store
+        {
+            get; set;
+        }
         /// <summary>
         /// 入库单
         /// </summary>
         [ForeignKey("StockInId")]
-        public StockIn StockIn { get; set; }
+        public StockIn StockIn
+        {
+            get; set;
+        }
     }
 }

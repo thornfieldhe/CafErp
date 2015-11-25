@@ -10,8 +10,15 @@
 namespace Erp.Eam.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
+
+    using AutoMapper;
+
     using Erp.Eam.Models;
+
+    using Microsoft.AspNet.Identity;
+
     using TAF;
     using TAF.Mvc;
     using TAF.Utility;
@@ -21,23 +28,23 @@ namespace Erp.Eam.Controllers
     /// </summary>
     public class StockInController : BaseController<StockIn, StockInView, StockInListView>
     {
-        public ActionResult List(StockInListView query, int pageIndex, int pageSize = 20)
+        public ActionResult BatchAdding(IList<StockChangeListView> list)
         {
-            Func<StockIn, bool> func = r =>
-              (string.IsNullOrWhiteSpace(query.Code) || (!string.IsNullOrWhiteSpace(query.Code) && r.Code.ToStr().ToLower().Contains(query.Code.ToStr().ToLower())))
-              && (string.IsNullOrWhiteSpace(query.Store) || (!string.IsNullOrWhiteSpace(query.Store) && r.Store.ToStr() == query.Store.ToStr()));
-
-            return Json(
-                        StockIn.Pages(
-                                      new Pager<StockInListView>
-                                      {
-                                          PageIndex = pageIndex,
-                                          PageSize = pageSize
-                                      },
-                            func,
-                            r => r.CreatedBy,
-                            false),
-                JsonRequestBehavior.AllowGet);
+            try
+            {
+                var stockIn = new StockIn()
+                {
+                    Details = Mapper.Map<List<StockInDetail>>(list),
+                    CreatedBy = User.Identity.GetUserId(),
+                    ModifyBy = User.Identity.GetUserId()
+                };
+                stockIn.Create();
+                return Json(new ActionResultStatus());
+            }
+            catch (Exception ex)
+            {
+                return Json(new ActionResultStatus(ex));
+            }
         }
     }
 }

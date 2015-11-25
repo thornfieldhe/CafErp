@@ -25,7 +25,6 @@ namespace Erp.Eam.Models
             AddDescription("Code:" + Code.ToStr());
             AddDescription("CreatedBy:" + CreatedBy.ToStr());
             AddDescription("ModifyBy:" + ModifyBy.ToStr());
-            AddDescription("Store:" + Store.ToStr());
         }
         #endregion
     }

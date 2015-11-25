@@ -23,6 +23,7 @@ namespace Erp.Eam.Models
         {
             base.AddDescriptions();
             AddDescription("Amount:" + Amount.ToStr());
+            AddDescription("Store:" + Store.ToStr());
         }
         #endregion
     }
