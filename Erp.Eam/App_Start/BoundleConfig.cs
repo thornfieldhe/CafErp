@@ -43,7 +43,8 @@
 
             bundles.Add(new ScriptBundle("~/assets/app").Include(
                      "~/scripts/index.js",
-                     "~/scripts/base.js"
+                     "~/scripts/base.js",
+                     "~/scripts/utility.js"
                      ));
 
             BundleTable.EnableOptimizations = false;

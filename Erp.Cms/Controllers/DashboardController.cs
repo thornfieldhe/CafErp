@@ -35,19 +35,19 @@ namespace Erp.Cms.Controllers
 
         public ActionResult GetAllArticles(Guid columnId)
         {
-            var column = Article.Get(columnId);
+            var column = Article.Find(columnId);
             return this.Json(Article.Get(r => r.LevelCode.StartsWith(column.LevelCode) && r.Id != column.Id).OrderBy(r => r.LevelCode).ToList(), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult LoadArticle(Guid aritcleId)
         {
-            var article = Article.Get(aritcleId);
+            var article = Article.Find(aritcleId);
             return this.Json(new
             {
                 Name = article.Name,
                 CreatedDate = article.CreatedDate.ToShortDateString(),
                 Content = article.Content,
-                Category=article.Category
+                Category = article.Category
             }, JsonRequestBehavior.AllowGet);
         }
     }

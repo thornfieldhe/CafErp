@@ -317,6 +317,7 @@
     <Content Include="assets\img\sort_desc.png" />
     <Content Include="assets\img\sort_desc_disabled.png" />
     <Content Include="assets\img\temp1.png" />
+    <Content Include="assets\js\fiber.min.js" />
     <Content Include="assets\js\vue.min.js" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\product.js" />
@@ -722,6 +723,7 @@
     <Content Include="assets\js\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="assets\js\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="assets\js\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="Scripts\utility.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\_ChangePassword.cshtml" />
@@ -738,7 +740,7 @@
     <Content Include="Views\Home\404.cshtml" />
     <Content Include="Views\Info\_Index.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
-    <Content Include="Views\Product\_Index%28vue%29.cshtml" />
+    <Content Include="Views\Product\_Index2.cshtml" />
     <Content Include="Views\Product\_Index.cshtml" />
     <Content Include="Views\Product\_Edit.cshtml" />
     <Content Include="Views\Shared\_RowEditCmd1.cshtml" />
@@ -746,6 +748,7 @@
     <Content Include="Views\Shared\_GridSearch.cshtml" />
     <Content Include="Views\StockIn\_Index.cshtml" />
     <Content Include="Views\Shared\_RowEditCmd2.cshtml" />
+    <Content Include="Views\Shared\_tfoot2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

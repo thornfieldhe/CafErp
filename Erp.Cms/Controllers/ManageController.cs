@@ -57,7 +57,7 @@ namespace Erp.Cms.Controllers
         {
             get
             {
-                return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return this.signInManager ?? OwinContextExtensions.Get<ApplicationSignInManager>(this.HttpContext.GetOwinContext());
             }
 
             private set
@@ -218,7 +218,7 @@ namespace Erp.Cms.Controllers
         {
             try
             {
-                var article = Article.Get(column.Id);
+                var article = Article.Find(column.Id);
                 if (article != null)
                 {
                     article.Name = column.Name;
@@ -262,7 +262,7 @@ namespace Erp.Cms.Controllers
         {
             try
             {
-                var article = Article.Get(id);
+                var article = Article.Find(id);
                 if (article != null)
                 {
                     article.Delete();
@@ -317,7 +317,7 @@ namespace Erp.Cms.Controllers
         {
             try
             {
-                var article = Article.Get(catalog.Id);
+                var article = Article.Find(catalog.Id);
                 if (article != null)
                 {
                     article.Name = catalog.Name;
@@ -358,7 +358,7 @@ namespace Erp.Cms.Controllers
 
         public ActionResult ArticleEdit(Guid? id, Guid? parentId)
         {
-            return this.PartialView("_ArticleEdit", id.HasValue ? Article.Get(id.Value) : new Article() { ParentId = parentId });
+            return this.PartialView("_ArticleEdit", id.HasValue ? Article.Find(id.Value) : new Article() { ParentId = parentId });
         }
 
         /// <summary>
@@ -393,7 +393,7 @@ namespace Erp.Cms.Controllers
         {
             try
             {
-                var item = Article.Get(article.Id);
+                var item = Article.Find(article.Id);
                 if (item != null)
                 {
                     item.Name = article.Name;
@@ -503,7 +503,7 @@ namespace Erp.Cms.Controllers
         {
             try
             {
-                var slide = Slide.Get(id);
+                var slide = Slide.Find(id);
                 if (slide == null)
                 {
                     return this.Json(new ActionResultStatus(10, "幻灯片不存在！"), JsonRequestBehavior.AllowGet);
@@ -535,7 +535,7 @@ namespace Erp.Cms.Controllers
         {
             try
             {
-                var slide = Slide.Get(id);
+                var slide = Slide.Find(id);
                 if (slide != null)
                 {
                     slide.Rate = rate;

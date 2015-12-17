@@ -40,7 +40,7 @@
 			}
 		}
 	});
-	if (callback!==null) {
+	if (callback!==undefined) {
 		callback();
 	}
 }

@@ -22,6 +22,12 @@ namespace Erp.Eam.Controllers
     /// </summary>
     public class ProductController : BaseController<Product, ProductView, ProductListView>
     {
+
+        public ActionResult Index2()
+        {
+            return PartialView("_Index2");
+        }
+
         public ActionResult List(ProductListView query, int pageIndex, int pageSize = 20)
         {
             Func<Product, bool> func = r =>
