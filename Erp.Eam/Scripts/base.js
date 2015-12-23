@@ -118,22 +118,7 @@ function delInDialog(title,url,id,subscriber) {
 	'tag::operationOpen': "{%",
 	'tag::operationClose': "}"
 	});
-//	//Vue注册组件
-//	//新增按钮
-//	Vue.component('add-button', {
-//		props: ['title', 'model'],
-//		template: '<a href="javascript:void(0);" class="btn btn-primary " onclick="newItem(\'{{model}}\',\'{{title}}\')"><i class="fa  fa-plus"></i> 新增</a>'
-//	});
-//	//行搜索按钮
-//	Vue.component('row-search', {
-//		props: ['title', 'model'],
-//		template: '<a href="javascript:void(0)" class="btn btn-danger "   onclick="filter()"  onclick="resetSearch()"><i class="fa fa-search"></i> 搜索</a> <a href="javascript:void(0)" class="btn"><i class="fa fa-times"></i> 重置</a>'
-//	});
-//		//行编辑按钮1
-//	Vue.component('row-edit1', {
-//		props: ['title', 'model','id','name'],
-//		template: '<a href="javascript:void(0)" class="btn   edit" onclick=" editItem(\'{{id}}\', \'{{model}}\', \'{{title}}\') "><i class="fa fa-edit"></i> 编辑</a> <a href="javascript:void(0)" class="btn btn-danger  " onclick=" deleteItem(\'{{id}}\', \'{{model}}\', \'[{{name}}]\') "><i class="fa fa-trash-o"></i> 删除</a>'
-//	});
+
 	//erp.subscriber
 	erp = {
 	subscriber :{

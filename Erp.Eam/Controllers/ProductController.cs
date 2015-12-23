@@ -39,14 +39,14 @@ namespace Erp.Eam.Controllers
             && (string.IsNullOrWhiteSpace(query.Code) || r.Code.ToLower().Contains(query.Code.ToStr().Trim().ToLower()));
 
             return Json(
-                        Product.Pages(
-                                      new Pager<ProductListView>
-                                      {
-                                          PageIndex = pageIndex,
-                                          PageSize = pageSize
-                                      },
-                                      func,
-                                      r => r.Name),
+               new ActionResultData<Pager<ProductListView>>(Product.Pages(
+                    new Pager<ProductListView>
+                    {
+                        PageIndex = pageIndex,
+                        PageSize = pageSize
+                    },
+                    func,
+                    r => r.Name)),
                     JsonRequestBehavior.AllowGet);
         }
     }

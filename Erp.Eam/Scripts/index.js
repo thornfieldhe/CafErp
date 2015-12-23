@@ -22,10 +22,10 @@
 					loadPage("/Home/ChangePasswordIndex", "用户管理", "员工设置","#menuChangePass",false);
 		break;	
 		case 3:
-					loadPage("/ProductCategory/Index", "基本信息", "商品类别","#menuProductCategory",false);
+		    loadPage("/Product/Index", "基本信息", "商品类别", "#menuProductCategory", false);
 		break;
 		case 4:
-					loadPage("/Product/Index", "基本信息", "商品资料","#menuProduct",false);
+					loadPage("/Product/Index2", "基本信息", "商品资料","#menuProduct",false);
 		break;
 		case 5:
 					loadPage("/Info/Index", "基本信息", "综合信息设置","#menuUsers",false);

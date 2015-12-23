@@ -1,20 +1,10 @@
 ﻿	var queryEntity={};
 
-	function onFormInit() {
-		$('.spinbox').spinbox('value', 1);
-		$("#unit").select2();
-		$("#unit2").select2();
-		$("#categoryId").select2();
-		$("#color").select2();
-		$("#brand").select2();
-		$("#specification").select2();
-		validate();
-	}
-
+	
 	function bindItems(index) {
 		$.get("/Product/List?pageIndex=" + index + "&pageSize=10",queryEntity, function(e) {
-			e = $.extend(true, e, { colspan: 7, pageChangeAction:  "bindItems" });
-			var html = juicer($("#table").html(), { data: e });
+		    e.Data = $.extend(true, e.Data, { colspan: 7, pageChangeAction: "bindItems" });
+			var html = juicer($("#table").html(), { data: e.Data });
 			$("#itemGrid").html(html);
 			$("select").each(function(e) {
 					$(this).select2();
@@ -49,66 +39,6 @@
 			$("#searchUnit").select2().val("").trigger("change");
 			$("#searchSpecification").select2().val("").trigger("change");
 		}
-
-	function validate() {
-		$("#form").bootstrapValidator({
-			message: '验证未通过',
-			fields: {
-				code: {
-					validators: {
-						notEmpty: {
-							message: '商品编号不能为空'
-						}
-					}
-				},
-				name: {
-					validators: {
-						notEmpty: {
-							message: '商品名称不能为空'
-						}
-					}
-				},
-				unit: {
-					validators: {
-						notEmpty: {
-							message: '单位不能为空'
-						}
-					}
-				},
-				unit2: {
-					validators: {
-						notEmpty: {
-							message: '辅助单位不能为空'
-						}
-					}
-				},
-				categoryId: {
-					validators: {
-						notEmpty: {
-							message: '商品类别不能为空'
-						}
-					}
-				},				
-				conversion: {
-					validators: {
-						notEmpty: {
-							message: '单位换算不能为空'
-						},
-						numeric: {
-							message: '单位换算必须是数字'
-						}, 
-							greaterThan: {
-								value : 0,
-								inclusive: false,
-								message: '单位换算必须大于0'
-						}
-					}
-				}
-			}
-		});
-	}
-
-
 
 	initIndexPage();
 	

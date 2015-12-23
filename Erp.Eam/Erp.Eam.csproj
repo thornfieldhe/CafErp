@@ -318,6 +318,9 @@
     <Content Include="assets\img\sort_desc_disabled.png" />
     <Content Include="assets\img\temp1.png" />
     <Content Include="assets\js\fiber.min.js" />
+    <Content Include="assets\js\taf\vue-template.html" />
+    <Content Include="assets\js\taf\vue-ui.js" />
+    <Content Include="assets\js\taf\vue.min.js" />
     <Content Include="assets\js\vue.min.js" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\product.js" />

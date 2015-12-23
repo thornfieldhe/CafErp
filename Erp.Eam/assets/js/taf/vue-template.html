@@ -1,0 +1,11 @@
+﻿<template id="addButton">
+    <a href="javascript:void(0);" class="btn btn-primary " v-on:click="newItem(model,title)"><i class="fa  fa-plus"></i> 新增</a>
+</template>
+<template id="searchButton">
+    <a href="javascript:void(0)" class="btn btn-danger " v-on:click="search(index,filter,model)"><i class="fa fa-search"></i> 搜索</a>
+    <a href="javascript:void(0)" class="btn" onclick="resetSearch()"><i class="fa fa-times"></i> 重置</a>
+</template>
+<template id="scommanButton">
+    <a href="javascript:void(0)" class="btn   edit" v-on:click="editItem(id,model,title) "><i class="fa fa-edit"></i> 编辑</a>
+    <a href="javascript:void(0)" class="btn btn-danger  " v-on:click="deleteItem(id,model,name) "><i class="fa fa-trash-o"></i> 删除</a>
+</template>
