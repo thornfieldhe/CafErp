@@ -13,91 +13,98 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-12">
                                     <div class="table-toolbar">
-                                        <add-button title="新增商品" :model="model"></add-button>
+                                        <add-button title="新增商品" ></add-button>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <table class="table table-striped table-hover table-bordered ">
                                                 <thead>
-                                                <tr role="row">
-                                                    <th style="width: 150px;">
-                                                        商品编号
-                                                    </th>
-                                                    <th>
-                                                        商品名称
-                                                    </th>
-                                                    <th>
-                                                        单位
-                                                    </th>
-                                                    <th style="width: 150px;">
-                                                        规格型号
-                                                    </th>
-                                                    <th>
-                                                        商品类别
-                                                    </th>
-                                                    <th>
-                                                        商品颜色
-                                                    </th>
-                                                    <th style="width: 200px;">
-                                                    </th>
-                                                </tr>
-                                                <tr role="row">
-                                                    <th>
-                                                        <input type="text" class="form-control" id="searchCode" placeholder="商品编号" v-model="query.code"/>
-                                                    </th>
-                                                    <th>
-                                                        <input type="text" class="form-control" id="searchName" placeholder="商品名称" v-model="query.name"/>
-                                                    </th>
-                                                    <th>
-                                                        <select id="searchUnit" style="width: 100%" v-model="query.unit">
-                                                            @{
+                                                    <tr role="row">
+                                                        <th style="width: 150px;">
+                                                            商品编号
+                                                        </th>
+                                                        <th>
+                                                            商品名称
+                                                        </th>
+                                                        <th>
+                                                            单位
+                                                        </th>
+                                                        <th style="width: 150px;">
+                                                            规格型号
+                                                        </th>
+                                                        <th>
+                                                            商品类别
+                                                        </th>
+                                                        <th>
+                                                            商品颜色
+                                                        </th>
+                                                        <th style="width: 200px;">
+                                                        </th>
+                                                    </tr>
+                                                    <tr role="row">
+                                                        <th>
+                                                            <input type="text" class="form-control" id="searchCode" placeholder="商品编号" v-model="query.code" />
+                                                        </th>
+                                                        <th>
+                                                            <input type="text" class="form-control" id="searchName" placeholder="商品名称" v-model="query.name" />
+                                                        </th>
+                                                        <th>
+                                                            <select id="searchUnit" style="width: 100%" v-model="query.unit">
+                                                                @{
                                                                 foreach (var item in Info.ToSelectItems(InfoCategory.Unit))
                                                                 {
-                                                                    <option value="@item">@item</option>
+                                                            <option value="@item">@item</option>
                                                                 }
-                                                            }
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <input type="text" class="form-control" id="searchSpecification" placeholder="规格型号" v-model="query.specification"/>
-                                                    </th>
-                                                    <th style="width: 150px">
-                                                        <select id="searchCategory" style="width: 100%" v-model="query.category">
-                                                            @{
+                                                                }
+                                                            </select>
+                                                        </th>
+                                                        <th>
+                                                            <select id="searchSpecification" style="width: 100%" v-model="query.specification">
+                                                                @{
+                                                                    foreach (var item in Info.ToSelectItems(InfoCategory.Specification))
+                                                                    {
+                                                                        <option value="@item">@item</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </th>
+                                                        <th style="width: 150px">
+                                                            <select id="searchCategory" style="width: 100%" v-model="query.category">
+                                                                @{
                                                                 foreach (var item in ProductCategory.ToSelectItems())
                                                                 {
-                                                                    <option value="@item.Item1">@item.Item2</option>
+                                                            <option value="@item.Item1">@item.Item2</option>
                                                                 }
-                                                            }
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <select id="searchColor" style="width: 100%" v-model="query.color">
-                                                            @{
+                                                                }
+                                                            </select>
+                                                        </th>
+                                                        <th>
+                                                            <select id="searchColor" style="width: 100%" v-model="query.color">
+                                                                @{
                                                                 foreach (var item in Info.ToSelectItems(InfoCategory.Color))
                                                                 {
-                                                                    <option value="@item">@item</option>
+                                                            <option value="@item">@item</option>
                                                                 }
-                                                            }
-                                                        </select>
-                                                    </th>
-                                                    <th>
-                                                        <row-search :filter="query" index="1" :model="model"></row-search>
-                                                    </th>
-                                                </tr>
+                                                                }
+                                                            </select>
+                                                        </th>
+                                                        <th>
+                                                            <row-search :filter="query" index="1" :model="model"></row-search>
+                                                        </th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr v-for=" it in list.Datas">
-                                                    <td>{{it.Code}}</td>
-                                                    <td>{{it.Name}}</td>
-                                                    <td>{{it.Unit}}</td>
-                                                    <td>{{it.Specification}}</td>
-                                                    <td>{{it.Category}}</td>
-                                                    <td>{{it.Color}}</td>
-                                                    <td>
-                                                        <row-command :id="it.Id" :model='model' title="编辑产品" :name="it.Name"></row-command>
-                                                    </td>
-                                                </tr>
+                                                    <tr v-for=" it in list.Datas">
+                                                        <td>{{it.Code}}</td>
+                                                        <td>{{it.Name}}</td>
+                                                        <td>{{it.Unit}}</td>
+                                                        <td>{{it.Specification}}</td>
+                                                        <td>{{it.Category}}</td>
+                                                        <td>{{it.Color}}</td>
+                                                        <td>
+                                                            <row-command id="it.Id" :model='model' title="编辑产品" name="it.Name" ></row-command>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                                 <tfoot></tfoot>
                                             </table>
@@ -112,258 +119,286 @@
             </div>
         </div>
     </div>
-    <script id="submitForm"type="text/html">
-        <form id="form" class="form-horizontal" name="form">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right">商品编号</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="商品编号" name="code" v-model="item.Code" />
-                        </div>
-                    </div>
+    <form-edit></form-edit>
+</div>
+<template id="formEdit">
+    <div class="modal fade  modal-primary" id="addUserModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">{{ title }}</h4>
+                    <div v-model="title"></div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right">商品名称</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="商品名称" name="name" v-model="item.Name" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right">单位</label>
-                        <div class="col-sm-10">
-                            <select id="unit" name="unit" style="width: 100%" v-model="item.Unit">
-                                @{
-                                    foreach (var u in Info.ToSelectItems(InfoCategory.Unit))
-                                    {
-                                        <option value="@u">@u</option>
-                                    }
-                                }
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right">辅助单位</label>
-                        <div class="col-sm-10">
-                            <select id="unit2" name="unit2" style="width: 100%" v-model="item.Unit2">
-                                @{
-                                    foreach (var u in Info.ToSelectItems(InfoCategory.Unit))
-                                    {
-                                        <option value="@u">@u</option>
-                                    }
-                                }
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right">单位换算</label>
-                        <div class="col-sm-10">
-                            <div class="spinbox spinbox-horizontal spinbox-right">
-                                <div class="spinbox-buttons	btn-group">
-                                    <button type="button" class="btn spinbox-down blueberry">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn spinbox-up purple">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
+                <div class="modal-body">
+                    <form id="form" class="form-horizontal" name="form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">商品名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="商品名称" name="name" v-model="title"/>
+                                    </div>
                                 </div>
-                                <input type="text" class="spinbox-input form-control" name="conversion" id="conversion" required v-model="item.Conversion" />
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right">商品类别</label>
-                        <div class="col-sm-10">
-                            <select id="categoryId" name="categoryId" style="width: 100%" v-model="item.CategoryId">
-                                @{
-                                    foreach (var pc in ProductCategory.ToSelectItems())
-                                    {
-                                        <option value="@pc.Item1">@pc.Item2</option>
-                                    }
-                                }
-                            </select>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">单位</label>
+                                    <div class="col-sm-10">
+                                        <select id="unit" name="unit" style="width: 100%" v-model="item.Unit">
+                                            @{
+                                                foreach (var u in Info.ToSelectItems(InfoCategory.Unit))
+                                                {
+                                                    <option value="@u">@u</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label no-padding-right">商品颜色</label>
-                        <div class="col-sm-10">
-                            <select id="color" name="color" style="width: 100%" v-model="item.Color">
-                                @{
-                                    foreach (var c in Info.ToSelectItems(InfoCategory.Color))
-                                    {
-                                        <option value="@c">@c</option>
-                                    }
-                                }
-                            </select>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">辅助单位</label>
+                                    <div class="col-sm-10">
+                                        <select id="unit2" name="unit2" style="width: 100%" v-model="item.Unit2">
+                                            @{
+                                                foreach (var u in Info.ToSelectItems(InfoCategory.Unit))
+                                                {
+                                                    <option value="@u">@u</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" id="unknownError" style="display: none;">
-                <div class="col-md-12">
-                    <div class="form-group  has-feedback has-error">
-                        <div class="col-md-10 col-md-offset-2">
-                            <small class="help-block"></small>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">单位换算</label>
+                                    <div class="col-sm-10">
+                                        <div class="spinbox spinbox-horizontal spinbox-right">
+                                            <div class="spinbox-buttons	btn-group">
+                                                <button type="button" class="btn spinbox-down blueberry">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn spinbox-up purple">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="spinbox-input form-control" name="conversion" id="conversion" required v-model="item.Conversion"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">商品类别</label>
+                                    <div class="col-sm-10">
+                                        <select id="categoryId" name="categoryId" style="width: 100%" v-model="item.CategoryId">
+                                            @{
+                                                foreach (var pc in ProductCategory.ToSelectItems())
+                                                {
+                                                    <option value="@pc.Item1">@pc.Item2</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">商品颜色</label>
+                                    <div class="col-sm-10">
+                                        <select id="color" name="color" style="width: 100%" v-model="item.Color">
+                                            @{
+                                                foreach (var c in Info.ToSelectItems(InfoCategory.Color))
+                                                {
+                                                    <option value="@c">@c</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label no-padding-right">备注</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="spinbox-input form-control" v-model="item.Note"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="unknownError" style="display: none;">
+                            <div class="col-md-12">
+                                <div class="form-group  has-feedback has-error">
+                                    <div class="col-md-10 col-md-offset-2">
+                                        <small class="help-block"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </form>
-    </script>
-</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class='fa   fa-mail-reply'></i>取消</button>
+                    <button type="button" class="btn btn-primary"><i class='fa    fa-floppy-o'></i>保存</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 
-
-<template id="addButton">
-    <a href="javascript:void(0);" class="btn btn-primary " v-on:click="newItem(model,title)"><i class="fa  fa-plus"></i> 新增</a>
 </template>
-<template id="searchButton">
-    <a href="javascript:void(0)" class="btn btn-danger " v-on:click="search(index,filter,model)"><i class="fa fa-search"></i> 搜索</a>
-    <a href="javascript:void(0)" class="btn" onclick="resetSearch()"><i class="fa fa-times"></i> 重置</a>
-</template>
-<template id="scommanButton">
-    <a href="javascript:void(0)" class="btn   edit" v-on:click="editItem(id,model,title) "><i class="fa fa-edit"></i> 编辑</a>
-    <a href="javascript:void(0)" class="btn btn-danger  " v-on:click="deleteItem(id,model,name) "><i class="fa fa-trash-o"></i> 删除</a>
-</template>
-
 <script src="~/assets/js/taf/vue-ui.js"></script>
 
 <script type="text/javascript">
-    var main= new Vue({
+    var main = new Vue({
         el: "#main",
         data: {
             model: 'Product',
-            list:{},
+            list: {},
             item: {},
-            query:{
+            query: {
                 code: "",
                 name: "",
                 unit: "",
                 category: "",
-                color: ""
+                color: "",
+                specification:""
+            }
+        },
+        components: {
+            'form-edit': {
+                props: ['item', 'model.Id', 'title'],
+                template: '#formEdit',
+                events: {
+                    'onAddItem': function (title,model) {
+                        this.title = title;
+                    },
+                    'onUpdateItem': function (title,model,id) {
+                        this.title = title;
+                    }
+                }
             }
         },
         events: {
-            'bindItems': function (result) {
+            'onBindItems': function (result) {
+                console.log(result);
                 this.list = result;
+            },
+            'onResetSearch': function(){
+                this.queryEntity = {};
+                $("#searchCode").val("");
+                $("#searchName").val("");
+                $("#searchCategory").select2().val("").trigger("change");
+                $("#searchColor").select2().val("").trigger("change");
+                $("#searchUnit").select2().val("").trigger("change");
+                $("#searchSpecification").select2().val("").trigger("change");
+            },
+            'onAddItem': function (title, model) {
+                this.formInit();
+                this.$broadcast("onAddItem", title,model);
+            },
+            'onUpdateItem': function (title, model, id) {
+                this.formInit();
+                this.$broadcast("onUpdateItem", title,model,id);
+            }
+        },
+        methods: {
+            init: function () {
+                this.bindItems(1);
+                $("#searchUnit").select2().on("change", function (e) { main.query.unit = $("#searchUnit").val(); });
+                $("#searchCategory").select2().on("change", function (e) { main.query.category = $("#searchCategory").val() ;});
+                $("#searchColor").select2().on("change", function (e) { main.query.color = $("#searchColor").val(); });
+                $("#searchSpecification").select2().on("change", function (e) { main.query.specification = $("#searchSpecification").val(); });
+            },
+            bindItems: function (index) {
+                var $this = this;
+                taf.model.get(index, this.query, this.model, function (result) { $this.list=result});
+            },
+            validate:function () {
+                $("#form").bootstrapValidator({
+                    message: '验证未通过',
+                    fields: {
+                        code: {
+                            validators: {
+                                notEmpty: {
+                                    message: '商品编号不能为空'
+                                }
+                            }
+                        },
+                        name: {
+                            validators: {
+                                notEmpty: {
+                                    message: '商品名称不能为空'
+                                }
+                            }
+                        },
+                        unit: {
+                            validators: {
+                                notEmpty: {
+                                    message: '单位不能为空'
+                                }
+                            }
+                        },
+                        unit2: {
+                            validators: {
+                                notEmpty: {
+                                    message: '辅助单位不能为空'
+                                }
+                            }
+                        },
+                        categoryId: {
+                            validators: {
+                                notEmpty: {
+                                    message: '商品类别不能为空'
+                                }
+                            }
+                        },
+                        conversion: {
+                            validators: {
+                                notEmpty: {
+                                    message: '单位换算不能为空'
+                                },
+                                numeric: {
+                                    message: '单位换算必须是数字'
+                                },
+                                greaterThan: {
+                                    value: 0,
+                                    inclusive: false,
+                                    message: '单位换算必须大于0'
+                                }
+                            }
+                        }
+                    }
+                });
+            },
+            formInit:function() {
+                $('.spinbox').spinbox('value', 1);
+                $("#unit").select2();
+                $("#unit2").select2();
+                $("#categoryId").select2();
+                $("#color").select2();
+                $("#brand").select2();
+                $("#specification").select2();
+                this.validate();
             }
         }
     });
 
-
-
-    function resetSearch() {
-        main.query.code = "";
-        main.query.name = "";
-        main.query.unit = "";
-        main.query.specification = "";
-        main.query.category = "";
-        main.query.color = "";
-        $("#searchUnit").val("").trigger("change");
-        $("#searchCategory").val("").trigger("change");
-        $("#searchColor").val("").trigger("change");
-    }
-
-    function init() {
-        $("#searchUnit").select2().on("change", function (e) { main.query.unit = $("#searchUnit").val() });
-        $("#searchCategory").select2().on("change", function (e) { main.query.category = $("#searchCategory").val() });
-        $("#searchColor").select2().on("change", function (e) { main.query.color = $("#searchColor").val() });
-    }
-
-    function onFormInit() {
-        console.log(2);
-        $('.spinbox').spinbox('value', 1);
-        $("#unit").select2();
-        $("#unit2").select2();
-        $("#categoryId").select2();
-        $("#color").select2();
-        $("#brand").select2();
-        $("#specification").select2();
-        validate();
-    }
-
-    init();
-
-    function validate() {
-        $("#form").bootstrapValidator({
-            message: '验证未通过',
-            fields: {
-                code: {
-                    validators: {
-                        notEmpty: {
-                            message: '商品编号不能为空'
-                        }
-                    }
-                },
-                name: {
-                    validators: {
-                        notEmpty: {
-                            message: '商品名称不能为空'
-                        }
-                    }
-                },
-                unit: {
-                    validators: {
-                        notEmpty: {
-                            message: '单位不能为空'
-                        }
-                    }
-                },
-                unit2: {
-                    validators: {
-                        notEmpty: {
-                            message: '辅助单位不能为空'
-                        }
-                    }
-                },
-                categoryId: {
-                    validators: {
-                        notEmpty: {
-                            message: '商品类别不能为空'
-                        }
-                    }
-                },
-                conversion: {
-                    validators: {
-                        notEmpty: {
-                            message: '单位换算不能为空'
-                        },
-                        numeric: {
-                            message: '单位换算必须是数字'
-                        },
-                        greaterThan: {
-                            value: 0,
-                            inclusive: false,
-                            message: '单位换算必须大于0'
-                        }
-                    }
-                }
-            }
-        });
-    }
+    main.init();
 </script>
-    
+
 
 

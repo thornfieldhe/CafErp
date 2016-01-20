@@ -14,6 +14,8 @@ namespace Erp.Eam.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
+    using TAF.Utility;
+
     public enum InfoCategory
     {
         /// <summary>
@@ -88,12 +90,12 @@ namespace Erp.Eam.Models
 
         protected override void PreInsert()
         {
-            Name = Name.Trim();
+            Name = Name.ToStr().Trim();
         }
 
         protected override void PreUpdate()
         {
-            Name = Name.Trim();
+            Name = Name.ToStr().Trim();
         }
 
         #endregion

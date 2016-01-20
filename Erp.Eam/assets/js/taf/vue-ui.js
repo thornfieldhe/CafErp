@@ -1,11 +1,11 @@
 ﻿    //新增按钮
     Vue.component('add-button', {
-        props: ['title', 'model'],
+        props: ['title','model'],
         template: '#addButton',
         methods:{
-            newItem: function (model, title) {
-
-                taf.model.edit(title, model, $("#submitForm").html(), true, onFormInit);
+            newItem: function (title,model) {
+                $("#addUserModal").modal("show");
+                this.$dispatch('onAddItem', title,model);
             }
         }
     });
@@ -17,7 +17,11 @@ Vue.component('row-search', {
     methods: {
         search: function (index, filter, model) {
             var $this = this;
-             taf.model.get(index, filter, model, function (result) { $this.$dispatch('bindItems', result); });
+            console.log(index, filter, model);
+             taf.model.get(index, filter, model, function (result) { $this.$dispatch('onBindItems', result); });
+        },
+        resetSearch: function () {
+            this.$dispatch('onResetSearch');
         }
     }
 });
@@ -27,13 +31,15 @@ Vue.component('row-command', {
     props: ['id', 'model', 'title','name'],
     template: '#scommanButton',
     methods: {
-        editItem: function (id, title, model) {
-  
+        editItem: function (id, model, title) {
+            $("#addUserModal").modal("show");
+            this.$dispatch('onUpdateItem', title,id);
         },
         deleteItem: function (id, model,name) {
             taf.delete(id, model, name, function() {
-                taf.model.query(1, null, model, function (result) { $this.$dispatch('bindItems', result); });
+                taf.model.query(1, null, model, function (result) { $this.$dispatch('onBindItems', result); });
             });
         }
     }
 });
+

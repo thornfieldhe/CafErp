@@ -24,6 +24,7 @@
             bundles.Add(new ScriptBundle("~/assets/basicjs").Include(
                       "~/assets/js/jquery.min.js",
                       "~/assets/js/bootstrap.min.js",
+                      "~/assets/js/modal.js",
                        "~/assets/js/slimscroll/jquery.slimscroll.min.js",
                        "~/assets/js/lodash.min.js",
                       "~/assets/js/beyond.js",
